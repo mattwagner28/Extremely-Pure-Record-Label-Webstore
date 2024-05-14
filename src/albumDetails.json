@@ -1,0 +1,52 @@
+{
+    "releases": [
+        {
+            "artist": "M Wagner",
+            "title": "We Could Stay",
+            "image": "weCouldStay.jpg",
+            "type": "LP",
+            "format": "Vinyl / CD / Digital"
+        },
+
+        {
+            "artist": "M Wagner",
+            "title": "Never Gone",
+            "image": "neverGone.jpg",
+            "type": "Single",
+            "format": "Digital"
+        },
+
+        {
+            "artist": "M Wagner",
+            "title": "Release Yrself",
+            "image": "releaseYrself.jpg",
+            "type": "Single",
+            "format": "Digital"
+        },
+        
+        {
+            "artist": "PYNKIE",
+            "title": "Songies",
+            "image": "songies.jpeg",
+            "type": "LP",
+            "format": "Vinyl / Cassette / Digital"
+        },
+
+        {
+            "artist": "Silver Liz",
+            "title": "It Is Lighter Than You Think",
+            "image": "lighterThan.png",
+            "type": "Single",
+            "format": "Digital"
+        },
+
+        {
+            "artist": "Silver Liz",
+            "title": "It Is Lighter Than You Think",
+            "image": "lighterThan.png",
+            "type": "Single",
+            "format": "Digital"
+        }
+    ]
+
+}
