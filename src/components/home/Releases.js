@@ -18,6 +18,7 @@ function Releases() {
                         </div>
                 ))}
                 </div>
+                
         </div>
     )
 }
