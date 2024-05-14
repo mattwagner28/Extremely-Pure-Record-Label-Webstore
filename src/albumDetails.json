@@ -5,7 +5,8 @@
             "title": "We Could Stay",
             "image": "weCouldStay.jpg",
             "type": "LP",
-            "format": "Vinyl / CD / Digital"
+            "format": "Vinyl / CD / Digital",
+            "external": "https://mwagner.bandcamp.com/album/we-could-stay"
         },
 
         {
@@ -13,7 +14,8 @@
             "title": "Never Gone",
             "image": "neverGone.jpg",
             "type": "Single",
-            "format": "Digital"
+            "format": "Digital",
+            "external": "https://www.youtube.com/watch?v=m7L5MOkvIZU"
         },
 
         {
@@ -21,7 +23,8 @@
             "title": "Release Yrself",
             "image": "releaseYrself.jpg",
             "type": "Single",
-            "format": "Digital"
+            "format": "Digital",
+            "external": "https://www.youtube.com/watch?v=Ee6ARrUKIks"
         },
         
         {
@@ -29,23 +32,26 @@
             "title": "Songies",
             "image": "songies.jpeg",
             "type": "LP",
-            "format": "Vinyl / Cassette / Digital"
+            "format": "Vinyl / Cassette / Digital",
+            "external": "https://pynkie.bandcamp.com/album/songies"
         },
 
         {
             "artist": "Silver Liz",
             "title": "It Is Lighter Than You Think",
             "image": "lighterThan.png",
-            "type": "Single",
-            "format": "Digital"
+            "type": "LP",
+            "format": "Vinyl / CD / Digital",
+            "external": "https://silverliz.bandcamp.com/album/it-is-lighter-than-you-think"
         },
 
         {
             "artist": "Silver Liz",
-            "title": "It Is Lighter Than You Think",
-            "image": "lighterThan.png",
-            "type": "Single",
-            "format": "Digital"
+            "title": "I Can Feel The Weight",
+            "image": "icftw.jpg",
+            "type": "LP",
+            "format": "CD / Cassette / Digital",
+            "external": "https://silverliz.bandcamp.com/album/i-can-feel-the-weight"
         }
     ]
 
