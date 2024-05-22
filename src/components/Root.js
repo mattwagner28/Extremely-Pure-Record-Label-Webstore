@@ -1,6 +1,6 @@
 import React from "react";
 import Logo from "../components/Logo";
-// import Nav from "../Nav";
+import Nav from "../Nav";
 import Home from "../components/home/Home";
 import { Outlet, useLocation } from "react-router-dom";
 
@@ -14,7 +14,7 @@ function Root() {
     return (
       <>
         <Logo />
-        {/* <Nav /> */}
+        <Nav />
         {isHomeRoute && <Home />}
         <main>
             <Outlet />
