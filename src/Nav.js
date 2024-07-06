@@ -11,6 +11,7 @@ function Nav () {
             <NavLink to="/playlists" className="px-2 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500">PLAYLISTS</NavLink>
             <NavLink to="/about" className="px-2 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500">ABOUT</NavLink>
             <NavLink to="/stemplayer" className="px-2 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500">STEM PLAYER</NavLink>
+            <NavLink to="/login" className="px-2 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500">LOGIN</NavLink>
         </nav>
     )
 }

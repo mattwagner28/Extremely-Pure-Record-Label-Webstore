@@ -6,6 +6,7 @@ import Discography from "./components/Discography";
 import Playlists from "./components/Playlists";
 import About from "./components/About";
 import StemPlayer from "./components/StemPlayer";
+import Login from "./components/Login";
 import {
   RouterProvider,
   createBrowserRouter,
@@ -25,6 +26,7 @@ const router = createBrowserRouter(
       <Route path="playlists" element={<Playlists />} />
       <Route path="about" element={<About />} />
       <Route path="stemplayer" element={<StemPlayer />} />
+      <Route path="login" element={<Login />} />
     </Route>
   )
 );
