@@ -42,7 +42,7 @@ usersRouter.post('/', async (req, res, next) => {
 
   // Validate email
   if (!emailRegex.test(email)) {
-    return res.status(400).send('Invalid email format');
+    return res.status(400).json({ error: 'Invalid email format' });
   }
 
   try {
@@ -50,17 +50,18 @@ usersRouter.post('/', async (req, res, next) => {
     const emailResult = await pool.query('SELECT email FROM users WHERE email = $1', [email]);
 
     if (emailResult.rows.length > 0) {
-      return res.status(400).send('Email already in use');
+      return res.status(400).json({ error: 'Email already in use' });
     }
 
     // Insert new user
     const userResult = await pool.query('INSERT INTO users (email, password) VALUES($1, $2) RETURNING *', [email, password]);
 
-    res.status(201).send(`User added with ID ${userResult.rows[0].id}`);
+    res.status(201).json({ message: `User added with ID ${userResult.rows[0].id}`, userId: userResult.rows[0].id });
   } catch (error) {
-    next(error); // Pass errors to the error handler
+    next(error); 
   }
 });
+
 
 // Error handler middleware
 usersRouter.use((err, req, res, next) => {

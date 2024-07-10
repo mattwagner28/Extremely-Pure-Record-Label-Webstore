@@ -1,19 +1,30 @@
 import React, { useState } from "react";
 
-
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log ("success", {
-            email,
-            password
-        })
 
+        fetch('http://localhost:3000/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email,
+                password
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Fetch Req Successful:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     };
-    
 
     return (
         <div>
@@ -21,17 +32,26 @@ function Login() {
             <form onSubmit={handleSubmit}>
                 <label>
                     Email:
-                <input onChange={(e) => setEmail(e.target.value)} type="text" email="email" />
+                    <input 
+                        type="email" 
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)} 
+                    />
                 </label>
-
+                <br />
                 <label>
                     Password:
-                <input onChange={(e) => setPassword(e.target.value) } type="text" email="password" />
+                    <input 
+                        type="password" 
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)} 
+                    />
                 </label>
-                <input type="submit" />
+                <br />
+                <input type="submit" value="Login" />
             </form>
         </div>
-    )
+    );
 }
 
 export default Login;
