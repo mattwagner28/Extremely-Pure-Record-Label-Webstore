@@ -7,10 +7,15 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "autoprefixer": "^10.4.17",
+    "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "express": "^4.19.2",
+    "express-flash": "^0.0.2",
+    "express-session": "^1.18.0",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.4",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
     "pg": "^8.12.0",
     "postcss-cli": "^11.0.0",
     "react": "^18.2.0",
@@ -23,6 +28,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "devStart": "nodemon server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -44,5 +50,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.5",
+    "nodemon": "^3.1.4"
   }
 }

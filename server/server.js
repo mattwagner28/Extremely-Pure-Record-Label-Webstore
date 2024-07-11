@@ -1,12 +1,12 @@
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 const usersRouter = require('./routes/users');
 const cors = require('cors');
 
 //Implement cors
 app.use(cors({
-  origin: 'http://localhost:3001'
+  origin: 'http://localhost:3000'
 }));
 
 
