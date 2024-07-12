@@ -5,12 +5,12 @@ const usersRouter = require('./routes/users');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
+
 //Implement cors
 app.use(cors({
   origin: 'http://localhost:3000',
   credentials: true
 }));
-
 
 // Parse application/json
 app.use(express.json());

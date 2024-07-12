@@ -1,7 +1,9 @@
+require('dotenv').config();
 const express = require("express");
 const { Pool } = require("pg");
 const usersRouter = express.Router();
 const bcrypt = require("bcrypt");
+const jwt = require('jsonwebtoken');
 
 const pool = new Pool({
   user: "postgres",
@@ -34,6 +36,11 @@ usersRouter.get("/:id", async (req, res, next) => {
   }
 });
 
+//test authenticateToken
+// usersRouter.get('/posts', authenticateToken, (req, res) => {
+//   res.json(posts.filter(post => post.username === req.use.name))
+// });
+
 usersRouter.post("/", async (req, res, next) => {
   const { email, password } = req.body;
 
@@ -64,16 +71,6 @@ usersRouter.post("/", async (req, res, next) => {
       email: newUser.email,
     });
 
-    //Creates JWT Token after signing up
-    // const token = jwt.sign({ email: newUser.email }, secret, { expiresIn: '1h' });
-
-
-    // res.cookie("token", token, {
-    //   httpOnly: true,
-    //   //secure: true,
-    //   // maxAge: 1000000,
-    //   //signed: true
-    // });
 
   
   } catch (error) {
@@ -97,13 +94,36 @@ usersRouter.post('/login', async (req, res, next) => {
       return res.status(400).json({ error: "Incorrect email or password" }); 
     }
 
-    // If login is successful
-    res.status(200).json({ message: 'Logged in successfully', user: user });
+    // Create JWT
+    console.log("Access Token Secret:", process.env.ACCESS_TOKEN_SECRET);
+    
+    const jwtUser = { email: user.email, id: user.id }
+
+    const accessToken = jwt.sign(jwtUser, process.env.ACCESS_TOKEN_SECRET);
+    
+    res.cookie("token", accessToken, {
+      httpOnly: true,
+    });
+    
+    // Respond with JWT token
+    res.status(200).json({ message: 'Logged in successfully', accessToken });
 
   } catch (error) {
     next(error); // Pass error to Express error handler
   }
 });
+
+// function authenticateToken(req, res, next) {
+//   const authHeader = req.headers['authorization'];
+//   const token = authHeader && authHeader.split(' ')[1];
+//   if (token == null) return res.sendStatus(401);
+
+//   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, jwtUser) => {
+//     if (err) return res.sendStatus(403);
+//     req.user = jwtUser;
+//     next();
+//   })
+// }
 
 usersRouter.use((err, req, res, next) => {
   console.error(err.stack);
