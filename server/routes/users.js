@@ -2,7 +2,6 @@ const express = require("express");
 const { Pool } = require("pg");
 const usersRouter = express.Router();
 const bcrypt = require("bcrypt");
-const passport = require("../routes/auth");
 
 const pool = new Pool({
   user: "postgres",
@@ -58,25 +57,52 @@ usersRouter.post("/", async (req, res, next) => {
 
     const newUser = userResult.rows[0];
 
-    req.login(newUser, (err) => {
-      if (err) {
-        return next(err);
-      }
-
-      res.status(201).json({
-        loggedIn: true,
-        message: `User added with ID ${newUser.id}`,
-        userId: newUser.id,
-        email: newUser.email
-      });
+    res.status(201).json({
+      loggedIn: true,
+      message: `User added with ID ${newUser.id}`,
+      userId: newUser.id,
+      email: newUser.email,
     });
+
+    //Creates JWT Token after signing up
+    // const token = jwt.sign({ email: newUser.email }, secret, { expiresIn: '1h' });
+
+
+    // res.cookie("token", token, {
+    //   httpOnly: true,
+    //   //secure: true,
+    //   // maxAge: 1000000,
+    //   //signed: true
+    // });
+
+  
   } catch (error) {
     next(error);
   }
 });
 
-usersRouter.post('/login', passport.authenticate('local'), (req, res) => {
-  res.status(200).json({ message: 'Logged in successfully', user: req.user });
+usersRouter.post('/login', async (req, res, next) => {
+  const { email, password } = req.body;
+
+  try {
+    const userInfo = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
+    const user = userInfo.rows[0];
+
+    if (!user) {
+      return res.status(400).json({ error: "Incorrect email or password" }); 
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ error: "Incorrect email or password" }); 
+    }
+
+    // If login is successful
+    res.status(200).json({ message: 'Logged in successfully', user: user });
+
+  } catch (error) {
+    next(error); // Pass error to Express error handler
+  }
 });
 
 usersRouter.use((err, req, res, next) => {
