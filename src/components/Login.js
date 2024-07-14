@@ -1,22 +1,30 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, {  useState } from "react";
+import { Navigate, NavLink } from "react-router-dom";
+
+
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [invalidMessage, setInvalidMessage] = useState("");
+  const [loggedIn, setLoggedIn] = useState(false);
+
+
 
   // Regular expression to validate email format
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!emailRegex.test(email)) {
       setInvalidMessage("Please enter valid e-mail address");
       setEmail("");
       setPassword("");
-    } else {
-      fetch("http://localhost:3001/users/login", {
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:3001/users/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -26,22 +34,26 @@ function Login() {
           email,
           password,
         }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("Fetch Req Successful:", data);
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+      console.log("Fetch Req Successful:", data);
+      setLoggedIn(true); // Update loggedIn state upon successful login
+      console.log("logged in:", loggedIn);
+    } catch (error) {
+      console.error("Error:", error);
     }
   };
 
+  if (loggedIn) {
+    return <Navigate to="/" />;
+  };
+
   return (
-
-    // <LoginForm />
-
-
 
     <div>
       <h1>Login</h1>
@@ -77,5 +89,7 @@ function Login() {
     </div>
   );
 }
+
+
 
 export default Login;

@@ -24,6 +24,23 @@ usersRouter.get("/", async (req, res, next) => {
   }
 });
 
+
+usersRouter.get('/verifytoken', (req, res, next) => {
+  const token = req.cookies.token;
+  console.log(req.cookies);
+  if (!token) {
+    return res.status(401).json({ error: "No token provided" });
+  }
+
+  try {
+    const user = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    res.status(200).json(user);
+  } catch (err) {
+    res.clearCookie("token");
+    res.status(403).json({ error: "Invalid token" });
+  }
+});
+
 usersRouter.get("/:id", async (req, res, next) => {
   try {
     const results = await pool.query("SELECT * FROM users WHERE id = $1", [req.params.id]);
@@ -35,11 +52,6 @@ usersRouter.get("/:id", async (req, res, next) => {
     next(error);
   }
 });
-
-//test authenticateToken
-// usersRouter.get('/posts', authenticateToken, (req, res) => {
-//   res.json(posts.filter(post => post.username === req.use.name))
-// });
 
 usersRouter.post("/", async (req, res, next) => {
   const { email, password } = req.body;
@@ -125,6 +137,7 @@ usersRouter.post('/login', async (req, res, next) => {
 //     next();
 //   })
 // }
+
 
 usersRouter.use((err, req, res, next) => {
   console.error(err.stack);
