@@ -103,6 +103,7 @@ usersRouter.post('/login', async (req, res, next) => {
     
     res.cookie("token", accessToken, {
       httpOnly: true,
+      maxAge: 3600000 //1 hour
     });
     
     // Respond with JWT token
