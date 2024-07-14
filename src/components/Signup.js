@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-function Login() {
+function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [invalidMessage, setInvalidMessage] = useState("");
@@ -16,7 +16,7 @@ function Login() {
       setEmail("");
       setPassword("");
     } else {
-      fetch("http://localhost:3001/users/login", {
+      fetch("http://localhost:3001/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -38,10 +38,6 @@ function Login() {
   };
 
   return (
-
-    // <LoginForm />
-
-
 
     <div>
       <h1>Login</h1>
@@ -69,13 +65,13 @@ function Login() {
         <input
           className="px-2 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500"
           type="submit"
-          value="Login"
+          value="Signup"
         />
       </form>
       <h4>{invalidMessage}</h4>
-      <NavLink to="/signup" className="px-2 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500">Or, signup!</NavLink>
+      <NavLink to="/login" className="px-2 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500">Already have an account?</NavLink>
     </div>
   );
 }
 
-export default Login;
+export default Signup;

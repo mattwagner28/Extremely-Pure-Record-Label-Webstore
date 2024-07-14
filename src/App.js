@@ -7,6 +7,7 @@ import Playlists from "./components/Playlists";
 import About from "./components/About";
 import StemPlayer from "./components/StemPlayer";
 import Login from "./components/Login";
+import Signup from "./components/Signup";
 import {
   RouterProvider,
   createBrowserRouter,
@@ -27,6 +28,7 @@ const router = createBrowserRouter(
       <Route path="about" element={<About />} />
       <Route path="stemplayer" element={<StemPlayer />} />
       <Route path="login" element={<Login />} />
+      <Route path="signup" element={<Signup />} />
     </Route>
   )
 );
