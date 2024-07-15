@@ -16,7 +16,7 @@ function Releases() {
             onMouseLeave={() => setHoveredIndex(null)}
           >
             <img
-              src={`/albumart/${release.image}`}
+              src={`/albumart/${release.coverArt}`}
               alt={release.title}
               className={`lg:transition-opacity lg:duration-500 lg:ease-in-out ${
                 hoveredIndex === index ? "lg:opacity-25" : "lg:opacity-100"

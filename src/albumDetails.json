@@ -3,16 +3,17 @@
         {
             "artist": "M Wagner",
             "title": "We Could Stay",
-            "image": "weCouldStay.jpg",
+            "coverArt": "weCouldStay.jpg",
             "type": "LP",
             "format": "Vinyl / CD / Digital",
-            "external": "https://mwagner.bandcamp.com/album/we-could-stay"
+            "external": "https://mwagner.bandcamp.com/album/we-could-stay",
+            "price": 22.00
         },
 
         {
             "artist": "M Wagner",
             "title": "Never Gone",
-            "image": "neverGone.jpg",
+            "coverArt": "neverGone.jpg",
             "type": "Single",
             "format": "Digital",
             "external": "https://www.youtube.com/watch?v=m7L5MOkvIZU"
@@ -21,7 +22,7 @@
         {
             "artist": "M Wagner",
             "title": "Release Yrself",
-            "image": "releaseYrself.jpg",
+            "coverArt": "releaseYrself.jpg",
             "type": "Single",
             "format": "Digital",
             "external": "https://www.youtube.com/watch?v=Ee6ARrUKIks"
@@ -30,25 +31,27 @@
         {
             "artist": "PYNKIE",
             "title": "Songies",
-            "image": "songies.jpeg",
+            "coverArt": "songies.jpeg",
             "type": "LP",
             "format": "Vinyl / Cassette / Digital",
-            "external": "https://pynkie.bandcamp.com/album/songies"
+            "external": "https://pynkie.bandcamp.com/album/songies",
+            "price": 17.00
         },
 
         {
             "artist": "Silver Liz",
             "title": "It Is Lighter Than You Think",
-            "image": "lighterThan.png",
+            "coverArt": "lighterThan.png",
             "type": "LP",
             "format": "Vinyl / CD / Digital",
-            "external": "https://silverliz.bandcamp.com/album/it-is-lighter-than-you-think"
+            "external": "https://silverliz.bandcamp.com/album/it-is-lighter-than-you-think",
+            "price": 22.00
         },
 
         {
             "artist": "Silver Liz",
             "title": "I Can Feel The Weight",
-            "image": "icftw.jpg",
+            "coverArt": "icftw.jpg",
             "type": "LP",
             "format": "CD / Cassette / Digital",
             "external": "https://silverliz.bandcamp.com/album/i-can-feel-the-weight"
