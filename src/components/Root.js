@@ -40,7 +40,7 @@ function Root() {
           <Logo />
           <Nav />
           {isHomeRoute && <Home />}
-          <main>
+          <main className="flex justify-center mt-1">
               <Outlet />
           </main>
           
