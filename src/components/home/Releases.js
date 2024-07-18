@@ -5,7 +5,7 @@ function Releases() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   return (
-    <div className="w-full z-0 lg:w-4/5 border-solid border-2 m-2">
+    <div className="w-full border-solid z-0 lg:w-4/5 border-solid border-2 m-2">
       <h1 className="text-center font-semibold">RELEASES</h1>
       <div className="grid grid-cols-1 lg:grid-cols-4" >
         {releasesData.releases.map((release, index) => (

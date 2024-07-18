@@ -9,6 +9,8 @@ import StemPlayer from "./components/StemPlayer";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import ShoppingCart from "./components/ShoppingCart";
+import CheckoutForm from "./components/CheckoutForm";
+import Return from "./components/Return";
 import {
   RouterProvider,
   createBrowserRouter,
@@ -31,6 +33,8 @@ const router = createBrowserRouter(
       <Route path="login" element={<Login />} />
       <Route path="signup" element={<Signup />} />
       <Route path="shoppingcart" element={<ShoppingCart />} />
+      <Route path="/checkout" element={<CheckoutForm />} />
+      <Route path="/return" element={<Return />} />
     </Route>
   )
 );
