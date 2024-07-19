@@ -61,12 +61,12 @@ function Root() {
   };
 
   const removeItemFromCart = (product) => {
-    const updatedProduct = { ...product, quantity: product.quantity - 1 };
-  
     setCart((prevCart) => {
       return prevCart
         .map(item =>
-          item.id === product.id ? updatedProduct : item
+          item.id === product.id
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
         )
         .filter(item => item.quantity > 0);
     });
@@ -84,7 +84,7 @@ function Root() {
       return newQuantities;
     });
   };
-
+  
   return (
     <UserContext.Provider value={loggedIn}>
       <>

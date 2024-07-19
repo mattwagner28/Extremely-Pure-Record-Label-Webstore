@@ -1,14 +1,10 @@
 import { useEffect, useState } from "react";
 import React from "react";
-import ShoppingCart from "../components/ShoppingCart";
 import { useOutletContext } from "react-router-dom";
 
 function Store() {
   const { cart, addItemToCart, removeItemFromCart, quantities } = useOutletContext();
   const [products, setProducts] = useState([]);
-  // const [cart, setCart] = useState([]);
-  // const [quantities, setQuantities] = useState({});
-  // const [cartVisible, setCartVisible] = useState(false);
 
   useEffect(() => {
     fetch("http://localhost:3001/shop")
@@ -69,10 +65,10 @@ function Store() {
   //   setCartVisible(!cartVisible);
   // };
 
-  // useEffect(() => {
-  //   console.log('Shopping cart:', cart);
-  //   console.log('Quantities:', quantities);
-  // }, [cart, quantities]);
+  useEffect(() => {
+    console.log('Shopping cart:', cart);
+    console.log('Quantities:', quantities);
+  }, [cart, quantities]);
 
   return (
     <>
