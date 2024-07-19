@@ -35,37 +35,37 @@ shopRouter.get("/", async (req, res, next) => {
 
 
 
-shopRouter.post('/create-checkout-session', async (req, res) => {
-  const session = await stripe.checkout.sessions.create({
-    ui_mode: 'embedded',
-    line_items: [
-      {
-        // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-        price: 'price_1PdgzIFrTCMUt7gz51z3dFc7',
-        quantity: 1,
-      },
-      {
-        // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-        price: 'price_1Pb6xgFrTCMUt7gzJd7xNDjS',
-        quantity: 1,
-      }
-    ],
-    mode: 'payment',
-    return_url: `${YOUR_DOMAIN}/return?session_id={CHECKOUT_SESSION_ID}`,
-    automatic_tax: {enabled: true},
-  });
+// shopRouter.post('/create-checkout-session', async (req, res) => {
+//   const session = await stripe.checkout.sessions.create({
+//     ui_mode: 'embedded',
+//     line_items: [
+//       {
+//         // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+//         price: 'price_1PdgzIFrTCMUt7gz51z3dFc7',
+//         quantity: 1,
+//       },
+//       {
+//         // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+//         price: 'price_1Pb6xgFrTCMUt7gzJd7xNDjS',
+//         quantity: 1,
+//       }
+//     ],
+//     mode: 'payment',
+//     return_url: `${YOUR_DOMAIN}/return?session_id={CHECKOUT_SESSION_ID}`,
+//     automatic_tax: {enabled: true},
+//   });
 
-  res.send({clientSecret: session.client_secret});
-});
+//   res.send({clientSecret: session.client_secret});
+// });
 
-shopRouter.get('/session-status', async (req, res) => {
-  const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
+// shopRouter.get('/session-status', async (req, res) => {
+//   const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
 
-  res.send({
-    status: session.status,
-    customer_email: session.customer_details.email
-  });
-});
+//   res.send({
+//     status: session.status,
+//     customer_email: session.customer_details.email
+//   });
+// });
 
 
 module.exports = shopRouter;

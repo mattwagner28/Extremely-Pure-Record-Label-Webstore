@@ -17,6 +17,7 @@ function Root() {
   const isHomeRoute = location.pathname === "/";
 
   useEffect(() => {
+    
     fetch("http://localhost:3001/users/verifytoken", {
       credentials: 'include',
     })

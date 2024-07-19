@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
 function ShoppingCart({ visible, toggleCart, cart, addItemToCart, removeItemFromCart, quantities }) {
   const [animation, setAnimation] = useState("");
@@ -37,6 +38,7 @@ function ShoppingCart({ visible, toggleCart, cart, addItemToCart, removeItemFrom
           <button onClick={() => removeItemFromCart(item)}>-</button>
         </div>
       ))}
+      <NavLink to="/checkout" className={cart.length === 0 ? "hidden" : "text-white bg-red-500 hover:bg-red-700 p-2 rounded mt-4"}>CHECKOUT</NavLink>
     </div>
   );
 }
