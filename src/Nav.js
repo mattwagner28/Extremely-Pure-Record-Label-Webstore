@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { UserContext } from "./components/Root";
+import { UserContext } from "../src/components/Root"
 
-function Nav() {
+function Nav({ toggleCart }) {
   const loggedIn = useContext(UserContext);
 
   return (
@@ -74,21 +74,21 @@ function Nav() {
             width="20"
             className="pt-0.5"
             alt="profile icon"
-          ></img>
+          />
         </NavLink>
       )}
-      
-      <NavLink
-        to="/shoppingcart"
-        className="place-self-end px-2 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500"
+
+      <button
+        onClick={toggleCart}
+        className="px-2 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500"
       >
         <img
           src="shopping-cart.png"
-          height="8"
+          height="24"
           width="24"
           alt="shopping cart icon"
-        ></img>
-      </NavLink>
+        />
+      </button>
     </nav>
   );
 }
