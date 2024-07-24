@@ -41,6 +41,11 @@ usersRouter.get('/verifytoken', (req, res, next) => {
   }
 });
 
+usersRouter.get('/clearcookie', (req, res, next) => {
+  const token = req.cookies.token;
+  res.clearCookie("token").json({ message: "cookie deleted" });
+})
+
 usersRouter.get("/:id", async (req, res, next) => {
   try {
     const results = await pool.query("SELECT * FROM users WHERE id = $1", [req.params.id]);
@@ -75,6 +80,18 @@ usersRouter.post("/", async (req, res, next) => {
     );
 
     const newUser = userResult.rows[0];
+
+    console.log("Access Token Secret:", process.env.ACCESS_TOKEN_SECRET);
+    
+    const jwtUser = { email: newUser.email, id: newUser.id };
+
+    const accessToken = jwt.sign(jwtUser, process.env.ACCESS_TOKEN_SECRET);
+    
+    res.cookie("token", accessToken, {
+      httpOnly: true,
+      maxAge: 3600000 //1 hour
+    });
+    
 
     res.status(201).json({
       loggedIn: true,

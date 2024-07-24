@@ -11,6 +11,7 @@ import Signup from "./components/Signup";
 import ShoppingCart from "./components/ShoppingCart";
 import CheckoutForm from "./components/CheckoutForm";
 import Return from "./components/Return";
+import Profile from "./components/Profile";
 import {
   RouterProvider,
   createBrowserRouter,
@@ -31,10 +32,11 @@ const router = createBrowserRouter(
       <Route path="about" element={<About />} />
       <Route path="stemplayer" element={<StemPlayer />} />
       <Route path="login" element={<Login />} />
+      <Route path="profile" element={<Profile />} />
       <Route path="signup" element={<Signup />} />
       <Route path="shoppingcart" element={<ShoppingCart />} />
-      <Route path="/checkout" element={<CheckoutForm />} />
-      <Route path="/return" element={<Return />} />
+      <Route path="checkout" element={<CheckoutForm />} />
+      <Route path="return" element={<Return />} />
     </Route>
   )
 );

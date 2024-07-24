@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { UserContext } from "../src/components/Root"
+import { UserContext } from "../src/components/Root";
 
-function Nav({ toggleCart }) {
+function Nav({ toggleCart, signout }) {
   const loggedIn = useContext(UserContext);
 
   return (
@@ -57,12 +57,27 @@ function Nav({ toggleCart }) {
       </NavLink>
 
       {loggedIn ? (
-        <NavLink
-          to="/login"
-          className="px-2 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500"
-        >
-          LOGOUT
-        </NavLink>
+        <>
+          <NavLink
+            onClick={signout}
+            to="/"
+            className="px-2 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500"
+          >
+            LOGOUT
+          </NavLink>
+          <NavLink
+            to="/profile"
+            className="px-2 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500"
+          >
+            <img
+              src="user.png"
+              height="8"
+              width="20"
+              className="pt-0.5"
+              alt="profile icon"
+            />
+          </NavLink>
+        </>
       ) : (
         <NavLink
           to="/login"

@@ -3,7 +3,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const usersRouter = require('./routes/users');
 const shopRouter = require('./routes/shop');
-const stripeRouter = require('./routes/shop')
+const stripeRouter = require('./routes/stripe')
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 

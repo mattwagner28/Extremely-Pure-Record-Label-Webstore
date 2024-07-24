@@ -1,15 +1,13 @@
-import React, {  useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Navigate, NavLink } from "react-router-dom";
-
-
+import { UserContext, UserContextUpdater } from "../components/Root";
 
 function Login() {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState("");   
   const [password, setPassword] = useState("");
   const [invalidMessage, setInvalidMessage] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
-
-
+  const loggedIn = useContext(UserContext);
+  const { setLoggedIn } = useContext(UserContextUpdater);
 
   // Regular expression to validate email format
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -17,7 +15,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!emailRegex.test(email)) {
-      setInvalidMessage("Please enter valid e-mail address");
+      setInvalidMessage("Please enter a valid e-mail address");
       setEmail("");
       setPassword("");
       return;
@@ -37,24 +35,29 @@ function Login() {
       });
 
       if (!response.ok) {
+        setInvalidMessage("Incorrect email or password");
         throw new Error("Network response was not ok");
+      } else {
+        const data = await response.json();
+        console.log("Fetch Req Successful:", data);
+        console.log("logged in:", loggedIn);
+        setLoggedIn(true); // Update the loggedIn state in Root
       }
-
-      const data = await response.json();
-      console.log("Fetch Req Successful:", data);
-      setLoggedIn(true); // Update loggedIn state upon successful login
-      console.log("logged in:", loggedIn);
     } catch (error) {
       console.error("Error:", error);
     }
   };
 
+  useEffect(() => {
+      console.log(loggedIn);
+  },);
+
+  // Redirect to /profile if logged in
   if (loggedIn) {
-    return <Navigate to="/" />;
-  };
+    return <Navigate to="/profile" />;
+  }
 
   return (
-
     <div>
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
@@ -89,7 +92,5 @@ function Login() {
     </div>
   );
 }
-
-
 
 export default Login;

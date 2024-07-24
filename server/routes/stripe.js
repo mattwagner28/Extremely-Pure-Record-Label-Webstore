@@ -1,16 +1,16 @@
 const express = require("express");
-const { Pool } = require("pg");
+// const { Pool } = require("pg");
 const stripeRouter = express.Router();
 const stripe = require('stripe')('sk_test_51Pb6CxFrTCMUt7gzYizK3ZvjghcE6gwcboxIFQjkODuNhUeqWuQIGlBoSdFK9eDC2edoTNmc9goGUCo7RrnAsJ9w00YI7rTw4t');
 
 
-const pool = new Pool({
-  user: "postgres",
-  host: "localhost",
-  database: "extremelypure",
-  password: "postgres",
-  port: 5432,
-});
+// const pool = new Pool({
+//   user: "postgres",
+//   host: "localhost",
+//   database: "extremelypure",
+//   password: "postgres",
+//   port: 5432,
+// });
 
 
 const YOUR_DOMAIN = 'http://localhost:3000';
@@ -39,7 +39,7 @@ stripeRouter.post('/create-checkout-session', async (req, res) => {
   });
   
 
-  shopRouter.get('/session-status', async (req, res) => {
+stripeRouter.get('/session-status', async (req, res) => {
     const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
   
     res.send({
