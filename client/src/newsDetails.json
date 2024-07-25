@@ -1,0 +1,19 @@
+{
+    "news": [
+        {
+            "title": "M Wagner Releases Debut Album",
+            "image": "mattSunset.jpg",
+            "note1": "Featured in Stereogum's Albums of Note on 5/17",
+            "note2": "Receives 8.1 from Pitchfork!"
+        },
+        {
+            "title": "Silver Liz New England Tour",
+            "image": "greggfest.jpg",
+            "note1": "5/1 - New Haven, CT | 5/3 - Vermont State University | 5/5 - Cambridge, MA"
+        },
+        {
+            "title": "Silver Liz to Play Two Shows at 2024 New Colossus Fest in NYC",
+            "image": "newColossus.webp"
+        }
+    ]
+}
