@@ -5,6 +5,7 @@ import Home from "./home/Home";
 import ShoppingCart from "./ShoppingCart";
 import { Outlet, useLocation } from "react-router-dom";
 
+
 export const UserContext = createContext();
 export const UserContextUpdater = createContext();
 
