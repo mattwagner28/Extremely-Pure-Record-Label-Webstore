@@ -1,4 +1,3 @@
-import { data } from "autoprefixer";
 import React, {  useState, useEffect } from "react";
 import {
     BrowserRouter as 
@@ -17,6 +16,8 @@ const Return = () => {
           const queryString = window.location.search;
           const urlParams = new URLSearchParams(queryString);
           const sessionId = urlParams.get('session_id');
+
+          //GET request to retrieve data from the stripe sessions to 
     
           const sessionResponse = await fetch(`http://localhost:3001/stripe/session-status?session_id=${sessionId}`, {
             method: 'GET',
@@ -36,9 +37,10 @@ const Return = () => {
               "Content-Type": "application/json",
             },
             credentials: "include",
-            body: JSON.stringify({ 
-              user_email: data.user_email,
-              line_items: data.line_items
+            body: JSON.stringify({ data
+              // user_email: data.user_email,
+              // line_items: data.line_items,
+
              }), // Use data.user_email from the response
           });
     

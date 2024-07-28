@@ -33,6 +33,31 @@ stripeRouter.post('/create-checkout-session', async (req, res) => {
     console.log("Cart fetched from client:", lineItems);
 
     const session = await stripe.checkout.sessions.create({
+      shipping_address_collection: {
+        allowed_countries: ['US'],
+      },
+      shipping_options: [
+        {
+          shipping_rate_data: {
+            type: 'fixed_amount',
+            fixed_amount: {
+              amount: 500,
+              currency: 'usd',
+            },
+            display_name: 'USPS Media Mail',
+            delivery_estimate: {
+              minimum: {
+                unit: 'business_day',
+                value: 3,
+              },
+              maximum: {
+                unit: 'business_day',
+                value: 7,
+              },
+            },
+          },
+        },
+      ],
       ui_mode: 'embedded',
       line_items: lineItems,
       mode: 'payment',
@@ -65,12 +90,17 @@ stripeRouter.post('/create-checkout-session', async (req, res) => {
       // console.log('Session:', session);
       // console.log('Line Items:', lineItems.data);
       console.log('User Email from jwt:', userEmail);
+      console.log('Session data:', session);
   
       res.send({
         status: session.status,
+        amount_subtotal: session.amount_subtotal,
+        amount_total: session.amount_total,
+        shipping_cost: session.shipping_cost.amount_total,
         customer_email: session.customer_details.email,
         line_items: lineItems.data,
-        user_email: userEmail
+        user_email: userEmail,
+        customer_details: session.customer_details
 
       });
     } catch (error) {
