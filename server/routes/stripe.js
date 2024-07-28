@@ -1,8 +1,11 @@
+require('dotenv').config();
 const express = require("express");
 // const { Pool } = require("pg");
 const stripeRouter = express.Router();
 const stripe = require('stripe')('sk_test_51Pb6CxFrTCMUt7gzYizK3ZvjghcE6gwcboxIFQjkODuNhUeqWuQIGlBoSdFK9eDC2edoTNmc9goGUCo7RrnAsJ9w00YI7rTw4t');
-
+const endpointSecret = "whsec_EYz1sGkQwOdvT6iK6su04jj4s0hNsu57";
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 
 // const pool = new Pool({
 //   user: "postgres",
@@ -41,13 +44,41 @@ stripeRouter.post('/create-checkout-session', async (req, res) => {
   });
   
 
-stripeRouter.get('/session-status', async (req, res) => {
-    const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
+  stripeRouter.get('/session-status', async (req, res) => {
+    try {
+      let userEmail = null;
+
+      //Check for JWT token in cookies
+      const token = req.cookies.token;
+      if (token) {
+        try {
+          const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+          userEmail = decodedToken.email; 
+        } catch (error) {
+          console.error('Error verifying JWT upon checkout:', error);
+        }
+      }
+
+      const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
+      const lineItems = await stripe.checkout.sessions.listLineItems(req.query.session_id);
   
-    res.send({
-      status: session.status,
-      customer_email: session.customer_details.email
-    });
+      // console.log('Session:', session);
+      // console.log('Line Items:', lineItems.data);
+      console.log('User Email from jwt:', userEmail);
+  
+      res.send({
+        status: session.status,
+        customer_email: session.customer_details.email,
+        line_items: lineItems.data,
+        user_email: userEmail
+
+      });
+    } catch (error) {
+      console.error('Error retrieving session status:', error);
+      res.status(500).send('Internal Server Error');
+    }
   });
+
+ 
 
   module.exports = stripeRouter;

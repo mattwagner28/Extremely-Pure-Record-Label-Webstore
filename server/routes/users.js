@@ -143,19 +143,6 @@ usersRouter.post('/login', async (req, res, next) => {
   }
 });
 
-// function authenticateToken(req, res, next) {
-//   const authHeader = req.headers['authorization'];
-//   const token = authHeader && authHeader.split(' ')[1];
-//   if (token == null) return res.sendStatus(401);
-
-//   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, jwtUser) => {
-//     if (err) return res.sendStatus(403);
-//     req.user = jwtUser;
-//     next();
-//   })
-// }
-
-
 usersRouter.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send("Something went wrong!");

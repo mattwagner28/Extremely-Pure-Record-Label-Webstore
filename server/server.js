@@ -4,6 +4,7 @@ const PORT = process.env.PORT || 3001;
 const usersRouter = require('./routes/users');
 const shopRouter = require('./routes/shop');
 const stripeRouter = require('./routes/stripe')
+const ordersRouter = require('./routes/orders')
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
@@ -31,6 +32,7 @@ app.get('/', (req, res) => {
 app.use('/users', usersRouter);
 app.use('/shop', shopRouter);
 app.use('/stripe', stripeRouter);
+app.use('/orders', ordersRouter);
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

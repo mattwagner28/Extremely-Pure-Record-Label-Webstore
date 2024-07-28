@@ -5,12 +5,17 @@ import { useOutletContext } from "react-router-dom";
 function Store() {
   const { cart, addItemToCart, removeItemFromCart, quantities } = useOutletContext();
   const [products, setProducts] = useState([]);
+  const [errMsg, setErrMsg] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:3001/shop")
       .then((response) => response.json())
       .then((allProducts) => {
         setProducts(allProducts);
+      })
+      .catch((error) => {
+        console.error("A fetch error occured:", error);
+        setErrMsg("An error occurred. Please visit our bandcamp page.")
       });
   }, []);
 
@@ -50,6 +55,7 @@ function Store() {
           ))}
         </div>
       </div>
+      <h1>{errMsg}</h1>
       {/* <ShoppingCart visible={cartVisible} toggleCart={toggleCartVisibility} /> */}
     </>
   );
