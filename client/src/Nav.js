@@ -21,12 +21,12 @@ function Nav({ toggleCart, signout }) {
         STORE
       </NavLink>
 
-      <NavLink
+      {/* <NavLink
         to="/artists"
         className="px-2 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500"
       >
         ARTISTS
-      </NavLink>
+      </NavLink> */}
 
       <NavLink
         to="/discography"
@@ -49,12 +49,12 @@ function Nav({ toggleCart, signout }) {
         ABOUT
       </NavLink>
 
-      <NavLink
+      {/* <NavLink
         to="/stemplayer"
         className="px-2 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500"
       >
         STEM PLAYER
-      </NavLink>
+      </NavLink> */}
 
       {loggedIn ? (
         <>

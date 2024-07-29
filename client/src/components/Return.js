@@ -12,7 +12,7 @@ const Return = () => {
       isFirstRender.current = false; // Update flag after the first render
       return; // Skip the effect on the first render
   }
-  
+
     const fetchData = async () => {
       try {
         const queryString = window.location.search;
@@ -52,7 +52,7 @@ const Return = () => {
           throw new Error('Failed to save order');
         }
 
-        console.log("Order request from client:", await orderResponse.json());
+        console.log("Response from server:", await orderResponse.json());
 
       } catch (error) {
         console.error("Error:", error);

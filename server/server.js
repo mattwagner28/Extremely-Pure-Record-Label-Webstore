@@ -18,6 +18,7 @@ app.use(cors({
 // Parse application/json
 app.use(express.json());
 
+//Parse cookies
 app.use(cookieParser());
 
 // Parse application/x-www-form-urlencoded with extended option
