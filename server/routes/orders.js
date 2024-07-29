@@ -26,11 +26,12 @@ ordersRouter.post("/", async (req, res, next) => {
     "SELECT id FROM users WHERE email = $1",
     [user_email]
   );
-  const userID = userIDQuery.rows[0];
+  const userID = userIDQuery.rows[0].id;
   console.log("User ID", userID);
 
   //Create new order based on userID
-  // const saveOrder = await pool.query("INSERT INTO orders ()")
+  const saveOrder = await pool.query("INSERT INTO orders(user_id, amount_total, amount_subtotal, shipping_cost) VALUES($1, $2, $3, $4)", [userID, amount_total, amount_subtotal, shipping_cost]);
+  console.log(saveOrder);
 
   //map through line items to get the order total
 

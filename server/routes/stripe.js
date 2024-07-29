@@ -93,6 +93,7 @@ stripeRouter.post('/create-checkout-session', async (req, res) => {
       console.log('Session data:', session);
   
       res.send({
+        session_id: session.id,
         status: session.status,
         amount_subtotal: session.amount_subtotal,
         amount_total: session.amount_total,
