@@ -88,12 +88,13 @@ stripeRouter.post('/create-checkout-session', async (req, res) => {
       const lineItems = await stripe.checkout.sessions.listLineItems(req.query.session_id);
   
       // console.log('Session:', session);
-      // console.log('Line Items:', lineItems.data);
-      console.log('User Email from jwt:', userEmail);
-      console.log('Session data:', session);
+      console.log('Line Items:', lineItems.data);
+      // console.log('User Email from jwt:', userEmail);
+      // console.log('Session data:', session);
   
       res.send({
         session_id: session.id,
+        payment_intent: session.payment_intent,
         status: session.status,
         amount_subtotal: session.amount_subtotal,
         amount_total: session.amount_total,
