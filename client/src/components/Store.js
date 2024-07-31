@@ -33,7 +33,8 @@ function Store() {
             <div key={index} className="border p-4 rounded-lg shadow-md">
               <h1 className="artist text-lg font-bold">{product.artist}</h1>
               <h2 className="text-xl">{product.title}</h2>
-              <p className="text-lg font-semibold">{product.price}</p>
+              <h3>{product.color} {product.category}</h3>
+              <p className="text-lg font-semibold">${product.price}</p>
               <button
                 className="bg-red-300 rounded-lg p-2 mt-2 mr-2 text-white"
                 onClick={() => addItemToCart(product)}

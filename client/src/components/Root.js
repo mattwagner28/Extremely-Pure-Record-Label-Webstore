@@ -126,6 +126,7 @@ function Root() {
             addItemToCart={addItemToCart} 
             removeItemFromCart={removeItemFromCart} 
             quantities={quantities} 
+            loggedIn={loggedIn}
           />
         </>
       </UserContextUpdater.Provider>
