@@ -1,61 +1,94 @@
 {
-    "releases": [
+  "releases": [
+    {
+      "artist": "M Wagner",
+      "title": "We Could Stay",
+      "coverArt": "weCouldStay.jpg",
+      "type": "LP",
+      "format": "Vinyl / CD / Digital",
+      "external": "https://mwagner.bandcamp.com/album/we-could-stay",
+      "price": 22.0,
+      "press": [
         {
-            "artist": "M Wagner",
-            "title": "We Could Stay",
-            "coverArt": "weCouldStay.jpg",
-            "type": "LP",
-            "format": "Vinyl / CD / Digital",
-            "external": "https://mwagner.bandcamp.com/album/we-could-stay",
-            "price": 22.00
-        },
-
-        {
-            "artist": "M Wagner",
-            "title": "Never Gone",
-            "coverArt": "neverGone.jpg",
-            "type": "Single",
-            "format": "Digital",
-            "external": "https://www.youtube.com/watch?v=m7L5MOkvIZU"
-        },
-
-        {
-            "artist": "M Wagner",
-            "title": "Release Yrself",
-            "coverArt": "releaseYrself.jpg",
-            "type": "Single",
-            "format": "Digital",
-            "external": "https://www.youtube.com/watch?v=Ee6ARrUKIks"
-        },
-        
-        {
-            "artist": "PYNKIE",
-            "title": "Songies",
-            "coverArt": "songies.jpeg",
-            "type": "LP",
-            "format": "Vinyl / Cassette / Digital",
-            "external": "https://pynkie.bandcamp.com/album/songies",
-            "price": 17.00
-        },
-
-        {
-            "artist": "Silver Liz",
-            "title": "It Is Lighter Than You Think",
-            "coverArt": "lighterThan.png",
-            "type": "LP",
-            "format": "Vinyl / CD / Digital",
-            "external": "https://silverliz.bandcamp.com/album/it-is-lighter-than-you-think",
-            "price": 22.00
-        },
-
-        {
-            "artist": "Silver Liz",
-            "title": "I Can Feel The Weight",
-            "coverArt": "icftw.jpg",
-            "type": "LP",
-            "format": "CD / Cassette / Digital",
-            "external": "https://silverliz.bandcamp.com/album/i-can-feel-the-weight"
+          "quote": "We Could Stay, the Brooklyn electronic musician’s staggering debut, artfully oscillates between moments of hypnotic bliss and jarring violence...each track is a full journey, Wagner gleefully bending dance music tropes into unpredictable shapes. Inspect his wall of sound a little closer, and you’ll discover the thunderous roar cleverly hiding a pop sensibility.",
+          "source": "Pitchfork"
         }
-    ]
+      ],
+      "catalog_number": "EXPR 008"
+    },
 
+    {
+      "artist": "M Wagner",
+      "title": "Never Gone",
+      "coverArt": "neverGone.jpg",
+      "type": "Single",
+      "format": "Digital",
+      "external": "https://www.youtube.com/watch?v=m7L5MOkvIZU"
+    },
+
+    {
+      "artist": "M Wagner",
+      "title": "Release Yrself",
+      "coverArt": "releaseYrself.jpg",
+      "type": "Single",
+      "format": "Digital",
+      "external": "https://www.youtube.com/watch?v=Ee6ARrUKIks"
+    },
+
+    {
+      "artist": "PYNKIE",
+      "title": "Songies",
+      "coverArt": "songies.jpeg",
+      "type": "LP",
+      "format": "Vinyl / Cassette / Digital",
+      "external": "https://pynkie.bandcamp.com/album/songies",
+      "price": 17.0
+    },
+
+    {
+      "artist": "Silver Liz",
+      "title": "It Is Lighter Than You Think",
+      "coverArt": "lighterThan.png",
+      "type": "LP",
+      "format": "Vinyl / CD / Digital",
+      "external": "https://silverliz.bandcamp.com/album/it-is-lighter-than-you-think",
+      "price": 22.0
+    },
+
+    {
+      "artist": "Silver Liz",
+      "title": "Roman Candle Part II",
+      "coverArt": "romanCandle.jpg",
+      "type": "Single",
+      "format": "Digital",
+      "external": "https://silverliz.bandcamp.com/album/roman-candle-part-ii"
+    },
+
+    {
+      "artist": "Silver Liz",
+      "title": "There's No Need",
+      "coverArt": "theresNoNeed.jpg",
+      "type": "Single",
+      "format": "Digital",
+      "external": "https://silverliz.bandcamp.com/track/theres-no-need"
+    },
+
+    {
+      "artist": "Silver Liz",
+      "title": "Microwave S'mores",
+      "coverArt": "smores.jpg",
+      "type": "Single",
+      "format": "Digital",
+      "external": "https://silverliz.bandcamp.com/album/microwave-smores"
+    },
+
+    {
+      "artist": "Silver Liz",
+      "title": "I Can Feel The Weight",
+      "coverArt": "icftw.jpg",
+      "type": "LP",
+      "format": "CD / Cassette / Digital",
+      "external": "https://silverliz.bandcamp.com/album/i-can-feel-the-weight"
+    }
+  ]
 }

@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import releasesData from "../../albumDetails.json";
+import { useNavigate } from "react-router-dom";
 
 function Releases() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const navigate = useNavigate(); 
+
+  const handleProductClick = (artist, title) => {
+    navigate(`releases/${artist}/${title}`); // Navigate to the dynamic route
+  };
 
   return (
-    <div className="w-full  z-0 lg:w-4/5  m-2">
+    <div className="w-full z-0 lg:w-4/5  m-2">
       <h1 className="text-center font-semibold">RELEASES</h1>
-      <div className="grid grid-cols-1 lg:grid-cols-4" >
+      <div className="grid grid-cols-2 lg:grid-cols-4" >
         {releasesData.releases.map((release, index) => (
           <div 
             key={index}
@@ -31,9 +37,15 @@ function Releases() {
                 <p className="italic font-semibold">{release.title}</p>
                 <p>{release.type}</p>
                 <p>{release.format}</p>
-                <a href={release.external} className="hover:underline">
+                {/* <a href={release.external} className="hover:underline">
                     More info
-                </a>
+                </a> */}
+              <button
+                onClick={() => handleProductClick(release.artist, release.title)}
+                className="hover:underline bg-transparent border-none cursor-pointer"
+              >
+                More info
+              </button>
                 </div>
 
           </div>

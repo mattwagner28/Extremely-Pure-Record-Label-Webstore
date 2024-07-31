@@ -12,6 +12,7 @@ import ShoppingCart from "./components/ShoppingCart";
 import CheckoutForm from "./components/CheckoutForm";
 import Return from "./components/Return";
 import Profile from "./components/Profile";
+import Release from "./components/Release";
 import {
   RouterProvider,
   createBrowserRouter,
@@ -35,6 +36,7 @@ const router = createBrowserRouter(
       <Route path="profile" element={<Profile />} />
       <Route path="signup" element={<Signup />} />
       <Route path="shoppingcart" element={<ShoppingCart />} />
+      <Route path="releases/:artistName/:releaseTitle" element={<Release />} />
       <Route path="checkout" element={<CheckoutForm />} />
       <Route path="return" element={<Return />} />
     </Route>
