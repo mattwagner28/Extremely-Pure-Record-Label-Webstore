@@ -13,6 +13,7 @@ import CheckoutForm from "./components/CheckoutForm";
 import Return from "./components/Return";
 import Profile from "./components/Profile";
 import Release from "./components/Release";
+import ForgotPassword from "./components/ForgotPassword";
 import {
   RouterProvider,
   createBrowserRouter,
@@ -35,6 +36,7 @@ const router = createBrowserRouter(
       <Route path="login" element={<Login />} />
       <Route path="profile" element={<Profile />} />
       <Route path="signup" element={<Signup />} />
+      <Route path="forgotpassword" element={<ForgotPassword />} />
       <Route path="shoppingcart" element={<ShoppingCart />} />
       <Route path="releases/:artistName/:releaseTitle" element={<Release />} />
       <Route path="checkout" element={<CheckoutForm />} />

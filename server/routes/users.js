@@ -1,9 +1,9 @@
-require('dotenv').config();
+require("dotenv").config();
 const express = require("express");
 const { Pool } = require("pg");
 const usersRouter = express.Router();
 const bcrypt = require("bcrypt");
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 
 const pool = new Pool({
   user: "postgres",
@@ -24,8 +24,7 @@ usersRouter.get("/", async (req, res, next) => {
   }
 });
 
-
-usersRouter.get('/verifytoken', (req, res, next) => {
+usersRouter.get("/verifytoken", (req, res, next) => {
   const token = req.cookies.token;
   console.log(req.cookies);
   if (!token) {
@@ -41,14 +40,16 @@ usersRouter.get('/verifytoken', (req, res, next) => {
   }
 });
 
-usersRouter.get('/clearcookie', (req, res, next) => {
+usersRouter.get("/clearcookie", (req, res, next) => {
   const token = req.cookies.token;
   res.clearCookie("token").json({ message: "cookie deleted" });
-})
+});
 
 usersRouter.get("/:id", async (req, res, next) => {
   try {
-    const results = await pool.query("SELECT * FROM users WHERE id = $1", [req.params.id]);
+    const results = await pool.query("SELECT * FROM users WHERE id = $1", [
+      req.params.id,
+    ]);
     if (results.rows.length === 0) {
       return res.status(404).send("User not found");
     }
@@ -66,7 +67,10 @@ usersRouter.post("/", async (req, res, next) => {
   }
 
   try {
-    const emailResult = await pool.query("SELECT email FROM users WHERE email = $1", [email]);
+    const emailResult = await pool.query(
+      "SELECT email FROM users WHERE email = $1",
+      [email]
+    );
 
     if (emailResult.rows.length > 0) {
       return res.status(400).json({ error: "Email already in use" });
@@ -82,16 +86,15 @@ usersRouter.post("/", async (req, res, next) => {
     const newUser = userResult.rows[0];
 
     console.log("Access Token Secret:", process.env.ACCESS_TOKEN_SECRET);
-    
+
     const jwtUser = { email: newUser.email, id: newUser.id };
 
     const accessToken = jwt.sign(jwtUser, process.env.ACCESS_TOKEN_SECRET);
-    
+
     res.cookie("token", accessToken, {
       httpOnly: true,
-      maxAge: 3600000 //1 hour
+      maxAge: 3600000, //1 hour
     });
-    
 
     res.status(201).json({
       loggedIn: true,
@@ -99,54 +102,86 @@ usersRouter.post("/", async (req, res, next) => {
       userId: newUser.id,
       email: newUser.email,
     });
-
-
-  
   } catch (error) {
     next(error);
   }
 });
 
-usersRouter.post('/login', async (req, res, next) => {
+usersRouter.post("/login", async (req, res, next) => {
   const { email, password } = req.body;
 
   try {
-    const userInfo = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
+    const userInfo = await pool.query("SELECT * FROM users WHERE email = $1", [
+      email,
+    ]);
     const user = userInfo.rows[0];
 
     if (!user) {
-      return res.status(400).json({ error: "Incorrect email or password" }); 
+      return res.status(400).json({ error: "Incorrect email or password" });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({ error: "Incorrect email or password" }); 
+      return res.status(400).json({ error: "Incorrect email or password" });
     }
 
     // Create JWT
     console.log("Access Token Secret:", process.env.ACCESS_TOKEN_SECRET);
-    
-    const jwtUser = { email: user.email, id: user.id }
+
+    const jwtUser = { email: user.email, id: user.id };
 
     const accessToken = jwt.sign(jwtUser, process.env.ACCESS_TOKEN_SECRET);
-    
+
     res.cookie("token", accessToken, {
       httpOnly: true,
-      maxAge: 3600000 //1 hour
+      maxAge: 3600000, //1 hour
     });
-    
-    // Respond with JWT token
-    res.status(200).json({ message: 'Logged in successfully', accessToken });
 
+    // Respond with JWT token
+    res.status(200).json({ message: "Logged in successfully", accessToken });
   } catch (error) {
     next(error); // Pass error to Express error handler
   }
+});
+
+usersRouter.post("/forgot-password", async (req, res) => {
+  const { email } = req.body;
+  try {
+    const oldUserData = await pool.query(
+      "SELECT * FROM users WHERE email = $1",
+      [email]
+    );
+
+    if (!oldUserData) {
+      return res.status(400).json({ error: "No user found" });
+    }
+
+    const oldUserId = oldUserData.rows[0].id;
+    const secret = process.env.ACCESS_TOKEN_SECRET;
+    const token = jwt.sign(
+      { email: email, id: oldUserId },
+      secret,
+      { expiresIn: "5m" }
+    );
+
+    const link = `http://localhost:3001/users/reset-password/${oldUserData.rows[0].id}/${token}`
+
+    res.json({ link: link, id: oldUserId })
+
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+usersRouter.get("/reset-password/:id/:token", async (req, res) => {
+  const { id, token } = req.params;
+  console.log(req.params);
+  res.send(req.params);
 });
 
 usersRouter.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send("Something went wrong!");
 });
-
 
 module.exports = usersRouter;

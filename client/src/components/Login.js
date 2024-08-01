@@ -89,6 +89,7 @@ function Login() {
       </form>
       <h4>{invalidMessage}</h4>
       <NavLink to="/signup" className="px-2 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500">Or, signup!</NavLink>
+      <NavLink to="/forgotpassword" className="px-2 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500">Forgot Password?</NavLink>
     </div>
   );
 }

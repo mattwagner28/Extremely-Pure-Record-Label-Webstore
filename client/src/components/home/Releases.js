@@ -37,9 +37,7 @@ function Releases() {
                 <p className="italic font-semibold">{release.title}</p>
                 <p>{release.type}</p>
                 <p>{release.format}</p>
-                {/* <a href={release.external} className="hover:underline">
-                    More info
-                </a> */}
+
               <button
                 onClick={() => handleProductClick(release.artist, release.title)}
                 className="hover:underline bg-transparent border-none cursor-pointer"

@@ -35,7 +35,7 @@ const CheckoutForm = () => {
   const options = { fetchClientSecret };
 
   return (
-    <div id="checkout">
+    <div className="w-full mt-10 mb-10" id="checkout">
       <EmbeddedCheckoutProvider
         stripe={stripePromise}
         options={options}
