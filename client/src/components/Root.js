@@ -3,6 +3,7 @@ import Logo from "./Logo";
 import Nav from "../Nav";
 import Home from "./home/Home";
 import ShoppingCart from "./ShoppingCart";
+import Release from "./Release";
 import { Outlet, useLocation } from "react-router-dom";
 
 export const UserContext = createContext();

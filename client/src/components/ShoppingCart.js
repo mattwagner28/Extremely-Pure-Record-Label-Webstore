@@ -43,7 +43,7 @@ function ShoppingCart({ cartVisible, toggleCart, cart, addItemToCart, removeItem
                 <button onClick={() => addItemToCart(item)}>+</button>
                 <button onClick={() => removeItemFromCart(item)}>-</button>
               </div>
-                <img className="size-24" src={`merchphotos/${item.photo_path}`}></img>
+                <img className="size-24" alt="merch item" src={`/merchphotos/${item.photo_path}`}></img>
             </div>
           ))}
         </div>

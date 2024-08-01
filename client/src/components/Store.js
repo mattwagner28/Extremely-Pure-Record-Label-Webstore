@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import React from "react";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useNavigate } from "react-router-dom";
 
 function Store() {
   const { cart, addItemToCart, removeItemFromCart, quantities } = useOutletContext();
   const [products, setProducts] = useState([]);
   const [errMsg, setErrMsg] = useState("");
+  const navigate = useNavigate(); 
+
+  const handleProductClick = (artist, title) => {
+    navigate(`/releases/${artist}/${title}`); // Navigate to the dynamic route
+  };
 
   useEffect(() => {
     fetch("http://localhost:3001/shop")
@@ -32,8 +37,13 @@ function Store() {
           {products.map((product, index) => (
             <div key={index} className="border p-4 rounded-lg shadow-md">
               <h1 className="artist text-lg font-bold">{product.artist}</h1>
-              <h2 className="text-xl">{product.title}</h2>
-              <h3>{product.color} {product.category}</h3>
+              <button
+                className="text-xl bg-transparent border-none text-left cursor-pointer hover:underline"
+                onClick={() => handleProductClick(product.artist, product.title)}
+              >
+                {product.title}
+              </button>
+              <h3>{product.size} {product.color} {product.category}</h3>
               <p className="text-lg font-semibold">${product.price}</p>
               <button
                 className="bg-red-300 rounded-lg p-2 mt-2 mr-2 text-white"
