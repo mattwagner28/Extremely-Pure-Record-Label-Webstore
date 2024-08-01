@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import releasesData from "../../albumDetails.json";
+import releasesData from "../../releaseDetails.json";
 import { useNavigate } from "react-router-dom";
 
 function Releases() {
