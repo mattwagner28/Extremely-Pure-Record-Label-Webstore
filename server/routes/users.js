@@ -4,6 +4,7 @@ const { Pool } = require("pg");
 const usersRouter = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const nodemailer = require("nodemailer");
 
 const pool = new Pool({
   user: "postgres",
@@ -11,6 +12,15 @@ const pool = new Pool({
   database: "extremelypure",
   password: "postgres",
   port: 5432,
+});
+
+// Nodemailer transporter object using Gmail
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "extremelypurerecords@gmail.com",
+    pass: process.env.GOOGLE_APP_PASSWORD, // Ensure you use the actual app password
+  },
 });
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -158,16 +168,13 @@ usersRouter.post("/forgot-password", async (req, res) => {
 
     const oldUserId = oldUserData.rows[0].id;
     const secret = process.env.ACCESS_TOKEN_SECRET;
-    const token = jwt.sign(
-      { email: email, id: oldUserId },
-      secret,
-      { expiresIn: "5m" }
-    );
+    const token = jwt.sign({ email: email, id: oldUserId }, secret, {
+      expiresIn: "5m",
+    });
 
-    const link = `http://localhost:3001/users/reset-password/${oldUserData.rows[0].id}/${token}`
+    const link = `http://localhost:3001/users/reset-password/${oldUserData.rows[0].id}/${token}`;
 
-    res.json({ link: link, id: oldUserId })
-
+    res.json({ link: link, id: oldUserId });
   } catch (error) {
     console.log(error);
   }
@@ -176,7 +183,46 @@ usersRouter.post("/forgot-password", async (req, res) => {
 usersRouter.get("/reset-password/:id/:token", async (req, res) => {
   const { id, token } = req.params;
   console.log(req.params);
-  res.send(req.params);
+
+  try {
+    // Verify the token
+    const verifiedUserEmail = jwt.verify(
+      token,
+      process.env.ACCESS_TOKEN_SECRET
+    );
+
+    // Email details
+    const mailOptions = {
+      from: "extremelypurerecords@gmail.com",
+      to: verifiedUserEmail.email, // Assuming the email is returned by JWT verification
+      subject: "Password Reset Request",
+      text: `Hello, 
+
+We received a request to reset your password. 
+
+Please follow the instructions to reset your password. 
+
+If you did not request this change, please ignore this email.
+
+Thank you,
+Extremely Pure Records`,
+    };
+
+    // Send email
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error("Error sending email:", error);
+        return res.status(500).json({ error: "Failed to send email" });
+      }
+      console.log("Email sent:", info.response);
+      res
+        .status(200)
+        .json({ message: "Password reset email sent successfully" });
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(403).json({ error: "Invalid token, or token has expired." });
+  }
 });
 
 usersRouter.use((err, req, res, next) => {
