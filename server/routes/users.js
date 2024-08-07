@@ -36,7 +36,7 @@ usersRouter.get("/", async (req, res, next) => {
 
 usersRouter.get("/verifytoken", (req, res, next) => {
   const token = req.cookies.token;
-  console.log(req.cookies);
+  console.log("Cookies:", req.cookies);
   if (!token) {
     return res.status(401).json({ error: "No token provided" });
   }
@@ -95,7 +95,7 @@ usersRouter.post("/", async (req, res, next) => {
 
     const newUser = userResult.rows[0];
 
-    console.log("Access Token Secret:", process.env.ACCESS_TOKEN_SECRET);
+    // console.log("Access Token Secret:", process.env.ACCESS_TOKEN_SECRET);
 
     const jwtUser = { email: newUser.email, id: newUser.id };
 
@@ -136,7 +136,7 @@ usersRouter.post("/login", async (req, res, next) => {
     }
 
     // Create JWT
-    console.log("Access Token Secret:", process.env.ACCESS_TOKEN_SECRET);
+    // console.log("Access Token Secret:", process.env.ACCESS_TOKEN_SECRET);
 
     const jwtUser = { email: user.email, id: user.id };
 
@@ -212,11 +212,10 @@ usersRouter.get("/reset-password/:id/:token", async (req, res) => {
 
   try {
     // Verify the token
-    const verifiedUserEmail = jwt.verify(
-      token,
-      process.env.ACCESS_TOKEN_SECRET
-    );
-
+    const verifiedUserEmail = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    if (verifiedUserEmail) { 
+      res.status(200).json({ message: "Token verified, request successful."})
+    }
 
   } catch (err) {
     console.error(err);
