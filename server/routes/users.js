@@ -156,13 +156,15 @@ usersRouter.post("/login", async (req, res, next) => {
 
 usersRouter.post("/forgot-password", async (req, res) => {
   const { email } = req.body;
+
   try {
+    // Query the database to find the user
     const oldUserData = await pool.query(
       "SELECT * FROM users WHERE email = $1",
       [email]
     );
 
-    if (!oldUserData) {
+    if (oldUserData.rows.length === 0) {
       return res.status(400).json({ error: "No user found" });
     }
 
@@ -172,13 +174,37 @@ usersRouter.post("/forgot-password", async (req, res) => {
       expiresIn: "5m",
     });
 
-    const link = `http://localhost:3001/users/reset-password/${oldUserData.rows[0].id}/${token}`;
+    const link = `http://localhost:3000/reset-password/${oldUserId}/${token}`;
 
-    res.json({ link: link, id: oldUserId });
+    // Email details
+    const mailOptions = {
+      from: "extremelypurerecords@gmail.com",
+      to: email, // Send to the user's email
+      subject: "Password Reset Request",
+      text: `Hello,
+
+            We received a request to reset your password.
+
+            Please follow this link to reset your password: ${link}
+
+            If you did not request this change, please ignore this email.
+
+            Thank you,
+            Extremely Pure Records`,
+    };
+
+    // Send email
+    await transporter.sendMail(mailOptions);
+    
+    console.log("Email sent successfully");
+    res.status(200).json({ message: "Password reset email sent successfully" });
+
   } catch (error) {
-    console.log(error);
+    console.error("Error:", error);
+    res.status(500).json({ error: "An error occurred" });
   }
 });
+
 
 usersRouter.get("/reset-password/:id/:token", async (req, res) => {
   const { id, token } = req.params;
@@ -191,34 +217,7 @@ usersRouter.get("/reset-password/:id/:token", async (req, res) => {
       process.env.ACCESS_TOKEN_SECRET
     );
 
-    // Email details
-    const mailOptions = {
-      from: "extremelypurerecords@gmail.com",
-      to: verifiedUserEmail.email, // Assuming the email is returned by JWT verification
-      subject: "Password Reset Request",
-      text: `Hello, 
 
-We received a request to reset your password. 
-
-Please follow the instructions to reset your password. 
-
-If you did not request this change, please ignore this email.
-
-Thank you,
-Extremely Pure Records`,
-    };
-
-    // Send email
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.error("Error sending email:", error);
-        return res.status(500).json({ error: "Failed to send email" });
-      }
-      console.log("Email sent:", info.response);
-      res
-        .status(200)
-        .json({ message: "Password reset email sent successfully" });
-    });
   } catch (err) {
     console.error(err);
     res.status(403).json({ error: "Invalid token, or token has expired." });
