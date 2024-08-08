@@ -1,57 +1,77 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import { useParams, useNavigate, NavLink } from "react-router-dom";
+
 
 function ResetPassword() {
   const { id, token } = useParams();
   const [tokenVerified, setTokenVerified] = useState(false);
   const [password, setPassword] = useState("");
   const [confirmedPassword, setConfirmedPassword] = useState("");
-  const [noMatchMessage, setNoMatchMessage] = useState("");
-  
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const verifyToken = async () => {
       try {
-        const getResponse = await fetch(`http://localhost:3001/users/reset-password/${id}/${token}`)
+        const getResponse = await fetch(`http://localhost:3001/users/reset-password/${token}`)
         const tokenStatus = await getResponse.json();
-        console.log(getResponse, tokenStatus);
+        console.log(tokenStatus);
         if (getResponse.ok) {
           setTokenVerified(true);
-        }
+        } else {
+          setTokenVerified(false);
+        };
         
       } catch (error) {
-        
+        console.error(error);
+        setTokenVerified(false);
       }
     }
     verifyToken()
-  }, [])
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault(); 
+  
     if (password !== confirmedPassword) {
-      setNoMatchMessage("Passwords must match!");
+      setErrorMessage("Passwords must match!");
+      return;
     }
-
+  
     try {
-      const changePassword = await fetch(`http://localhost:3001/users/${id}`, {
+      const response = await fetch(`http://localhost:3001/users/${id}`, {
         method: 'PUT',
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           id,
+          token,
           password,
         })
       });
-      console.log("PUT Request:", changePassword);
+  
+      const result = await response.json();
+  
+      if (response.ok) {
+        // Handle success 
+        console.log("Password successfully reset:", response);
+        setSuccessMessage("Password successfylly changed. Redirecting to login page...")
+        setTimeout(() => {
+          navigate("/login");
+        }, 3000);
+      } else {
+        // Handle different error cases based on the response
+        console.error("Error:", result.message);
+        setErrorMessage(result.message || "An error occurred. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error in PUT Request:", error);
+      setErrorMessage("An error occurred. Please try again.");
     }
-    catch (error) {
-      console.error("Error in PUT Request:", error)
-
-    }
-
   };
+  
 
   return (
     tokenVerified ?
@@ -82,7 +102,8 @@ function ResetPassword() {
           value="Reset Password"
         />
       </form>
-      <h3>{noMatchMessage}</h3>
+      {successMessage && <h3>{successMessage}</h3>} 
+      {errorMessage && <h3>{errorMessage}</h3>}
     </div>
 
     : 

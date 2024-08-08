@@ -21,6 +21,7 @@ function ForgotPassword() {
         }
     console.log(email);
 
+    try {
     const resetPassword = await fetch("http://localhost:3001/users/forgot-password", {
         method: "POST",
         crossDomain: true,
@@ -33,6 +34,10 @@ function ForgotPassword() {
     const resetResponse = await resetPassword.json();
     console.log("Password Reset Response:", resetResponse);
     toggleForm();
+  }
+  catch (error) {
+    setInvalidMessage("An error occurred. Please try again.")
+  }
   };
 
 

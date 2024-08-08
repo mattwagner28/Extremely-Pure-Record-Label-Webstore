@@ -204,9 +204,8 @@ usersRouter.post("/forgot-password", async (req, res) => {
   }
 });
 
-usersRouter.get("/reset-password/:id/:token", async (req, res) => {
-  const { id, token } = req.params;
-  console.log(req.params);
+usersRouter.get("/reset-password/:token", async (req, res) => {
+  const { token } = req.params;
 
   try {
     // Verify the token
@@ -224,17 +223,39 @@ usersRouter.get("/reset-password/:id/:token", async (req, res) => {
 });
 
 usersRouter.put("/:id", async (req, res) => {
-    const { id, password } = req.body; 
+  const { id, token, password } = req.body;
 
-    try {
-      const hashedPassword = await bcrypt.hash(password, 10);
-      const replacePassword = await pool.query("UPDATE users SET password = $1 WHERE id = $2", [hashedPassword, id]);
-      console.log(replacePassword);
-      return res.status(200).json({ message: "Password successfully replaced." })
-    } catch (error) {
-      return res.status.json({error})
+  try {
+    // Verify and decode token
+    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    
+    if (decoded.id != id) {
+      return res.status(403).json({ message: "Reset token not verified or expired." });
     }
+
+    // Hash the new password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Update the user's password in the database
+    const result = await pool.query(
+      "UPDATE users SET password = $1 WHERE id = $2",
+      [hashedPassword, id]
+    );
+
+    // Check if the update was successful
+    if (result.rowCount === 0) {
+      return res.status(404).json({ message: "User not found." });
+    }
+
+    console.log("Password successfully replaced!", result);
+    return res.status(200).json({ message: "Password successfully replaced." });
+
+  } catch (error) {
+    console.error("Error:", error);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
 });
+
 
 usersRouter.use((err, req, res, next) => {
   console.error(err.stack);
