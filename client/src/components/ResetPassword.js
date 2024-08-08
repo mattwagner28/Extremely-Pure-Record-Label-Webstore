@@ -27,13 +27,29 @@ function ResetPassword() {
     verifyToken()
   }, [])
 
-  const handleSubmit = e => {
+  const handleSubmit = async (e) => {
     e.preventDefault(); 
     if (password !== confirmedPassword) {
       setNoMatchMessage("Passwords must match!");
     }
 
+    try {
+      const changePassword = await fetch(`http://localhost:3001/users/${id}`, {
+        method: 'PUT',
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id,
+          password,
+        })
+      });
+      console.log("PUT Request:", changePassword);
+    }
+    catch (error) {
+      console.error("Error in PUT Request:", error)
 
+    }
 
   };
 

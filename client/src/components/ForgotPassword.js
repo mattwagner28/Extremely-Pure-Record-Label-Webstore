@@ -4,9 +4,12 @@ import React, { useState } from "react";
 function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [invalidMessage, setInvalidMessage] = useState("");
+  const [formVisibility, setFormVisibility] = useState(true);
 
   // Regular expression to validate email format
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  const toggleForm = () => setFormVisibility(prev => !prev);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,10 +31,13 @@ function ForgotPassword() {
         body: JSON.stringify({ email })
     })
     const resetResponse = await resetPassword.json();
-    console.log("Reset Response:", resetResponse);
+    console.log("Password Reset Response:", resetResponse);
+    toggleForm();
   };
 
+
   return (
+    formVisibility ?
     <div>
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
@@ -54,7 +60,14 @@ function ForgotPassword() {
       </form>
       <h4>{invalidMessage}</h4>
     </div>
-  );
+
+    :
+
+    <div>
+    <h3>Please check your email for instructions to reset your password. </h3>
+
+    </div>
+  )
 }
 
 export default ForgotPassword;

@@ -195,16 +195,14 @@ usersRouter.post("/forgot-password", async (req, res) => {
 
     // Send email
     await transporter.sendMail(mailOptions);
-    
+
     console.log("Email sent successfully");
     res.status(200).json({ message: "Password reset email sent successfully" });
-
   } catch (error) {
     console.error("Error:", error);
     res.status(500).json({ error: "An error occurred" });
   }
 });
-
 
 usersRouter.get("/reset-password/:id/:token", async (req, res) => {
   const { id, token } = req.params;
@@ -212,15 +210,30 @@ usersRouter.get("/reset-password/:id/:token", async (req, res) => {
 
   try {
     // Verify the token
-    const verifiedUserEmail = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-    if (verifiedUserEmail) { 
-      res.status(200).json({ message: "Token verified, request successful."})
+    const verifiedUserEmail = jwt.verify(
+      token,
+      process.env.ACCESS_TOKEN_SECRET
+    );
+    if (verifiedUserEmail) {
+      res.status(200).json({ message: "Token verified, request successful." });
     }
-
   } catch (err) {
     console.error(err);
     res.status(403).json({ error: "Invalid token, or token has expired." });
   }
+});
+
+usersRouter.put("/:id", async (req, res) => {
+    const { id, password } = req.body; 
+
+    try {
+      const hashedPassword = await bcrypt.hash(password, 10);
+      const replacePassword = await pool.query("UPDATE users SET password = $1 WHERE id = $2", [hashedPassword, id]);
+      console.log(replacePassword);
+      return res.status(200).json({ message: "Password successfully replaced." })
+    } catch (error) {
+      return res.status.json({error})
+    }
 });
 
 usersRouter.use((err, req, res, next) => {
