@@ -9,6 +9,8 @@ function ResetPassword() {
   const [confirmedPassword, setConfirmedPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [passwordVisible, setPasswordVisible] = useState(false); 
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false); 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -57,6 +59,7 @@ function ResetPassword() {
       if (response.ok) {
         // Handle success 
         console.log("Password successfully reset:", response);
+        setErrorMessage("");
         setSuccessMessage("Password successfylly changed. Redirecting to login page...")
         setTimeout(() => {
           navigate("/login");
@@ -75,29 +78,51 @@ function ResetPassword() {
 
   return (
     tokenVerified ?
-    <div>
-      <h1>Create New Password</h1>
+    <div className="w-3/5 lg:w-1/5">
+      <h1 className="font-bold text-center text-2xl">CREATE NEW PASSWORD</h1>
       <form onSubmit={handleSubmit}>
-        <label>Enter Password:</label>
+        <label>Enter new password:</label>
+        <div className="flex">
         <input
-          type="password"
+          type={passwordVisible ? "text" : "password"}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="border border-black"
+          className="w-full block border border-black rounded"
         />
-        <br />
-
-        <label>Confirm Password:</label>
+                    <span
+              className="cursor-pointer ml-2"
+              onClick={() => setPasswordVisible(!passwordVisible)}
+            >
+              {passwordVisible ? (
+                <i className="fas fa-eye"></i> // Font Awesome eye icon
+              ) : (
+                <i className="fas fa-eye-slash"></i> // Font Awesome eye-slash icon
+              )}
+            </span>
+        </div>
+        <label>Confirm new password:</label>
+        <div className="flex">
         <input
-          type="password"
+          type={confirmPasswordVisible ? "text" : "password"}
           value={confirmedPassword}
           onChange={(e) => setConfirmedPassword(e.target.value)}
-          className="border border-black"
+          className="w-full block border border-black rounded"
         />
+                            <span
+              className="cursor-pointer ml-2"
+              onClick={() => setConfirmPasswordVisible(!confirmPasswordVisible)}
+            >
+              {confirmPasswordVisible ? (
+                <i className="fas fa-eye"></i> // Font Awesome eye icon
+              ) : (
+                <i className="fas fa-eye-slash"></i> // Font Awesome eye-slash icon
+              )}
+            </span>
+        </div>
         <br />
 
         <input
-          className="px-2 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500"
+          className="w-full cursor-pointer block px-2 rounded bg-slate-300 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500"
           type="submit"
           value="Reset Password"
         />

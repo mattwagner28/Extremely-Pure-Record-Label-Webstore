@@ -1,13 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Navigate, NavLink } from "react-router-dom";
 import { UserContext, UserContextUpdater } from "../components/Root";
-import '@fortawesome/fontawesome-free/css/all.min.css'; // Import Font Awesome if using
 
 function Login() {
   const [email, setEmail] = useState("");   
   const [password, setPassword] = useState("");
   const [invalidMessage, setInvalidMessage] = useState("");
-  const [passwordVisible, setPasswordVisible] = useState(false); // State for password visibility
+  const [passwordVisible, setPasswordVisible] = useState(false); 
   const loggedIn = useContext(UserContext);
   const { setLoggedIn } = useContext(UserContextUpdater);
 
@@ -57,7 +56,7 @@ function Login() {
   }
 
   return (
-    <div >
+    <div className="w-3/5 lg:w-1/5">
       <h1 className="font-bold text-center text-2xl">LOGIN</h1>
       <form onSubmit={handleSubmit}>
         <label>
@@ -66,7 +65,7 @@ function Login() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="block border border-black rounded"
+            className="w-full block border border-black rounded"
           />
         </label>
         <br />
@@ -77,7 +76,7 @@ function Login() {
               type={passwordVisible ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="block border border-black rounded"
+              className="w-full block border border-black rounded"
             />
             <span
               className="cursor-pointer ml-2"

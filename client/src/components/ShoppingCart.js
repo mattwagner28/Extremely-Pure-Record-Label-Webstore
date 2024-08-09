@@ -15,12 +15,12 @@ function ShoppingCart({ cartVisible, toggleCart, cart, addItemToCart, removeItem
   }, [cartVisible]);
 
   return (
-    <div className={`${cartHidden} cart flex flex-col z-20 fixed top-0 right-0 bg-black transition transform ${animation} h-full w-full lg:w-1/3 md:w-1/2`}>
+    <div className={`${cartHidden} cart flex flex-col z-20 fixed top-0 right-0 bg-cyan-800 transition transform ${animation} h-full w-full lg:w-1/3 md:w-1/2`}>
      <div className="header pl-4">
-        <h1 className="text-white">{cart.length === 0 ? "Shopping cart is currently empty" : ""}</h1>
+        <h1 className="text-white mt-1">{cart.length === 0 ? "Shopping cart is currently empty" : ""}</h1>
         <button
           onClick={toggleCart}
-          className="text-white bg-red-500 hover:bg-red-700 p-2 rounded mt-4"
+          className="text-white bg-red-500 hover:bg-red-700 p-2 rounded mt-2"
         >
           HIDE CART
         </button>
@@ -48,13 +48,18 @@ function ShoppingCart({ cartVisible, toggleCart, cart, addItemToCart, removeItem
           ))}
         </div>
       </div>
-            <div className="footer w-full h-32 bg-red-400 bottom-0 left-0">
-                <NavLink to="/checkout" className={cart.length === 0 ? "hidden" : "text-white bg-red-500 hover:bg-red-700 p-2 rounded mt-4"}>
-                  {loggedIn ? "CHECKOUT" : "CHECKOUT AS GUEST"}
-                </NavLink>
-                {loggedIn ? null : <NavLink to="/login" className={"text-white bg-red-500 hover:bg-red-700 p-2 rounded mt-4"}>
-                  LOG IN
-                </NavLink>}
+            <div className="footer flex w-full justify-normal pl-4 h-24 bg-cyan-800">
+              <button>
+                  <NavLink to="/checkout" className={cart.length === 0 ? "hidden" : "rounded text-white bg-red-500 hover:bg-red-700 p-2"}>
+                    {loggedIn ? "CHECKOUT" : "CHECKOUT AS GUEST"}
+                  </NavLink>
+                </button>
+
+                <button className="pl-4">
+                  {!loggedIn && <NavLink to="/login" className={"rounded text-white bg-red-500 hover:bg-red-700 p-2"}>
+                    LOG IN
+                  </NavLink>}
+                </button>
             </div>
     </div>
   );

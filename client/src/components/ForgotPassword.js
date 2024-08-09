@@ -13,13 +13,10 @@ function ForgotPassword() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     
-    if (!emailRegex.test(email)) {
-        setInvalidMessage("Please enter a valid e-mail address");
-        setEmail("");
+    if (!emailRegex.test(email) || email === null) {
+        return setInvalidMessage("Please enter a valid e-mail address");
         }
-    console.log(email);
 
     try {
     const resetPassword = await fetch("http://localhost:3001/users/forgot-password", {
@@ -43,24 +40,24 @@ function ForgotPassword() {
 
   return (
     formVisibility ?
-    <div>
-      <h1>Login</h1>
+    <div className="w-3/5 lg:w-1/5">
+      <h1 className="font-bold text-center text-2xl">RESET PASSWORD</h1>
       <form onSubmit={handleSubmit}>
         <label>
-          Email:
+          Email
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="border border-black"
+            className="w-full block border border-black rounded"
           />
         </label>
         <br />
 
         <input
-          className="px-2 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500"
+          className="w-full cursor-pointer block px-2 rounded bg-slate-300 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500"
           type="submit"
-          value="Reset Password"
+          value="Reset"
         />
       </form>
       <h4>{invalidMessage}</h4>

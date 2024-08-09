@@ -165,7 +165,27 @@ usersRouter.post("/forgot-password", async (req, res) => {
     );
 
     if (oldUserData.rows.length === 0) {
-      return res.status(400).json({ error: "No user found" });
+      // Email details
+      const noAccountFoundEmail = {
+        from: "extremelypurerecords@gmail.com",
+        to: email, // Send to the user's email
+        subject: "Password Reset Request",
+        text: `Hello,
+
+            We received a request to reset your password, however no account was created with the email you submitted.
+
+            Please visit http://localhost:3000/signup to create an account.
+
+            If you did not request this change, please ignore this email.
+
+            Thank you,
+            Extremely Pure Records`,
+      };
+
+      // Send email
+      await transporter.sendMail(noAccountFoundEmail);
+      console.log("No account with that email was found, so an email to create an account was sent.");
+      return res.status(200).json({ message: "No account with that email was found, so an email to create an account was sent." });
     }
 
     const oldUserId = oldUserData.rows[0].id;
@@ -177,7 +197,7 @@ usersRouter.post("/forgot-password", async (req, res) => {
     const link = `http://localhost:3000/reset-password/${oldUserId}/${token}`;
 
     // Email details
-    const mailOptions = {
+    const resetEmail = {
       from: "extremelypurerecords@gmail.com",
       to: email, // Send to the user's email
       subject: "Password Reset Request",
@@ -194,7 +214,7 @@ usersRouter.post("/forgot-password", async (req, res) => {
     };
 
     // Send email
-    await transporter.sendMail(mailOptions);
+    await transporter.sendMail(resetEmail);
 
     console.log("Email sent successfully");
     res.status(200).json({ message: "Password reset email sent successfully" });
@@ -228,9 +248,11 @@ usersRouter.put("/:id", async (req, res) => {
   try {
     // Verify and decode token
     const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-    
+
     if (decoded.id != id) {
-      return res.status(403).json({ message: "Reset token not verified or expired." });
+      return res
+        .status(403)
+        .json({ message: "Reset token not verified or expired." });
     }
 
     // Hash the new password
@@ -249,13 +271,11 @@ usersRouter.put("/:id", async (req, res) => {
 
     console.log("Password successfully replaced!", result);
     return res.status(200).json({ message: "Password successfully replaced." });
-
   } catch (error) {
     console.error("Error:", error);
     return res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
 
 usersRouter.use((err, req, res, next) => {
   console.error(err.stack);
