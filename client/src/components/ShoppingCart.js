@@ -31,8 +31,8 @@ function ShoppingCart({ cartVisible, toggleCart, cart, addItemToCart, removeItem
           {cart.map(item => (
             <div className="flex flex-row justify-between">
               <div key={item.id} className="text-white mb-4">
-                <h2>{item.title}</h2>
-                <p>{item.artist}</p>
+                <h2>{item.artist}</h2>
+                <h2 className="italic">{item.title}</h2>
                 <p>Quantity: {item.quantity}</p>
                 <p>Price: ${item.price * item.quantity}</p>
                 {/* <img
@@ -40,8 +40,8 @@ function ShoppingCart({ cartVisible, toggleCart, cart, addItemToCart, removeItem
                       alt={`${item.title} by ${item.artist}`}
                       className="mt-2"
                     /> */}
-                <button onClick={() => addItemToCart(item)}>+</button>
-                <button onClick={() => removeItemFromCart(item)}>-</button>
+                <button className="bg-slate-800 rounded px-2 mr-2 active:bg-slate-400" onClick={() => addItemToCart(item)}>+</button>
+                <button className="bg-slate-800 rounded px-2 mr-2 active:bg-slate-400" onClick={() => removeItemFromCart(item)}>-</button>
               </div>
                 <img className="size-24" alt="merch item" src={`/merchphotos/${item.photo_path}`}></img>
             </div>

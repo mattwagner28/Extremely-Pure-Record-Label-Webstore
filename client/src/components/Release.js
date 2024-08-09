@@ -8,7 +8,7 @@ function Release() {
   const { cart, addItemToCart, removeItemFromCart } = useOutletContext();
 
   const [productData, setProductData] = useState([]);
-  const [releaseData, setReleaseData] = useState(null); // State for release data
+  const [releaseData, setReleaseData] = useState(null);
 
   useEffect(() => {
     // Fetch release data based on artistName and releaseTitle
@@ -17,7 +17,7 @@ function Release() {
     );
     setReleaseData(foundRelease);
 
-    // Fetch product data from the shop
+    // Fetch product data from the database
     const fetchData = async () => {
       try {
         const getProductData = await fetch(
@@ -35,58 +35,79 @@ function Release() {
     console.log("Cart (from release page):", cart);
   }, [artistName, releaseTitle, cart]);
 
-  // useEffect(() => {
-  //   console.log("Cart (from release page):", cart);
-  // }, []);
-
   return (
-    <div className="flex w-full justify-center">
+    //Main container
+    <main className="container mx-auto w-full flex flex-col-reverse lg:flex-row lg:justify-center">
 
-      <div className="flex w-2/5 m-2 bg-slate-300">
+      {/*Left Side Container with album art */}
+      <div className="left-side lg:w-2/5 lg:m-2 bg-slate-300">
         {releaseData?.coverArt && (
           <img
-            className="size-full"
+            className="w-full h-auto"
             alt={`Cover art`}
             src={`/albumart/${releaseData.coverArt}`}
           />
         )}
+        <p>{releaseData?.coverArtist}</p>
       </div>
 
-      <div className="flex w-2/5 m-2 bg-red-300">
+      {/*Right Side Container with album art */}
+      <div className="right-side-container lg:flex lg:flex-col lg:w-2/5 lg:m-2">
+        <h1 className="font-bold uppercase text-center text-4xl">{releaseData?.artist}</h1>
+        <h2 className="italic text-center text-2xl">{releaseData?.title}</h2>
+        <h3 className="text-center"> {releaseData?.catalog_number}</h3>
+        <h3  className="text-center">{releaseData?.date}</h3>
+        
+        {/*Items for sale section*/}
         <div className="products">
-          {productData.map(product => {
-            // Check if the product is in the cart
-            const cartItem = cart.find(item => item.test_price_id === product.test_price_id);
+          {productData.map((product) => {
+            const cartItem = cart.find(
+              (item) => item.test_price_id === product.test_price_id
+            );
 
             return (
-              <div className="card" key={product.id}>
-                <h2>{product.color} {product.category} {product.size}</h2>
-                <img className="size-24" alt="merch item" src={`/merchphotos/${product.photo_path}`}></img>
-                
-                {/* Render quantity and buttons */}
-                <div>
-                  {cartItem ? (
-                    <>
-                      <p>Quantity: {cartItem.quantity}</p>
-                      <button onClick={() => addItemToCart(product)}>+</button>
-                      <button onClick={() => removeItemFromCart(product)}>-</button>
-                    </>
-                  ) : (
-                    <>
-                      <p>In cart: 0</p>
-                      <button onClick={() => addItemToCart(product)}>Add to Cart</button>
-                    </>
-                  )}
+              <div className="card flex content-center" key={product.id}>
+                <div className="left-side flex-row content-center">
+                    <h2>  {product.color} {product.category} {product.size} </h2>
+                      {cartItem ? (
+                        <>
+                          <p>In cart: {cartItem.quantity}</p>
+                          <button className="rounded px-2 mr-2 bg-slate-400 text-white" onClick={() => addItemToCart(product)}>+</button>
+                          <button className="rounded px-2 mr-2 bg-slate-400 text-white"  onClick={() => removeItemFromCart(product)}>-</button>
+                        </>
+                      ) : (
+                        <>
+                          <p>In cart: 0</p>
+                          <button className="rounded px-2 bg-slate-400 text-white" onClick={() => addItemToCart(product)}>ADD TO CART</button>
+                        </>
+                      )}
+                </div>
+                <div className="right-side place-self-center">
+                    <img
+                      className="w-24  h-auto"
+                      alt="merch item"
+                      src={`/merchphotos/${product.photo_path}`}
+                    />
                 </div>
               </div>
             );
           })}
         </div>
-      </div>
 
-    </div>
+        {releaseData?.youtube && (
+          <iframe
+            width="560"
+            height="315"
+            src={releaseData.youtube}
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          ></iframe>
+        )}
+      </div>
+    </main>
   );
 }
 
 export default Release;
-

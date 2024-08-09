@@ -4,6 +4,7 @@
       "artist": "M Wagner",
       "title": "We Could Stay",
       "coverArt": "weCouldStay.jpg",
+      "coverArtist": "Cover art by Casey Fletcher",
       "type": "LP",
       "format": "Vinyl / CD / Digital",
       "external": "https://mwagner.bandcamp.com/album/we-could-stay",
@@ -14,6 +15,8 @@
           "source": "Pitchfork"
         }
       ],
+      "youtube": "https://www.youtube.com/embed/bc1pcQI4H4U?si=ILc7jjcuAyFVOcML",
+      "date": "May 17th, 2024",
       "catalog_number": "EXPR 008"
     },
 
