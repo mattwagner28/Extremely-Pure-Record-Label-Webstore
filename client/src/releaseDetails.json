@@ -7,35 +7,66 @@
       "coverArtist": "Cover art by Casey Fletcher",
       "type": "LP",
       "format": "Vinyl / CD / Digital",
-      "external": "https://mwagner.bandcamp.com/album/we-could-stay",
       "price": 22.0,
       "press": [
         {
-          "quote": "We Could Stay, the Brooklyn electronic musician’s staggering debut, artfully oscillates between moments of hypnotic bliss and jarring violence...each track is a full journey, Wagner gleefully bending dance music tropes into unpredictable shapes. Inspect his wall of sound a little closer, and you’ll discover the thunderous roar cleverly hiding a pop sensibility.",
+          "quote": "We Could Stay, the Brooklyn electronic musician’s staggering debut, artfully oscillates between moments of hypnotic bliss and jarring violence...each track is a full journey, Wagner gleefully bending dance music tropes into unpredictable shapes. Inspect his wall of sound a little closer, and you’ll discover the thunderous roar cleverly hiding a pop sensibility...We Could Stay is breathlessly thrilling—bruised, beautiful, and completely engulfing.",
           "source": "Pitchfork"
         }
       ],
       "youtube": "https://www.youtube.com/embed/bc1pcQI4H4U?si=ILc7jjcuAyFVOcML",
       "date": "May 17th, 2024",
-      "catalog_number": "EXPR 008"
+      "catalog_number": "EXPR 008",
+      "bandcamp_embed": "https://bandcamp.com/EmbeddedPlayer/album=3106721047/size=large/bgcol=ffffff/linkcol=0687f5/artwork=none/transparent=true/",
+      "bandcamp_link": "https://mwagner.bandcamp.com/album/we-could-stay"
     },
 
     {
       "artist": "M Wagner",
       "title": "Never Gone",
       "coverArt": "neverGone.jpg",
+      "coverArtist": "Cover art by Casey Fletcher",
       "type": "Single",
       "format": "Digital",
-      "external": "https://www.youtube.com/watch?v=m7L5MOkvIZU"
+      "external": "https://www.youtube.com/watch?v=m7L5MOkvIZU",
+      "price": 1.50,
+      "press": [
+        {
+          "quote": "The ghostly vocal samples on 'Never Gone' bubble up so gently, it’s hard to tell if they’re actually there or if your brain’s working to make sense of the song’s cacophonous, shoegazing frequencies.",
+          "source": "Pitchfork"
+        },
+        {
+          "quote": "...an impressive build-up of pounding percussion and pulsating ambience, culminating in a whirlwind of thunderous sounds and euphoric voices.",
+          "source": "Grauu"
+        }
+      ],
+      "youtube": "https://www.youtube.com/embed/m7L5MOkvIZU?si=rvULg1-9FXXXuaK9",
+      "date": "April 23rd, 2024",
+      "catalog_number": "EXPR 008-03"
     },
 
     {
       "artist": "M Wagner",
       "title": "Release Yrself",
       "coverArt": "releaseYrself.jpg",
+      "coverArtist": "Cover art by Casey Fletcher and Studio Sparks",
       "type": "Single",
       "format": "Digital",
-      "external": "https://www.youtube.com/watch?v=Ee6ARrUKIks"
+      "external": "https://www.youtube.com/watch?v=Ee6ARrUKIks",
+      "price": 1.50,
+      "press": [
+        {
+          "quote": "Suddenly, it’s upon you: An enormous four-chord vamp mangled by distortion and haunted vocal echoes, the song’s shimmering chimes playing around the edges. There’s a seductive elegance to the track’s destruction, like spending your final moments caught in a tornado, marveling at its power. In its last quarter, the noisy layers of 'Release Yrself' fall away, leaving the softly glowing embers of a lullaby-like melody. Right when it feels light enough to drift off on the breeze, Wagner brings in a startling, stabbing trance synth, caking it with the blistering overdrive of a tape deck eating itself.",
+          "source": "Pitchfork"
+        },
+        {
+          "quote": "It’s all there. The emotion, mangled samples, driving house beat, destroyed ending. Lovely work.",
+          "source": "Tome To The Weather Machine"
+        }
+      ],
+      "youtube": "https://www.youtube.com/embed/Ee6ARrUKIks?si=TI0fLcW5c4YCTabj",
+      "date": "February 22nd, 2024",
+      "catalog_number": "EXPR 008-01"
     },
 
     {
@@ -45,7 +76,20 @@
       "type": "LP",
       "format": "Vinyl / Cassette / Digital",
       "external": "https://pynkie.bandcamp.com/album/songies",
-      "price": 17.0
+      "price": 17.0,
+      "press": [
+        {
+          "quote": "PYNKIE’s new release, Songies, blends twee, soft shoegaze, and a sharp indie-pop sensibility...some of 2023’s best moments thus far...PYNKIE certainly wears her laid-back influences on her sleeve. Yet, take an extended dive into her new record, and one discovers a creative, downright exciting intensity bursting from all the songs on Songies... This mature, intelligently constructed indie pop has some of 2023’s finest moments...Give this wonderful, catchy record a listen, and we promise at least three sequences that will immediately whet your ears for more.",
+          "source": "PopMatters"
+        },
+        {
+          "quote": "Songies delivers a variety of meaning through Radice's lyricism as the storytelling touches upon breakups, self-honesty, and the perspectives of time and space...The love and care PYNKIE contributes to her art is clear, assuring you to become an instant fan. It is safe to expect her to continue gaining traction through her originality and vocal ability, uplifting listeners during darker times.",
+          "source": "Post-Trash"
+        }
+      ],
+      "youtube": "https://www.youtube.com/embed/vY-ri3xVkZU?si=mDoiA6Te74231baP",
+      "date": "August 18th, 2023",
+      "catalog_number": "EXPR 004 (Vinyl) | EXPR 005 (Cassette)"
     },
 
     {

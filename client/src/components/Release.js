@@ -38,9 +38,8 @@ function Release() {
   return (
     //Main container
     <main className="container mx-auto w-full flex flex-col-reverse lg:flex-row lg:justify-center">
-
       {/*Left Side Container with album art */}
-      <div className="left-side lg:w-2/5 lg:m-2 bg-slate-300">
+      <div className="left-side lg:w-1/2 lg:m-2">
         {releaseData?.coverArt && (
           <img
             className="w-full h-auto"
@@ -48,63 +47,116 @@ function Release() {
             src={`/albumart/${releaseData.coverArt}`}
           />
         )}
-        <p>{releaseData?.coverArtist}</p>
+        <p className="text-center">{releaseData?.coverArtist}</p>
+        <div className="w-full h-80">
+          <iframe
+            className="border-0 w-full h-full"
+            src={releaseData?.bandcamp_embed}
+            seamless
+            title="Bandcamp Embed"
+          >
+            <a href={releaseData?.bandcamp_link}>
+              We Could Stay by M Wagner
+            </a>
+          </iframe>
+        </div>
       </div>
 
       {/*Right Side Container with album art */}
-      <div className="right-side-container lg:flex lg:flex-col lg:w-2/5 lg:m-2">
-        <h1 className="font-bold uppercase text-center text-4xl">{releaseData?.artist}</h1>
+      <div className="right-side-container lg:flex lg:flex-col lg:w-1/2 lg:m-2">
+        <h1 className="font-bold uppercase text-center text-4xl">
+          {releaseData?.artist}
+        </h1>
         <h2 className="italic text-center text-2xl">{releaseData?.title}</h2>
         <h3 className="text-center"> {releaseData?.catalog_number}</h3>
-        <h3  className="text-center">{releaseData?.date}</h3>
-        
+        <h3 className="text-center">{releaseData?.date}</h3>
+
         {/*Items for sale section*/}
-        <div className="products">
+        <div className="products px-12 my-3 xl:my-6 xl:flex xl:grid-cols-2 xl:justify-around ">
           {productData.map((product) => {
             const cartItem = cart.find(
               (item) => item.test_price_id === product.test_price_id
             );
 
             return (
-              <div className="card flex content-center" key={product.id}>
+              //Card for each product fonud
+              <div className="card my-3 flex content-center" key={product.id}>
                 <div className="left-side flex-row content-center">
-                    <h2>  {product.color} {product.category} {product.size} </h2>
-                      {cartItem ? (
-                        <>
-                          <p>In cart: {cartItem.quantity}</p>
-                          <button className="rounded px-2 mr-2 bg-slate-400 text-white" onClick={() => addItemToCart(product)}>+</button>
-                          <button className="rounded px-2 mr-2 bg-slate-400 text-white"  onClick={() => removeItemFromCart(product)}>-</button>
-                        </>
-                      ) : (
-                        <>
-                          <p>In cart: 0</p>
-                          <button className="rounded px-2 bg-slate-400 text-white" onClick={() => addItemToCart(product)}>ADD TO CART</button>
-                        </>
-                      )}
+                  <h2>
+                    {" "}
+                    {product.color} {product.category} {product.size}{" "}
+                  </h2>
+                  <h2 className="font-semibold">${product.price}</h2>
+                  {cartItem ? (
+                    <>
+                      <p>In cart: {cartItem.quantity}</p>
+                      <button
+                        className="rounded px-2 mr-2 bg-slate-400 text-white"
+                        onClick={() => addItemToCart(product)}
+                      >
+                        +
+                      </button>
+                      <button
+                        className="rounded px-2 mr-2 bg-slate-400 text-white"
+                        onClick={() => removeItemFromCart(product)}
+                      >
+                        -
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <p>In cart: 0</p>
+                      <button
+                        className="rounded px-2 bg-slate-400 text-white"
+                        onClick={() => addItemToCart(product)}
+                      >
+                        ADD TO CART
+                      </button>
+                    </>
+                  )}
                 </div>
                 <div className="right-side place-self-center">
-                    <img
-                      className="w-24  h-auto"
-                      alt="merch item"
-                      src={`/merchphotos/${product.photo_path}`}
-                    />
+                  <img
+                    className="w-24  h-auto"
+                    alt="merch item"
+                    src={`/merchphotos/${product.photo_path}`}
+                  />
                 </div>
               </div>
             );
           })}
         </div>
 
-        {releaseData?.youtube && (
-          <iframe
-            width="560"
-            height="315"
-            src={releaseData.youtube}
-            title="YouTube video player"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          ></iframe>
-        )}
+        {/* Press quotes */}
+        <div className="px-12 press-quotes my-3">
+          {releaseData?.press.map((feature) => (
+            <div>
+              <p className="italic">"{feature.quote}"</p>
+              <p className="text-right font-semibold pr-12 mb-6">
+                - {feature.source}
+              </p>
+            </div>
+          ))}
+
+          {/* <p className="italic">"{releaseData?.press[0].quote}"</p>
+            <p className="text-right font-semibold pr-12">- {releaseData?.press[0].source}</p> */}
+        </div>
+
+        {/*Youtube Video  */}
+        <div className="flex justify-center mb-4">
+          {releaseData?.youtube && (
+            <iframe
+              className="self-center"
+              width="560"
+              height="315"
+              src={releaseData.youtube}
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            ></iframe>
+          )}
+        </div>
       </div>
     </main>
   );

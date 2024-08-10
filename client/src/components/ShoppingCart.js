@@ -15,7 +15,7 @@ function ShoppingCart({ cartVisible, toggleCart, cart, addItemToCart, removeItem
   }, [cartVisible]);
 
   return (
-    <div className={`${cartHidden} cart flex flex-col z-20 fixed top-0 right-0 bg-cyan-800 transition transform ${animation} h-full w-full lg:w-1/3 md:w-1/2`}>
+    <div className={`${cartHidden} cart flex flex-col z-20 fixed top-0 right-0 bg-cyan-900 transition transform ${animation} h-full w-full lg:w-1/3 md:w-1/2`}>
      <div className="header pl-4">
         <h1 className="text-white mt-1">{cart.length === 0 ? "Shopping cart is currently empty" : ""}</h1>
         <button
@@ -48,7 +48,7 @@ function ShoppingCart({ cartVisible, toggleCart, cart, addItemToCart, removeItem
           ))}
         </div>
       </div>
-            <div className="footer flex w-full justify-normal pl-4 h-24 bg-cyan-800">
+            <div className="footer flex w-full justify-normal pl-4 h-24 bg-cyan-900">
               <button>
                   <NavLink to="/checkout" className={cart.length === 0 ? "hidden" : "rounded text-white bg-red-500 hover:bg-red-700 p-2"}>
                     {loggedIn ? "CHECKOUT" : "CHECKOUT AS GUEST"}
