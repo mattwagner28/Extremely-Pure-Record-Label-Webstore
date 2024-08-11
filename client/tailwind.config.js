@@ -11,10 +11,10 @@ module.exports = {
       keyframes: {
         'slide-in': {
           '0%': { transform: 'translateX(100%)', opacity: '0' },
-          '100%': { transform: 'translateX(0)', opacity: '1' },
+          '100%': { transform: 'translateX(0)', opacity: '0.93' },
         },
         'slide-out': {
-          '0%': { transform: 'translateX(0)', opacity: '1' },
+          '0%': { transform: 'translateX(0)', opacity: '0.93' },
           '100%': { transform: 'translateX(100%)', opacity: '0' },
         },
       },

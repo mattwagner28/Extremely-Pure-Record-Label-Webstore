@@ -72,7 +72,7 @@ function Release() {
         <h3 className="text-center">{releaseData?.date}</h3>
 
         {/*Items for sale section*/}
-        <div className="products px-12 my-3 xl:my-6 xl:flex xl:grid-cols-2 xl:justify-around ">
+        <div className="products px-12 my-3 ">
           {productData.map((product) => {
             const cartItem = cart.find(
               (item) => item.test_price_id === product.test_price_id
@@ -80,48 +80,59 @@ function Release() {
 
             return (
               //Card for each product fonud
-              <div className="card my-3 flex content-center" key={product.id}>
-                <div className="left-side flex-row content-center">
+              <div className="card my-3 flex flex-row justify-between content-center border-b-2" key={product.id}>
+
+                <div className="left-side w-1/3 flex-row content-center">
                   <h2>
                     {" "}
                     {product.color} {product.category} {product.size}{" "}
                   </h2>
                   <h2 className="font-semibold">${product.price}</h2>
-                  {cartItem ? (
-                    <>
-                      <p>In cart: {cartItem.quantity}</p>
-                      <button
-                        className="rounded px-2 mr-2 bg-slate-400 text-white"
-                        onClick={() => addItemToCart(product)}
-                      >
-                        +
-                      </button>
-                      <button
-                        className="rounded px-2 mr-2 bg-slate-400 text-white"
-                        onClick={() => removeItemFromCart(product)}
-                      >
-                        -
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      <p>In cart: 0</p>
-                      <button
-                        className="rounded px-2 bg-slate-400 text-white"
-                        onClick={() => addItemToCart(product)}
-                      >
-                        ADD TO CART
-                      </button>
-                    </>
-                  )}
+
                 </div>
-                <div className="right-side place-self-center">
+
+                <div className="center-merch-photo flex w-1/3 justify-left">
                   <img
                     className="w-24  h-auto"
                     alt="merch item"
                     src={`/merchphotos/${product.photo_path}`}
                   />
                 </div>
+
+                <div className="right-side w-1/3 content-center">
+                {cartItem ? (
+                    <>
+                      <button
+                        className="rounded px-2 mr-2 bg-slate-400 text-white"
+                        onClick={() => addItemToCart(product)}
+                        >
+                        +
+                      </button>
+                      <button
+                        className="rounded px-2 mr-2 bg-slate-400 text-white"
+                        onClick={() => removeItemFromCart(product)}
+                        >
+                        -
+                      </button>
+                        <p>In cart: {cartItem.quantity}</p>
+                    </>
+                  ) : (
+                    <>
+                      <button
+                        className="rounded px-2 bg-slate-400 text-white"
+                        onClick={() => addItemToCart(product)}
+                      >
+                        ADD TO CART
+                      </button>
+                      <p>In cart: 0</p>
+                    </>
+                  )}
+
+
+                </div>
+                
+
+
               </div>
             );
           })}
