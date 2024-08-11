@@ -42,7 +42,9 @@
       ],
       "youtube": "https://www.youtube.com/embed/m7L5MOkvIZU?si=rvULg1-9FXXXuaK9",
       "date": "April 23rd, 2024",
-      "catalog_number": "EXPR 008-03"
+      "catalog_number": "EXPR 008-03",
+      "bandcamp_embed": "https://bandcamp.com/EmbeddedPlayer/album=3106721047/size=large/bgcol=ffffff/linkcol=0687f5/artwork=none/track=1837994067/transparent=true/",
+      "bandcamp_link": "https://mwagner.bandcamp.com/track/never-gone"
     },
 
     {
@@ -66,7 +68,9 @@
       ],
       "youtube": "https://www.youtube.com/embed/Ee6ARrUKIks?si=TI0fLcW5c4YCTabj",
       "date": "February 22nd, 2024",
-      "catalog_number": "EXPR 008-01"
+      "catalog_number": "EXPR 008-01",
+      "bandcamp_embed": "https://bandcamp.com/EmbeddedPlayer/album=3106721047/size=large/bgcol=ffffff/linkcol=0687f5/artwork=none/track=1809499228/transparent=true/",
+      "bandcamp_link": "https://mwagner.bandcamp.com/track/release-yrself"
     },
 
     {
@@ -89,26 +93,52 @@
       ],
       "youtube": "https://www.youtube.com/embed/vY-ri3xVkZU?si=mDoiA6Te74231baP",
       "date": "August 18th, 2023",
-      "catalog_number": "EXPR 004 (Vinyl) | EXPR 005 (Cassette)"
+      "catalog_number": "EXPR 004 (Vinyl) | EXPR 005 (Cassette)",
+      "bandcamp_embed": "https://bandcamp.com/EmbeddedPlayer/album=3810786174/size=large/bgcol=ffffff/linkcol=0687f5/artwork=none/transparent=true/",
+      "bandcamp_link": "https://pynkie.bandcamp.com/album/songies"
     },
 
     {
       "artist": "Silver Liz",
       "title": "It Is Lighter Than You Think",
       "coverArt": "lighterThan.png",
+      "coverArtist": "Cover art by Carrie and Matt Wagner",
       "type": "LP",
       "format": "Vinyl / CD / Digital",
       "external": "https://silverliz.bandcamp.com/album/it-is-lighter-than-you-think",
-      "price": 22.0
+      "price": 22.0,
+      "press": [
+        {
+          "quote": "[Their sophomore record] explodes their horizons outward, encompassing a constantly-shifting expanse of genres and showcasing an impressive refusal to limit their sound to any one direction.",
+          "source": "Under The Radar"
+        }
+      ],
+      "youtube": "https://www.youtube.com/embed/zqTKO_uSs1k?si=e69X2BInTe0nDF2r",
+      "date": "November 14th, 2022",
+      "catalog_number": "EXPR 002",
+      "bandcamp_embed": "https://bandcamp.com/EmbeddedPlayer/album=2463399977/size=large/bgcol=ffffff/linkcol=0687f5/artwork=none/transparent=true/",
+      "bandcamp_link": "https://silverliz.bandcamp.com/album/it-is-lighter-than-you-think"
     },
 
     {
       "artist": "Silver Liz",
       "title": "Roman Candle Part II",
       "coverArt": "romanCandle.jpg",
+      "coverArtist": "Cover art by Annika Bethan",
       "type": "Single",
       "format": "Digital",
-      "external": "https://silverliz.bandcamp.com/album/roman-candle-part-ii"
+      "external": "https://silverliz.bandcamp.com/album/roman-candle-part-ii",
+      "press": [
+        {
+          "quote": "‘Roman Candle Part II’ is a sonic companion for the lonely, a friend for those losing hope and a song that is endlessly replayable. With its nostalgic point towards 90s triphop combined with sublime minimal electronica sensibilities, its brooding reverb blanket, shifting dance-infused beats and a vocal which summons you into a dream-like state, this is without question one of the finest tracks of the year so far. Drawing surprising emotion clout, its haunting melodies and heavenly ambiance is nothing short of divine. Drink it all in.",
+          "source": "Podcart"
+        }
+      ],
+      "youtube": "https://www.youtube.com/embed/3Vo7wyfFsW0?si=hEbnGzb6iUk9NAz_&amp;start=2880",
+      "date": "August 12th, 2021",
+      "catalog_number": "EXPR-NL-010",
+      "bandcamp_embed": "https://bandcamp.com/EmbeddedPlayer/album=2272876625/size=large/bgcol=ffffff/linkcol=0687f5/artwork=none/transparent=true/",
+      "bandcamp_link": "https://silverliz.bandcamp.com/album/roman-candle-part-ii"
     },
 
     {
@@ -117,7 +147,22 @@
       "coverArt": "theresNoNeed.jpg",
       "type": "Single",
       "format": "Digital",
-      "external": "https://silverliz.bandcamp.com/track/theres-no-need"
+      "external": "https://silverliz.bandcamp.com/track/theres-no-need",
+      "press": [
+        {
+          "quote": "I have to say...I heard that song and I was like...This is great. This is my Lost in Translation soundtrack moment.",
+          "source": "George Clanton"
+        },
+        {
+          "quote": "...it possesses a timelessness that I've craved in recent indie electronic music.",
+          "source": "Indie Shuffle"
+        }
+      ],
+      "youtube": "https://www.youtube.com/embed/QirZvQHqOWw?si=9FISW72ZfqIor4pP&amp;start=5367",
+      "date": "October 12th, 2020",
+      "catalog_number": "EXPR-NL-009",
+      "bandcamp_embed": "https://bandcamp.com/EmbeddedPlayer/track=3690606457/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/artwork=none/transparent=true/",
+      "bandcamp_link": "https://silverliz.bandcamp.com/track/theres-no-need"
     },
 
     {
@@ -126,7 +171,23 @@
       "coverArt": "smores.jpg",
       "type": "Single",
       "format": "Digital",
-      "external": "https://silverliz.bandcamp.com/album/microwave-smores"
+      "external": "https://silverliz.bandcamp.com/album/microwave-smores",
+      "press": [
+        {
+          "quote": "'Microwave S’mores'...is tailor-made for your next wistful stare out the window. The dreamy track ebbs and flows between lilting guitars and ethereal vocals up to bursts of heavy shoegaze-style TV static making for a delightfully mind-bending listening experience.",
+          "source": "Impose Magazine"
+        },
+        {
+          "quote": "Silver Liz has the uncanny ability to produce lush, fuzzed out indie pop that is both gritty and sensitive. Their latest single is also timely, diving into the pros and cons of being an introvert in modern society.",
+          "source": "The Vinyl District"
+        }
+
+      ],
+      "youtube": "https://www.youtube.com/embed/UgykLI-99Ok?si=fOpZkt97jwrTatfD",
+      "date": "May 23rd, 2020",
+      "catalog_number": "EXPR-NL-008",
+      "bandcamp_embed": "https://bandcamp.com/EmbeddedPlayer/album=2347181014/size=large/bgcol=ffffff/linkcol=0687f5/artwork=none/transparent=true/",
+      "bandcamp_link": "https://silverliz.bandcamp.com/album/microwave-smores"
     },
 
     {
@@ -135,7 +196,23 @@
       "coverArt": "icftw.jpg",
       "type": "LP",
       "format": "CD / Cassette / Digital",
-      "external": "https://silverliz.bandcamp.com/album/i-can-feel-the-weight"
+      "external": "https://silverliz.bandcamp.com/album/i-can-feel-the-weight",
+      "press": [
+        {
+          "quote": "An album that’s filled to the brim with longing anthems, Silver Liz’s I Can Feel the Weight provides instant feels upon pressing play. It’s a washed out affair, whether they’re bringing in crashing, bent waves of distortion, pattering synth arpeggios, wind-riding guitar smears or ethereal vocals. It all floats in a sprawling expanse of stars, anchored back by a distinctive indie pop sensibility. Proof that when quality songwriting and quality atmospherics smash together, you’ll find some magic.",
+          "source": "Wild Patterns"
+        },
+        {
+          "quote": "...shimmering guitars, hazy phased-sounding cymbals and layers of treated vocals.  This is psychedelia, but psychedelia given an electronic makeover, an entirely modern sound.",
+          "source": "The Spill"
+        }
+
+      ],
+      "youtube": "https://www.youtube.com/embed/mNeB4LVPizc?si=wm4DMt6bd37wAYH0",
+      "date": "October 31st, 2017",
+      "catalog_number": "EXPR-NL-005",
+      "bandcamp_embed": "https://bandcamp.com/EmbeddedPlayer/album=3133370440/size=large/bgcol=ffffff/linkcol=0687f5/artwork=none/transparent=true/",
+      "bandcamp_link": "https://silverliz.bandcamp.com/album/i-can-feel-the-weight"
     }
   ]
 }

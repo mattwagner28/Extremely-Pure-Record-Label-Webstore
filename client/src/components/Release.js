@@ -56,7 +56,7 @@ function Release() {
             title="Bandcamp Embed"
           >
             <a href={releaseData?.bandcamp_link}>
-              We Could Stay by M Wagner
+              {releaseTitle} by {artistName}
             </a>
           </iframe>
         </div>
@@ -68,6 +68,7 @@ function Release() {
           {releaseData?.artist}
         </h1>
         <h2 className="italic text-center text-2xl">{releaseData?.title}</h2>
+        <h3 className="text-center"> {releaseData?.format}</h3>
         <h3 className="text-center"> {releaseData?.catalog_number}</h3>
         <h3 className="text-center">{releaseData?.date}</h3>
 

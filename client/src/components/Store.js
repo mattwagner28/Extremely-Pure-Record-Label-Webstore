@@ -33,7 +33,7 @@ function Store() {
   return (
     <>
       <div className="relative w-full z-0 lg:w-4/5 m-2">
-        <div className="product-container grid grid-cols-1 lg:grid-cols-4 gap-4 mt-12">
+        <div className="product-container grid grid-cols-2 lg:grid-cols-4 gap-4 mt-12">
           {products.map((product, index) => (
             <div key={index} className="border p-4 rounded-lg shadow-md">
               <h1 className="artist text-lg font-bold">{product.artist}</h1>
