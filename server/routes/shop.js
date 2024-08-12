@@ -12,7 +12,7 @@ const pool = new Pool({
   }
 });
 
-const YOUR_DOMAIN = 'http://localhost:3000';
+const YOUR_DOMAIN = 'https://extremelypure.onrender.com/';
 
 //Retrieves all items for the shop component
 shopRouter.get("/", async (req, res, next) => {
