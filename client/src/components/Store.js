@@ -58,8 +58,8 @@ function Store() {
                 -
               </button>
               <img
-                src={`/merchphotos/${product.photo_path}`}
                 alt={`${product.title} by ${product.artist}`}
+                src={`/merchphotos/${product.photo_path}`}
                 className="mt-2"
               />
             </div>
@@ -67,7 +67,6 @@ function Store() {
         </div>
       </div>
       <h1>{errMsg}</h1>
-      {/* <ShoppingCart visible={cartVisible} toggleCart={toggleCartVisibility} /> */}
     </>
   );
 }
