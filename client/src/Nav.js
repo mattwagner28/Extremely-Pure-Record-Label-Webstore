@@ -1,59 +1,87 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { UserContext } from "./components/Root";
 
-function Nav({ toggleCart, signout }) {
+function Nav({ toggleCart, signout, navVisible, isLargeScreen, toggleNavVisibility }) {
   const loggedIn = useContext(UserContext);
+  const [animation, setAnimation] = useState("");
+  const [navHidden, setNavHidden] = useState("hidden");
+  const [navLinkCSS, setNavLinkCSS] = useState("");
+
+  useEffect(() => {
+    if (navVisible) {
+      setAnimation("animate-slide-in");
+      setNavHidden("");
+      console.log("navHidden:", navHidden);
+    } else {
+      setAnimation("animate-slide-out");
+    }
+  }, [navVisible, navHidden]);
+
+  useEffect(() => {
+    console.log("is large screen?", isLargeScreen);
+    if (isLargeScreen) {
+      setNavLinkCSS("px-2 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500")
+    } else {
+      setNavLinkCSS("flex items-center justify-center py-4 text-2xl text-center font-sans font-semibold hover:bg-cyan-300 active:text-orange-500")
+    }
+  }, [isLargeScreen]);
 
   return (
-    <div>
-
-      <nav className="hidden lg:flex z-10 justify-between fixed top-0 w-full bg-red-100 px-8">
+    <div >
+      <nav className={`flex flex-col ${navHidden} transform ${animation} w-full z-10 fixed top-0 right-0 bg-red-100 lg:flex lg:flex-row lg:z-10 lg:justify-between lg:fixed lg:top-0 lg:w-full lg:bg-red-100 lg:px-8`}>
         <NavLink
           to="/"
-          className="px-2 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500"
+          className={navLinkCSS}
+          onClick={toggleNavVisibility}
         >
           HOME
         </NavLink>
 
         <NavLink
           to="/store"
-          className="px-2 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500"
+          className={navLinkCSS}
+          onClick={toggleNavVisibility}
         >
           STORE
         </NavLink>
 
         {/* <NavLink
         to="/artists"
-        className="px-2 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500"
+        className={navLinkCSS}
+        onClick={toggleNavVisibility}
       >
         ARTISTS
       </NavLink> */}
 
-        <NavLink
+        {/* <NavLink
           to="/discography"
-          className="px-2 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500"
+          className={navLinkCSS}
+          onClick={toggleNavVisibility}
         >
           DISCOGRAPHY
         </NavLink>
 
         <NavLink
           to="/playlists"
-          className="px-2 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500"
+          className={navLinkCSS}
+          onClick={toggleNavVisibility}
         >
           PLAYLISTS
-        </NavLink>
+        </NavLink> */}
 
         <NavLink
           to="/about"
-          className="px-2 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500"
+          className={navLinkCSS}
+          onClick={toggleNavVisibility}
         >
           ABOUT
         </NavLink>
 
         {/* <NavLink
         to="/stemplayer"
-        className="px-2 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500"
+        className={navLinkCSS}
+        onClick={toggleNavVisibility}
       >
         STEM PLAYER
       </NavLink> */}
@@ -61,15 +89,20 @@ function Nav({ toggleCart, signout }) {
         {loggedIn ? (
           <>
             <NavLink
-              onClick={signout}
+              onClick={() => {
+                signout();
+                toggleNavVisibility();
+              }}
               to="/"
-              className="px-2 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500"
+              className={navLinkCSS}
+              
             >
               LOGOUT
             </NavLink>
             <NavLink
               to="/profile"
-              className="px-2 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500"
+              className={navLinkCSS}
+              onClick={toggleNavVisibility}
             >
               <img
                 src="/user.png"
@@ -83,7 +116,8 @@ function Nav({ toggleCart, signout }) {
         ) : (
           <NavLink
             to="/login"
-            className="px-2 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500"
+            className={navLinkCSS}
+            onClick={toggleNavVisibility}
           >
             <img
               src="/user.png"
@@ -96,8 +130,11 @@ function Nav({ toggleCart, signout }) {
         )}
 
         <button
-          onClick={toggleCart}
-          className="px-2 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500"
+          onClick={() => {
+            toggleCart();
+            toggleNavVisibility();
+          }}
+          className={navLinkCSS}
         >
           <img
             src="/shopping-cart.png"

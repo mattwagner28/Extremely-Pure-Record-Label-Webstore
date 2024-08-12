@@ -11,10 +11,33 @@ export const UserContextUpdater = createContext();
 function Root() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [cartVisible, setCartVisible] = useState(false);
+  const [navVisible, setNavVisible] = useState(false);
   const [cart, setCart] = useState([]);
   const [quantities, setQuantities] = useState({});
+  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1024); // 1024px is the breakpoint for large screens
   const location = useLocation();
   const isHomeRoute = location.pathname === "/";
+
+  // Handle screen size changes, 1024 is when tailwind class is "lg"
+  useEffect(() => {
+    const handleResize = () => {
+      setIsLargeScreen(window.innerWidth >= 1024);
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Initial check
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Adjust nav visibility based on screen size
+  useEffect(() => {
+    if (isLargeScreen) {
+      setNavVisible(true); // Show nav on large screens
+    } else {
+      setNavVisible(false); // Hide nav on small screens
+    }
+  }, [isLargeScreen]);
 
   useEffect(() => {
     verifyToken();
@@ -44,6 +67,13 @@ function Root() {
   };
 
   const toggleCartVisibility = () => setCartVisible(prev => !prev);
+
+  const toggleNavVisibility = () => {
+    if (!isLargeScreen) { // Only toggle nav visibility on small screens
+      setNavVisible(prev => !prev);
+    }
+    console.log(navVisible);
+  };
 
   const addItemToCart = (product) => {
     setCart(prevCart => {
@@ -89,16 +119,21 @@ function Root() {
     <UserContext.Provider value={loggedIn}>
       <UserContextUpdater.Provider value={{ setLoggedIn }}>
         <div>
-          <img src="/hamburger.png" className="z-20 mr-4 fixed right-0 size-24 object-right lg:hidden" alt="Menu" />
+          <img
+            src="/hamburger.png"
+            className="z-20 mr-4 fixed right-0 size-24 object-right cursor-pointer lg:hidden"
+            alt="Menu"
+            onClick={toggleNavVisibility}
+          />
           <Logo />
-          <Nav toggleCart={toggleCartVisibility} signout={signout} />
+          <Nav toggleCart={toggleCartVisibility} signout={signout} navVisible={navVisible} isLargeScreen={isLargeScreen} toggleNavVisibility={toggleNavVisibility} />
           {isHomeRoute && <Home />}
           <main className="flex justify-center mt-1">
             <Outlet context={{ cart, addItemToCart, removeItemFromCart, quantities, verifyToken }} />
           </main>
           <ShoppingCart 
             cartVisible={cartVisible} 
-            toggleCart={toggleCartVisibility} 
+            toggleCartVisibility={toggleCartVisibility} 
             cart={cart} 
             addItemToCart={addItemToCart} 
             removeItemFromCart={removeItemFromCart} 

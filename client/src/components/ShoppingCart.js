@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
-function ShoppingCart({ cartVisible, toggleCart, cart, addItemToCart, removeItemFromCart, loggedIn }) {
+function ShoppingCart({ cartVisible, toggleCartVisibility, cart, addItemToCart, removeItemFromCart, loggedIn }) {
   const [animation, setAnimation] = useState("");
   const [cartHidden, setCartHidden] = useState('hidden');
 
@@ -18,7 +18,7 @@ function ShoppingCart({ cartVisible, toggleCart, cart, addItemToCart, removeItem
     <div className={`${cartHidden} cart flex flex-col z-20 fixed top-0 right-0 bg-blue-200 transform ${animation} h-full w-full lg:w-1/3 md:w-1/2`}>
      <div className="header pl-4">
         <button
-          onClick={toggleCart}
+          onClick={toggleCartVisibility}
           className="text-white bg-gray-800 hover:bg-purple-400 p-2 rounded mt-4"
         >
           HIDE CART
@@ -45,13 +45,13 @@ function ShoppingCart({ cartVisible, toggleCart, cart, addItemToCart, removeItem
       </div>
             <div className="footer flex w-full justify-normal pl-4 h-24 bg-blue-200">
               <button>
-                  <NavLink to="/checkout" className={cart.length === 0 ? "hidden" : "rounded text-white bg-gray-800 hover:bg-purple-400 p-2"}>
+                  <NavLink to="/checkout" onClick={toggleCartVisibility} className={cart.length === 0 ? "hidden" : "rounded text-white bg-gray-800 hover:bg-purple-400 p-2" }>
                     {loggedIn ? "CHECKOUT" : "CHECKOUT AS GUEST"}
                   </NavLink>
                 </button>
 
                 <button className="pl-4">
-                  {!loggedIn && <NavLink to="/login" className={"rounded text-white bg-gray-800 hover:bg-purple-400 p-2"}>
+                  {!loggedIn && <NavLink to="/login" onClick={toggleCartVisibility} className={"rounded text-white bg-gray-800 hover:bg-purple-400 p-2"}>
                     LOG IN
                   </NavLink>}
                 </button>
