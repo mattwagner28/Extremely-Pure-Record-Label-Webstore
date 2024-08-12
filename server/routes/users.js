@@ -6,12 +6,12 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 
+
 const pool = new Pool({
-  user: "postgres",
-  host: "localhost",
-  database: "extremelypure",
-  password: "postgres",
-  port: 5432,
+  connectionString: 'postgresql://matt:j912HRlgljwqUA6dqPQQDGCLyGU68rSe@dpg-cqt6fat6l47c73ah6uhg-a.ohio-postgres.render.com/extremelypure',
+  ssl: {
+    rejectUnauthorized: false // Ensure SSL configuration if required by your database provider
+  }
 });
 
 // Nodemailer transporter object using Gmail

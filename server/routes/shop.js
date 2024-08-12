@@ -4,12 +4,12 @@ const shopRouter = express.Router();
 const stripe = require('stripe')('sk_test_51Pb6CxFrTCMUt7gzYizK3ZvjghcE6gwcboxIFQjkODuNhUeqWuQIGlBoSdFK9eDC2edoTNmc9goGUCo7RrnAsJ9w00YI7rTw4t');
 
 
+
 const pool = new Pool({
-  user: "postgres",
-  host: "localhost",
-  database: "extremelypure",
-  password: "postgres",
-  port: 5432,
+  connectionString: 'postgresql://matt:j912HRlgljwqUA6dqPQQDGCLyGU68rSe@dpg-cqt6fat6l47c73ah6uhg-a.ohio-postgres.render.com/extremelypure',
+  ssl: {
+    rejectUnauthorized: false // Ensure SSL configuration if required by your database provider
+  }
 });
 
 const YOUR_DOMAIN = 'http://localhost:3000';
