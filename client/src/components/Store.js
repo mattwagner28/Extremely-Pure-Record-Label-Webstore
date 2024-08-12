@@ -13,7 +13,7 @@ function Store() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:3001/shop")
+    fetch("https://extremelypure-server.onrender.com/shop")
       .then((response) => response.json())
       .then((allProducts) => {
         setProducts(allProducts);
