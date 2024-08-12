@@ -12,8 +12,6 @@ const pool = new Pool({
   }
 });
 
-const YOUR_DOMAIN = 'https://extremelypure.onrender.com/';
-
 //Retrieves all items for the shop component
 shopRouter.get("/", async (req, res, next) => {
   try {

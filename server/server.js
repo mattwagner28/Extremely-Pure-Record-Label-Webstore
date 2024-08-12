@@ -11,7 +11,7 @@ const cookieParser = require('cookie-parser');
 
 //Implement cors
 app.use(cors({
-  origin: 'https://extremelypure.onrender.com/',
+  origin: 'https://extremelypure.onrender.com',
   credentials: true
 }));
 
