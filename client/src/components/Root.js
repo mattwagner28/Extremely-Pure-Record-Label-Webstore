@@ -18,26 +18,27 @@ function Root() {
   const location = useLocation();
   const isHomeRoute = location.pathname === "/";
 
-  // Handle screen size changes, 1024 is when tailwind class is "lg"
-  useEffect(() => {
-    const handleResize = () => {
-      setIsLargeScreen(window.innerWidth >= 1024);
-    };
+    // Handle screen size changes, 1024 is when tailwind class is "lg"
+    useEffect(() => {
+      const handleResize = () => {
+        setIsLargeScreen(window.innerWidth >= 1024);
+      };
+  
+      window.addEventListener("resize", handleResize);
+      handleResize(); // Initial check
+  
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
-    window.addEventListener("resize", handleResize);
-    handleResize(); // Initial check
+    // Adjust nav visibility based on screen size
+    useEffect(() => {
+      if (isLargeScreen) {
+        setNavVisible(true); // Show nav on large screens
+      } else {
+        setNavVisible(false); // Hide nav on small screens
+      }
+    }, [isLargeScreen]);
 
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  // Adjust nav visibility based on screen size
-  useEffect(() => {
-    if (isLargeScreen) {
-      setNavVisible(true); // Show nav on large screens
-    } else {
-      setNavVisible(false); // Hide nav on small screens
-    }
-  }, [isLargeScreen]);
 
   useEffect(() => {
     verifyToken();

@@ -9,14 +9,17 @@ function Nav({ toggleCart, signout, navVisible, isLargeScreen, toggleNavVisibili
   const [navLinkCSS, setNavLinkCSS] = useState("");
 
   useEffect(() => {
-    if (navVisible) {
-      setAnimation("animate-slide-in");
+    if (navVisible && isLargeScreen) {
+      setAnimation("");
       setNavHidden("");
       console.log("navHidden:", navHidden);
+    } else if (navVisible) {
+      setAnimation("animate-slide-in");
+      setNavHidden("");
     } else {
       setAnimation("animate-slide-out");
     }
-  }, [navVisible, navHidden]);
+  }, [navVisible, navHidden, isLargeScreen]);
 
   useEffect(() => {
     console.log("is large screen?", isLargeScreen);
