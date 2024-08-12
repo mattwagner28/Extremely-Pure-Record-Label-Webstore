@@ -24,9 +24,6 @@ app.use(cookieParser());
 // Parse application/x-www-form-urlencoded with extended option
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static files from the 'merchphotos' directory
-app.use('/merchphotos', express.static(path.join(__dirname, 'merchphotos')));
-
 
 app.get('/', (req, res) => {
   res.json({ info: 'Node.js, Express, and Postgres API' })
