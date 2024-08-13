@@ -96,7 +96,7 @@ function Release() {
                   <img
                     className="w-24  h-auto"
                     alt="merch item"
-                    src={`/merchphotos/${product.photo_path}`}
+                    src={`/merchPhotos/${product.photo_path}`}
                   />
                 </div>
 
