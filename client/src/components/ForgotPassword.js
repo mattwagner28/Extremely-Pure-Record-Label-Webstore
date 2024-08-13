@@ -19,7 +19,7 @@ function ForgotPassword() {
         }
 
     try {
-    const resetPassword = await fetch("http://localhost:3001/users/forgot-password", {
+    const resetPassword = await fetch("https://extremelypure-server.onrender.com/users/forgot-password", {
         method: "POST",
         crossDomain: true,
         headers: {

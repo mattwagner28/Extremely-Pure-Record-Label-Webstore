@@ -20,7 +20,7 @@ const CheckoutForm = () => {
 
   const fetchClientSecret = useCallback(() => {
     // Create a Checkout Session
-    return fetch("http://localhost:3001/stripe/create-checkout-session", {
+    return fetch("https://extremelypure-server.onrender.com/stripe/create-checkout-session", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -110,7 +110,7 @@ function Release() {
                         +
                       </button>
                       <button
-                        className="rounded px-2 mr-2 bg-slate-400 text-white"
+                        className="rounded px-2 ml-4 bg-slate-400 text-white"
                         onClick={() => removeItemFromCart(product)}
                         >
                         -

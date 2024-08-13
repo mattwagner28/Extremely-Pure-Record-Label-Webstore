@@ -20,7 +20,7 @@ function Signup() {
       setEmail("");
       setPassword("");
     } else {
-      fetch("http://localhost:3001/users", {
+      fetch("https://extremelypure-server.onrender.com/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

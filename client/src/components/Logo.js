@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-function Logo() {
+function Logo({isLargeScreen}) {
+    useEffect(() => {
+        console.log("is large screen logo comp:", isLargeScreen)
+    })
+    
+    
     return (
+        isLargeScreen ?
         <div className='flex justify-center overflow-hidden'>
            
             <video className="static" autoPlay loop muted width='644' height='362'>
@@ -9,6 +15,12 @@ function Logo() {
                 Your browser does not support the video tag.
             </video>
             <img className="absolute z-10" width='660' height='371' src='/clearLogo.png' alt='extremely pure logo'></img>
+        </div>
+
+        :
+
+        <div>
+            <img src='/logo.jpg' alt='extremely pure logo'></img>
         </div>
     );
 }

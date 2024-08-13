@@ -22,7 +22,7 @@ function Login() {
     }
 
     try {
-      const response = await fetch("http://localhost:3001/users/login", {
+      const response = await fetch("https://extremelypure-server.onrender.com/users/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

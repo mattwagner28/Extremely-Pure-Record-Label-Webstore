@@ -46,7 +46,7 @@ function Root() {
 
   const verifyToken = async () => {
     try {
-      const response = await fetch("http://localhost:3001/users/verifytoken", { credentials: 'include' });
+      const response = await fetch("https://extremelypure-server.onrender.com/users/verifytoken", { credentials: 'include' });
       const tokenVerification = await response.json();
       setLoggedIn(!tokenVerification.error);
     } catch (error) {
@@ -57,7 +57,7 @@ function Root() {
 
   const signout = async () => {
     try {
-      const response = await fetch("http://localhost:3001/users/clearcookie", { credentials: 'include' });
+      const response = await fetch("https://extremelypure-server.onrender.com/users/clearcookie", { credentials: 'include' });
       const tokenDeletion = await response.json();
       console.log(tokenDeletion);
       setLoggedIn(false);
@@ -122,11 +122,11 @@ function Root() {
         <div>
           <img
             src="/hamburger.png"
-            className="z-20 mr-4 fixed right-0 size-24 object-right cursor-pointer lg:hidden"
+            className="z-20 mr-4 fixed right-0 size-20 object-right cursor-pointer lg:hidden"
             alt="Menu"
             onClick={toggleNavVisibility}
           />
-          <Logo />
+          <Logo isLargeScreen={isLargeScreen}/>
           <Nav toggleCart={toggleCartVisibility} signout={signout} navVisible={navVisible} isLargeScreen={isLargeScreen} toggleNavVisibility={toggleNavVisibility} />
           {isHomeRoute && <Home />}
           <main className="flex justify-center mt-1">

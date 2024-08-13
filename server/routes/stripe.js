@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require("express");
 const stripeRouter = express.Router();
 const stripe = require('stripe')('sk_test_51Pb6CxFrTCMUt7gzYizK3ZvjghcE6gwcboxIFQjkODuNhUeqWuQIGlBoSdFK9eDC2edoTNmc9goGUCo7RrnAsJ9w00YI7rTw4t');
-const endpointSecret = "whsec_EYz1sGkQwOdvT6iK6su04jj4s0hNsu57";
 const jwt = require('jsonwebtoken');
 
 
