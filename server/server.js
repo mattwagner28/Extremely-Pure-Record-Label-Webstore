@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3001;
+const path = require('path');
 const usersRouter = require('./routes/users');
 const shopRouter = require('./routes/shop');
 const stripeRouter = require('./routes/stripe')
@@ -23,6 +24,9 @@ app.use(cookieParser());
 
 // Parse application/x-www-form-urlencoded with extended option
 app.use(express.urlencoded({ extended: true }));
+
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.get('/', (req, res) => {
