@@ -59,7 +59,7 @@ function Store() {
               </button>
               <img
                 alt={`${product.title} by ${product.artist}`}
-                src={`/public/merchphotos/${product.photo_path}`}
+                src={`/merchphotos/${product.photo_path}`}
                 
                 className="mt-2"
               />
