@@ -145,6 +145,8 @@ usersRouter.post("/login", async (req, res, next) => {
     res.cookie("token", accessToken, {
       httpOnly: true,
       maxAge: 3600000, //1 hour
+      sameSite: "None",
+      secure: true
     });
 
     // Respond with JWT token
@@ -174,7 +176,7 @@ usersRouter.post("/forgot-password", async (req, res) => {
 
             We received a request to reset your password, however no account was created with the email you submitted.
 
-            Please visit http://localhost:3000/signup to create an account.
+            Please visit http://extremelypure.onrender.com/signup to create an account.
 
             If you did not request this change, please ignore this email.
 
@@ -194,7 +196,7 @@ usersRouter.post("/forgot-password", async (req, res) => {
       expiresIn: "5m",
     });
 
-    const link = `http://localhost:3000/reset-password/${oldUserId}/${token}`;
+    const link = `http://extremelypure.onrender.com/reset-password/${oldUserId}/${token}`;
 
     // Email details
     const resetEmail = {
