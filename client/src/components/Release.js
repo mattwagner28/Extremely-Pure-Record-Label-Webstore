@@ -76,7 +76,7 @@ function Release() {
         <div className="products px-12 my-3 ">
           {productData.map((product) => {
             const cartItem = cart.find(
-              (item) => item.test_price_id === product.test_price_id
+              (item) => item.price_id === product.price_id
             );
 
             return (
