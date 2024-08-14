@@ -2,7 +2,13 @@ import React, { useContext, useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { UserContext } from "./components/Root";
 
-function Nav({ toggleCart, signout, navVisible, isLargeScreen, toggleNavVisibility }) {
+function Nav({
+  toggleCart,
+  signout,
+  navVisible,
+  isLargeScreen,
+  toggleNavVisibility,
+}) {
   const loggedIn = useContext(UserContext);
   const [animation, setAnimation] = useState("");
   const [navHidden, setNavHidden] = useState("hidden");
@@ -24,20 +30,22 @@ function Nav({ toggleCart, signout, navVisible, isLargeScreen, toggleNavVisibili
   useEffect(() => {
     console.log("is large screen?", isLargeScreen);
     if (isLargeScreen) {
-      setNavLinkCSS("px-2 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500")
+      setNavLinkCSS(
+        "px-2 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500"
+      );
     } else {
-      setNavLinkCSS("flex items-center justify-center py-4 text-2xl text-center font-sans font-semibold hover:bg-cyan-300 active:text-orange-500")
+      setNavLinkCSS(
+        "flex items-center justify-center py-4 text-2xl text-center font-sans font-semibold hover:bg-cyan-300 active:text-orange-500"
+      );
     }
   }, [isLargeScreen]);
 
   return (
-    <div >
-      <nav className={`flex flex-col ${navHidden} transform ${animation} w-full z-10 fixed top-0 right-0 bg-red-100 lg:flex lg:flex-row lg:z-10 lg:justify-between lg:fixed lg:top-0 lg:w-full lg:bg-red-100 lg:px-8`}>
-        <NavLink
-          to="/"
-          className={navLinkCSS}
-          onClick={toggleNavVisibility}
-        >
+    <div>
+      <nav
+        className={`flex flex-col ${navHidden} transform ${animation} w-full z-10 fixed top-0 right-0 bg-red-100 lg:flex lg:flex-row lg:z-10 lg:justify-between lg:fixed lg:top-0 lg:w-full lg:bg-red-100 lg:px-8`}
+      >
+        <NavLink to="/" className={navLinkCSS} onClick={toggleNavVisibility}>
           HOME
         </NavLink>
 
@@ -98,7 +106,6 @@ function Nav({ toggleCart, signout, navVisible, isLargeScreen, toggleNavVisibili
               }}
               to="/"
               className={navLinkCSS}
-              
             >
               LOGOUT
             </NavLink>
@@ -146,6 +153,16 @@ function Nav({ toggleCart, signout, navVisible, isLargeScreen, toggleNavVisibili
             alt="shopping cart icon"
           />
         </button>
+
+       {!isLargeScreen && <button
+          onClick={() => {
+            toggleNavVisibility();
+          }}
+          className={navLinkCSS}
+        >
+          EXIT
+        </button>
+}
       </nav>
     </div>
   );

@@ -20,7 +20,7 @@ function Logo({isLargeScreen}) {
         :
 
         <div>
-            <img src='/logo.jpg' alt='extremely pure logo'></img>
+            {/* <img src='/logo.jpg' alt='extremely pure logo'></img> */}
         </div>
     );
 }

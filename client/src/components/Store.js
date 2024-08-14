@@ -44,10 +44,10 @@ function Store() {
   return (
     <>
       {/*Main container */}
-      <div className="relative w-full z-0 lg:w-4/5 m-2">
+      <div className="relative w-full z-0 lg:w-4/5">
 
         {/*Container with product cards */}
-        <div className="product-container grid grid-cols-2 lg:grid-cols-4 gap-4 mt-12">
+        <div className="product-container grid grid-cols-2 lg:grid-cols-4 gap-4 mt-2">
           {products.map((product, index) => (
             
             <div key={index} className="card flex flex-col border rounded-lg shadow-md">

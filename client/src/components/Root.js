@@ -1,6 +1,7 @@
 import React, { useEffect, useState, createContext } from "react";
 import Logo from "./Logo";
 import Nav from "../Nav";
+import NavMobile from "../NavMobile";
 import Home from "./home/Home";
 import ShoppingCart from "./ShoppingCart";
 import { Outlet, useLocation } from "react-router-dom";
@@ -120,16 +121,11 @@ function Root() {
     <UserContext.Provider value={loggedIn}>
       <UserContextUpdater.Provider value={{ setLoggedIn }}>
         <div>
-          <img
-            src="/hamburger.png"
-            className="z-20 mr-4 fixed right-0 size-20 object-right cursor-pointer lg:hidden"
-            alt="Menu"
-            onClick={toggleNavVisibility}
-          />
+          {!isLargeScreen && <NavMobile toggleNavVisibility={toggleNavVisibility} toggleCart={toggleCartVisibility} loggedIn={loggedIn}/>}
           <Logo isLargeScreen={isLargeScreen}/>
           <Nav toggleCart={toggleCartVisibility} signout={signout} navVisible={navVisible} isLargeScreen={isLargeScreen} toggleNavVisibility={toggleNavVisibility} />
           {isHomeRoute && <Home />}
-          <main className="flex justify-center mt-1">
+          <main className="mt-28 flex justify-center lg:mt-2">
             <Outlet context={{ cart, addItemToCart, removeItemFromCart, quantities, verifyToken }} />
           </main>
           <ShoppingCart 
