@@ -9,7 +9,7 @@ import { useOutletContext } from "react-router-dom";
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
 // This is your test secret API key.
-const stripePromise = loadStripe("pk_test_51Pb6CxFrTCMUt7gzUya5yoynk7shDrb1XFGtljgbxZjo5peCVdOAAgxXAAAHAO5KKm1G47YD0fHvLFcIHWhjBz0C00oWzphEQa");
+const stripePromise = loadStripe("pk_live_51Pb6CxFrTCMUt7gzDhBPqA64Oign7lRBas6D7kaiu5ZYd14RebtjK1LW6aDWoGJ4jY9N9XwhGdBZ0bOqa1Etq59N00FPVEHM0n");
 
 const CheckoutForm = () => {
   const { cart } = useOutletContext();

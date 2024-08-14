@@ -12,11 +12,11 @@ function NavMobile({ toggleCart, toggleNavVisibility, loggedIn }) {
         />
 
 
-      <div className="flex w-1/3 justify-between">
+      <div className="flex w-2/5 justify-between">
       <NavLink to={loggedIn ? "/profile" : "/login"}>
         <img
           src="/user.png"
-          className="w-8 h-8 mt-2 cursor-pointer"
+          className="w-8 h-8 mt-2 object-contain cursor-pointer"
           alt="profile icon"
 
         />
