@@ -63,7 +63,7 @@ usersRouter.get("/:id", async (req, res, next) => {
     if (results.rows.length === 0) {
       return res.status(404).send("User not found");
     }
-    res.status(200).json(results.rows);
+    res.status(200).json({ message: "Get individual user request ok :)" });
   } catch (error) {
     next(error);
   }
@@ -110,7 +110,6 @@ usersRouter.post("/", async (req, res, next) => {
       loggedIn: true,
       message: `User added with ID ${newUser.id}`,
       userId: newUser.id,
-      email: newUser.email,
     });
   } catch (error) {
     next(error);
