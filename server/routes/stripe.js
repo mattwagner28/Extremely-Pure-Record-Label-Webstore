@@ -5,7 +5,7 @@ const stripe = require('stripe')('sk_test_51Pb6CxFrTCMUt7gzYizK3ZvjghcE6gwcboxIF
 const jwt = require('jsonwebtoken');
 
 
-const YOUR_DOMAIN = 'http://localhost:3000';
+const YOUR_DOMAIN = process.env.YOUR_DOMAIN || 'http://localhost:3000';
 
 stripeRouter.post('/create-checkout-session', async (req, res) => {
 
@@ -13,11 +13,14 @@ stripeRouter.post('/create-checkout-session', async (req, res) => {
     const lineItems = cart.map((item) => (
       {
         price: item.test_price_id,
-        quantity: item.quantity
+        quantity: item.quantity,
+        adjustable_quantity: {
+          enabled: true,
+          minimum: 1,
+          maximum: 10,
+        },
       }
-    )
-
-    );
+    ));
 
     console.log("Cart fetched from client:", lineItems);
 
