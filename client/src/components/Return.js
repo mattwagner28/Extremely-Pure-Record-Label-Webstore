@@ -1,17 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 
 const Return = () => {
   const [status, setStatus] = useState(null);
   const [customerEmail, setCustomerEmail] = useState('');
-  const isFirstRender = useRef(true); // Flag to track the first render
 
   useEffect(() => {
-
-    if (isFirstRender.current) {
-      isFirstRender.current = false; // Update flag after the first render
-      return; // Skip the effect on the first render
-  }
 
     const fetchData = async () => {
       try {
