@@ -28,7 +28,7 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 usersRouter.get("/", async (req, res, next) => {
   try {
     const results = await pool.query("SELECT * FROM users ORDER BY id ASC");
-    res.status(200).json(results.rows);
+    res.status(200).json({ message: "Get users request ok :)" });
   } catch (error) {
     next(error);
   }
