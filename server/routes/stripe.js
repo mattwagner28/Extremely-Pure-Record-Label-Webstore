@@ -12,7 +12,7 @@ stripeRouter.post('/create-checkout-session', async (req, res) => {
     const cart = req.body;
     const lineItems = cart.map((item) => (
       {
-        price: price_id,
+        price: item.price_id,
         quantity: item.quantity,
         adjustable_quantity: {
           enabled: true,
