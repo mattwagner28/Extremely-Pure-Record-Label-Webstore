@@ -69,7 +69,7 @@ function Signup() {
           Password
           <div className="flex">
           <input
-            type="password"
+            type={passwordVisible ? "text" : "password"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="w-full block border border-black rounded"
