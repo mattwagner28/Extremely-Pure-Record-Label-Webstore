@@ -1,17 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 
 const Return = () => {
   const [status, setStatus] = useState(null);
   const [customerEmail, setCustomerEmail] = useState('');
-  const isFirstRender = useRef(true); // Flag to track the first render
 
   useEffect(() => {
-
-    if (isFirstRender.current) {
-      isFirstRender.current = false; // Update flag after the first render
-      return; // Skip the effect on the first render
-  }
 
     const fetchData = async () => {
       try {
@@ -25,7 +19,7 @@ const Return = () => {
         }
 
         // GET request to retrieve data from the Stripe sessions
-        const sessionResponse = await fetch(`http://localhost:3001/stripe/session-status?session_id=${sessionId}`, {
+        const sessionResponse = await fetch(`https://extremelypure-server.onrender.com/stripe/session-status?session_id=${sessionId}`, {
           method: 'GET',
           credentials: 'include'
         });
@@ -39,7 +33,7 @@ const Return = () => {
         setCustomerEmail(data.customer_email);
 
         // POST request to save order data
-        const orderResponse = await fetch('http://localhost:3001/orders', {
+        const orderResponse = await fetch('https://extremelypure-server.onrender.com/orders', {
           method: 'POST',
           headers: {
             "Content-Type": "application/json",
@@ -71,7 +65,7 @@ const Return = () => {
       <section id="success">
         <p>
           We appreciate your business! A confirmation email will be sent to {customerEmail}.
-          If you have any questions, please email <a href="mailto:orders@example.com">orders@example.com</a>.
+          If you have any questions, please email <a href="extremelypurerecords@gmail.com">extremelypurerecords@gmail.com</a>.
         </p>
       </section>
     );

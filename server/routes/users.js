@@ -28,7 +28,7 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 usersRouter.get("/", async (req, res, next) => {
   try {
     const results = await pool.query("SELECT * FROM users ORDER BY id ASC");
-    res.status(200).json(results.rows);
+    res.status(200).json({ message: "Get users request ok :)" });
   } catch (error) {
     next(error);
   }
@@ -63,7 +63,7 @@ usersRouter.get("/:id", async (req, res, next) => {
     if (results.rows.length === 0) {
       return res.status(404).send("User not found");
     }
-    res.status(200).json(results.rows);
+    res.status(200).json({ message: "Get individual user request ok :)" });
   } catch (error) {
     next(error);
   }
@@ -110,7 +110,6 @@ usersRouter.post("/", async (req, res, next) => {
       loggedIn: true,
       message: `User added with ID ${newUser.id}`,
       userId: newUser.id,
-      email: newUser.email,
     });
   } catch (error) {
     next(error);
@@ -145,6 +144,8 @@ usersRouter.post("/login", async (req, res, next) => {
     res.cookie("token", accessToken, {
       httpOnly: true,
       maxAge: 3600000, //1 hour
+      sameSite: "None",
+      secure: true
     });
 
     // Respond with JWT token
@@ -174,7 +175,7 @@ usersRouter.post("/forgot-password", async (req, res) => {
 
             We received a request to reset your password, however no account was created with the email you submitted.
 
-            Please visit http://localhost:3000/signup to create an account.
+            Please visit http://extremelypure.onrender.com/signup to create an account.
 
             If you did not request this change, please ignore this email.
 
@@ -194,7 +195,7 @@ usersRouter.post("/forgot-password", async (req, res) => {
       expiresIn: "5m",
     });
 
-    const link = `http://localhost:3000/reset-password/${oldUserId}/${token}`;
+    const link = `http://extremelypure.onrender.com/reset-password/${oldUserId}/${token}`;
 
     // Email details
     const resetEmail = {

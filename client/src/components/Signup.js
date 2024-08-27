@@ -20,7 +20,7 @@ function Signup() {
       setEmail("");
       setPassword("");
     } else {
-      fetch("http://localhost:3001/users", {
+      fetch("https://extremelypure-server.onrender.com/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -69,7 +69,7 @@ function Signup() {
           Password
           <div className="flex">
           <input
-            type="password"
+            type={passwordVisible ? "text" : "password"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="w-full block border border-black rounded"

@@ -38,7 +38,7 @@ function ShoppingCart({ cartVisible, toggleCartVisibility, cart, addItemToCart, 
                 <button className="bg-white rounded px-2 mr-2 active:bg-slate-400" onClick={() => addItemToCart(item)}>+</button>
                 <button className="bg-white rounded px-2 mr-2 active:bg-slate-400" onClick={() => removeItemFromCart(item)}>-</button>
               </div>
-                <img className="size-24" alt="merch item" src={`/merchphotos/${item.photo_path}`}></img>
+                <img className="size-24" alt="merch item" src={`/merchPhotos/${item.photo_path}`}></img>
             </div>
           ))}
         </div>

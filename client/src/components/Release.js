@@ -21,7 +21,7 @@ function Release() {
     const fetchData = async () => {
       try {
         const getProductData = await fetch(
-          `http://localhost:3001/shop/${artistName}/${releaseTitle}`
+          `https://extremelypure-server.onrender.com/shop/${artistName}/${releaseTitle}`
         );
         const productData = await getProductData.json();
         setProductData(productData);
@@ -76,7 +76,7 @@ function Release() {
         <div className="products px-12 my-3 ">
           {productData.map((product) => {
             const cartItem = cart.find(
-              (item) => item.test_price_id === product.test_price_id
+              (item) => item.price_id === product.price_id
             );
 
             return (
@@ -96,7 +96,7 @@ function Release() {
                   <img
                     className="w-24  h-auto"
                     alt="merch item"
-                    src={`/merchphotos/${product.photo_path}`}
+                    src={`/merchPhotos/${product.photo_path}`}
                   />
                 </div>
 
@@ -110,7 +110,7 @@ function Release() {
                         +
                       </button>
                       <button
-                        className="rounded px-2 mr-2 bg-slate-400 text-white"
+                        className="rounded px-2 ml-4 bg-slate-400 text-white"
                         onClick={() => removeItemFromCart(product)}
                         >
                         -

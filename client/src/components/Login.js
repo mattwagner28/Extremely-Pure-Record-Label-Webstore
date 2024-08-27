@@ -22,7 +22,7 @@ function Login() {
     }
 
     try {
-      const response = await fetch("http://localhost:3001/users/login", {
+      const response = await fetch("https://extremelypure-server.onrender.com/users/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -100,7 +100,7 @@ function Login() {
       <h4>{invalidMessage}</h4>
 
         <NavLink to="/signup"  className="text-center mt-2 block px-2 rounded bg-slate-300 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500">Create Account</NavLink>
-        <NavLink to="/forgotpassword"  className="text-center mt-2 block px-2 rounded bg-slate-300 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500">Forgot Password?</NavLink>
+        <NavLink to="/forgotpassword"  className="underline">Forgot Password?</NavLink>
 
     </div>
   );

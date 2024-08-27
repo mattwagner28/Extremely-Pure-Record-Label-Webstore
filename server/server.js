@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3001;
+const path = require('path');
 const usersRouter = require('./routes/users');
 const shopRouter = require('./routes/shop');
 const stripeRouter = require('./routes/stripe')
@@ -11,7 +12,7 @@ const cookieParser = require('cookie-parser');
 
 //Implement cors
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: ['https://extremelypure.onrender.com', 'http://localhost:3000'],
   credentials: true
 }));
 

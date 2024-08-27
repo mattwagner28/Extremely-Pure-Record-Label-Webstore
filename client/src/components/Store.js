@@ -3,71 +3,105 @@ import React from "react";
 import { useOutletContext, useNavigate } from "react-router-dom";
 
 function Store() {
-  const { cart, addItemToCart, removeItemFromCart, quantities } = useOutletContext();
+  const { cart, addItemToCart, removeItemFromCart, quantities } =
+    useOutletContext();
   const [products, setProducts] = useState([]);
+  const [loadingMsg, setLoadingMSg] = useState("");
   const [errMsg, setErrMsg] = useState("");
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleProductClick = (artist, title) => {
     navigate(`/releases/${artist}/${title}`); // Navigate to the dynamic route
   };
 
   useEffect(() => {
-    fetch("http://localhost:3001/shop")
+    fetch("https://extremelypure-server.onrender.com/shop")
       .then((response) => response.json())
       .then((allProducts) => {
         setProducts(allProducts);
       })
       .catch((error) => {
         console.error("A fetch error occured:", error);
-        setErrMsg("An error occurred. Please visit our bandcamp page.")
+        setErrMsg("An error occurred. Please visit artists' bandcamp pages.");
       });
   }, []);
 
+  useEffect(() => {
+    if (products.length === 0) {
+      setLoadingMSg(
+        "Loading...Please wait up to a minute. as we are using a free server and it can be slow :) DIY life! thanks!"
+      );
+    } else {
+      setLoadingMSg("");
+    }
+  }, [products]);
 
   useEffect(() => {
-    console.log('Shopping cart:', cart);
-    console.log('Quantities:', quantities);
+    console.log("Shopping cart:", cart);
+    console.log("Quantities:", quantities);
   }, [cart, quantities]);
 
   return (
     <>
-      <div className="relative w-full z-0 lg:w-4/5 m-2">
-        <div className="product-container grid grid-cols-2 lg:grid-cols-4 gap-4 mt-12">
+      {/*Main container */}
+      <div className="relative w-full z-0 lg:w-4/5">
+
+        {/*Container with product cards */}
+        <div className="product-container grid grid-cols-2 lg:grid-cols-4 gap-4 mt-2">
           {products.map((product, index) => (
-            <div key={index} className="border p-4 rounded-lg shadow-md">
-              <h1 className="artist text-lg font-bold">{product.artist}</h1>
-              <button
-                className="text-xl bg-transparent border-none text-left cursor-pointer hover:underline"
-                onClick={() => handleProductClick(product.artist, product.title)}
-              >
-                {product.title}
-              </button>
-              <h3>{product.size} {product.color} {product.category}</h3>
-              <p className="text-lg font-semibold">${product.price}</p>
-              <button
-                className="bg-red-300 rounded-lg p-2 mt-2 mr-2 text-white"
-                onClick={() => addItemToCart(product)}
-              >
-                ADD TO CART + {quantities[product.id] || 0}
-              </button>
-              <button
-                className={`bg-red-300 rounded-lg p-2 mt-2 text-white ${!quantities[product.id] ? "hidden" : "inline"}`}
-                onClick={() => removeItemFromCart(product)}
-              >
-                -
-              </button>
-              <img
-                src={`merchphotos/${product.photo_path}`}
-                alt={`${product.title} by ${product.artist}`}
-                className="mt-2"
-              />
+            
+            <div key={index} className="card flex flex-col border rounded-lg shadow-md">
+
+              <div className="card-top p-4 flex-shrink-0">
+                <h1 className="artist text-lg font-bold">{product.artist}</h1>
+                <button
+                  className="text-xl bg-transparent border-none text-left cursor-pointer hover:underline"
+                  onClick={() =>
+                    handleProductClick(product.artist, product.title)
+                  }
+                >
+                  {product.title}
+                </button>
+                <h3>
+                  {product.size} {product.color} {product.category}
+                </h3>
+                <p className="text-lg font-semibold">${product.price}</p>
+              </div>
+
+              <div className="card-middle-merchphoto flex-1 flex items-center justify-center p-4">
+                <img
+                  alt={`${product.title} by ${product.artist}`}
+                  src={`/merchPhotos/${product.photo_path}`}
+                  onClick={() =>
+                    handleProductClick(product.artist, product.title)
+                  }
+                  className="cursor-pointer max-w-full max-h-full object-cover"
+                />
+              </div>
+
+              <div className="card-bottom flex w-full border-dotted border-t-2 p-0 flex-shrink-0">
+                      
+                    
+                    <h1 className={`p-4 text-center w-full ${quantities[product.id] ? "hidden" : "inline"} cursor-pointer hover:bg-cyan-200`} onClick={() => addItemToCart(product)}>ADD TO CART</h1>
+
+                      <div className={`${!quantities[product.id] ? "hidden" : "inline"} flex-1 bg-gray-200 hover:bg-cyan-100 p-4 text-center cursor-pointer`} onClick={() => addItemToCart(product)}>
+                        <h2>+</h2>
+                      </div>
+
+                      <div className={`${!quantities[product.id] ? "hidden" : "inline"} flex-1 p-4 text-center text-bold`}>
+                        <h2>{quantities[product.id]}</h2>
+                      </div>
+
+                      <div className={`${!quantities[product.id] ? "hidden" : "inline"} flex-1 bg-gray-200 hover:bg-red-300 p-4 text-center cursor-pointer`} onClick={() => removeItemFromCart(product)} >
+                        <h2>-</h2>
+                      </div>
+              </div>
             </div>
           ))}
         </div>
+        <h1 className="text-center">{loadingMsg}</h1>
+        <h1>{errMsg}</h1>
       </div>
-      <h1>{errMsg}</h1>
-      {/* <ShoppingCart visible={cartVisible} toggleCart={toggleCartVisibility} /> */}
     </>
   );
 }

@@ -1,24 +1,26 @@
 require('dotenv').config();
 const express = require("express");
 const stripeRouter = express.Router();
-const stripe = require('stripe')('sk_test_51Pb6CxFrTCMUt7gzYizK3ZvjghcE6gwcboxIFQjkODuNhUeqWuQIGlBoSdFK9eDC2edoTNmc9goGUCo7RrnAsJ9w00YI7rTw4t');
-const endpointSecret = "whsec_EYz1sGkQwOdvT6iK6su04jj4s0hNsu57";
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const jwt = require('jsonwebtoken');
 
 
-const YOUR_DOMAIN = 'http://localhost:3000';
+const YOUR_DOMAIN = process.env.YOUR_DOMAIN || 'http://localhost:3000';
 
 stripeRouter.post('/create-checkout-session', async (req, res) => {
 
     const cart = req.body;
     const lineItems = cart.map((item) => (
       {
-        price: item.test_price_id,
-        quantity: item.quantity
+        price: item.price_id,
+        quantity: item.quantity,
+        adjustable_quantity: {
+          enabled: true,
+          minimum: 1,
+          maximum: 10,
+        },
       }
-    )
-
-    );
+    ));
 
     console.log("Cart fetched from client:", lineItems);
 
@@ -31,7 +33,7 @@ stripeRouter.post('/create-checkout-session', async (req, res) => {
           shipping_rate_data: {
             type: 'fixed_amount',
             fixed_amount: {
-              amount: 500,
+              amount: 0,
               currency: 'usd',
             },
             display_name: 'USPS Media Mail',
