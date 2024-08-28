@@ -1,5 +1,5 @@
 # Purpose / User Story
-I run a small record label called Extremely Pure. I wanted to build a full-stack webstore for the label using a payment system through Stripe because their purchase fees are significantly less than Bandcamp, which currently takes 15% percent of all sales (digital downloads and merch).
+I run a small record label called Extremely Pure. I built a full-stack webstore for the label using a payment system through Stripe because their purchase fees are significantly less than Bandcamp, which currently takes 15% percent of all sales (digital downloads and merch).
 
 # Software Used
 This site was buld using a PERN stack (PostgreSQL, Express, React, and Node). For CSS and responsive design, I implemented Tailwind. As mentioned, I also used Stripe's embedded checkout React component for secure payments. Google Analytics is also used. 
