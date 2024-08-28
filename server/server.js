@@ -12,7 +12,7 @@ const cookieParser = require('cookie-parser');
 
 //Implement cors
 app.use(cors({
-  origin: ['https://extremelypure.onrender.com', 'http://localhost:3000'],
+  origin: ['https://extremelypure.onrender.com', 'http://localhost:3000', 'https://www.extremelypurerecords.com'],
   credentials: true
 }));
 
