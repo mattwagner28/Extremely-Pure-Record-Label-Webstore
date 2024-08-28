@@ -7,7 +7,7 @@ server/node_modules/
 /.pnp
 .pnp.js
 .env
-.production.env
+server/.production.env
 
 
 # testing
