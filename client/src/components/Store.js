@@ -21,15 +21,17 @@ function Store() {
         setProducts(allProducts);
       })
       .catch((error) => {
-        console.error("A fetch error occured:", error);
-        setErrMsg("An error occurred. Please visit artists' bandcamp pages.");
+        console.error("A fetch error occurred:", error);
+        console.log(error);
+        setErrMsg("An internal server error occurred.");
+
       });
   }, []);
 
   useEffect(() => {
     if (products.length === 0) {
       setLoadingMSg(
-        "Loading...Please wait up to a minute. as we are using a free server and it can be slow :) DIY life! thanks!"
+        "Loading..."
       );
     } else {
       setLoadingMSg("");

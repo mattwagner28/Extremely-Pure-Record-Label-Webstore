@@ -95,8 +95,6 @@ usersRouter.post("/", async (req, res, next) => {
 
     const newUser = userResult.rows[0];
 
-    // console.log("Access Token Secret:", process.env.ACCESS_TOKEN_SECRET);
-
     const jwtUser = { email: newUser.email, id: newUser.id };
 
     const accessToken = jwt.sign(jwtUser, process.env.ACCESS_TOKEN_SECRET);
