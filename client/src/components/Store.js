@@ -22,7 +22,6 @@ function Store() {
       })
       .catch((error) => {
         console.error("A fetch error occurred:", error);
-        console.log(error);
         setErrMsg("An internal server error occurred.");
 
       });

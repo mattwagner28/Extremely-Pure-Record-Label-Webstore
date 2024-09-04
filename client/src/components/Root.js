@@ -74,7 +74,7 @@ function Root() {
     if (!isLargeScreen) { // Only toggle nav visibility on small screens
       setNavVisible(prev => !prev);
     }
-    console.log(navVisible);
+    // console.log(navVisible);
   };
 
   const addItemToCart = (product) => {

@@ -3,11 +3,10 @@ const { Pool } = require("pg");
 const ordersRouter = express.Router();
 
 const pool = new Pool({
-  connectionString: 'postgresql://matt:j912HRlgljwqUA6dqPQQDGCLyGU68rSe@dpg-cqt6fat6l47c73ah6uhg-a.ohio-postgres.render.com/extremelypure',
-  ssl: {
-    rejectUnauthorized: false // Ensure SSL configuration if required by your database provider
-  }
+  connectionString: process.env.INTERNAL_DB_URL,
+  ssl: false 
 });
+
 
 ordersRouter.get("/:email", async (req, res, next) => {
   try {

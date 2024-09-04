@@ -6,10 +6,8 @@ const stripe = require('stripe')('sk_test_51Pb6CxFrTCMUt7gzYizK3ZvjghcE6gwcboxIF
 
 
 const pool = new Pool({
-  connectionString: 'postgresql://matt:j912HRlgljwqUA6dqPQQDGCLyGU68rSe@dpg-cqt6fat6l47c73ah6uhg-a.ohio-postgres.render.com/extremelypure',
-  ssl: {
-    rejectUnauthorized: false // Ensure SSL configuration if required by your database provider
-  }
+  connectionString: process.env.INTERNAL_DB_URL,
+  ssl: false 
 });
 
 //Retrieves all items for the shop component
@@ -27,8 +25,9 @@ shopRouter.get("/", async (req, res, next) => {
       `;
     const getProducts = await pool.query(query);
     res.status(200).json(getProducts.rows);
+    // res.status(200).json({message: "workes"});
   } catch (err) {
-    next(err); // Pass errors to the error handler
+    next(err); 
   }
 });
 
@@ -61,7 +60,7 @@ shopRouter.get("/:artist/:title", async (req, res, next) => {
     const getProducts = await pool.query(query, [title]);
     res.status(200).json(getProducts.rows);
   } catch (err) {
-    next(err); // Pass errors to the error handler
+    next(err);
   }
 })
 
