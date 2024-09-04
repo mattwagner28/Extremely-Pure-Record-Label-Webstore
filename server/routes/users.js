@@ -8,10 +8,8 @@ const nodemailer = require("nodemailer");
 
 
 const pool = new Pool({
-  connectionString: 'postgresql://matt:j912HRlgljwqUA6dqPQQDGCLyGU68rSe@dpg-cqt6fat6l47c73ah6uhg-a.ohio-postgres.render.com/extremelypure',
-  ssl: {
-    rejectUnauthorized: false // Ensure SSL configuration if required by your database provider
-  }
+  connectionString: process.env.INTERNAL_DB_URL,
+  ssl: false 
 });
 
 // Nodemailer transporter object using Gmail
@@ -27,7 +25,7 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 usersRouter.get("/", async (req, res, next) => {
   try {
-    const results = await pool.query("SELECT * FROM users ORDER BY id ASC");
+    // const results = await pool.query("SELECT * FROM users ORDER BY id ASC");
     res.status(200).json({ message: "Get users request ok :)" });
   } catch (error) {
     next(error);

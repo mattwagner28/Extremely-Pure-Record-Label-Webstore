@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 
 function Logo({isLargeScreen}) {
-    useEffect(() => {
-        console.log("is large screen logo comp:", isLargeScreen)
-    })
+
+    // useEffect(() => {
+    //     console.log("is large screen logo comp:", isLargeScreen)
+    // })
     
     
     return (
