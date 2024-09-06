@@ -11,7 +11,7 @@ function Store() {
   const navigate = useNavigate();
 
   const handleProductClick = (artist, title) => {
-    navigate(`/releases/${artist}/${title}`); // Navigate to the dynamic route
+    navigate(`/releases/${artist}/${title}`); 
   };
 
   useEffect(() => {
