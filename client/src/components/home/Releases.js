@@ -17,9 +17,10 @@ function Releases() {
         {releasesData.releases.map((release, index) => (
           <div 
             key={index}
-            className="cover-art p-1 lg:relative"
+            className="cursor-pointer cover-art p-1 lg:relative"
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
+            onClick={() => handleProductClick(release.artist, release.title)}
           >
             <img
               src={`/albumart/${release.coverArt}`}
