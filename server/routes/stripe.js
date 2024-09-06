@@ -33,7 +33,7 @@ stripeRouter.post('/create-checkout-session', async (req, res) => {
           shipping_rate_data: {
             type: 'fixed_amount',
             fixed_amount: {
-              amount: 5,
+              amount: 500,
               currency: 'usd',
             },
             display_name: 'USPS Media Mail',
