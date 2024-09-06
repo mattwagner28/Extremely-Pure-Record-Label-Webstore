@@ -57,15 +57,13 @@ function ResetPassword() {
       const result = await response.json();
   
       if (response.ok) {
-        // Handle success 
-        console.log("Password successfully reset:", response);
+        // console.log("Password successfully reset:", response);
         setErrorMessage("");
         setSuccessMessage("Password successfylly changed. Redirecting to login page...")
         setTimeout(() => {
           navigate("/login");
         }, 3000);
       } else {
-        // Handle different error cases based on the response
         console.error("Error:", result.message);
         setErrorMessage(result.message || "An error occurred. Please try again.");
       }
@@ -94,9 +92,11 @@ function ResetPassword() {
               onClick={() => setPasswordVisible(!passwordVisible)}
             >
               {passwordVisible ? (
-                <i className="fas fa-eye"></i> // Font Awesome eye icon
+                // Font Awesome eye icon
+                <i className="fas fa-eye"></i> 
               ) : (
-                <i className="fas fa-eye-slash"></i> // Font Awesome eye-slash icon
+                // Font Awesome eye-slash icon
+                <i className="fas fa-eye-slash"></i> 
               )}
             </span>
         </div>
@@ -113,9 +113,11 @@ function ResetPassword() {
               onClick={() => setConfirmPasswordVisible(!confirmPasswordVisible)}
             >
               {confirmPasswordVisible ? (
-                <i className="fas fa-eye"></i> // Font Awesome eye icon
+                // Font Awesome eye icon
+                <i className="fas fa-eye"></i> 
               ) : (
-                <i className="fas fa-eye-slash"></i> // Font Awesome eye-slash icon
+                // Font Awesome eye-slash icon
+                <i className="fas fa-eye-slash"></i> 
               )}
             </span>
         </div>

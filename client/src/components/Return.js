@@ -54,7 +54,7 @@ const Return = () => {
     };
 
     fetchData();
-  }, []); // Empty dependency array ensures useEffect runs only once
+  }, []); 
 
   if (status === 'open') {
     return <Navigate to="/checkout" />;
@@ -71,7 +71,7 @@ const Return = () => {
     );
   }
 
-  return null; // Render nothing if status is not open or complete
+  return null; 
 };
 
 export default Return;

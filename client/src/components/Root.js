@@ -15,7 +15,7 @@ function Root() {
   const [navVisible, setNavVisible] = useState(false);
   const [cart, setCart] = useState([]);
   const [quantities, setQuantities] = useState({});
-  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1024); // 1024px is the breakpoint for large screens
+  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1024); 
   const location = useLocation();
   const isHomeRoute = location.pathname === "/";
 
@@ -26,17 +26,19 @@ function Root() {
       };
   
       window.addEventListener("resize", handleResize);
-      handleResize(); // Initial check
+      handleResize(); 
   
       return () => window.removeEventListener("resize", handleResize);
     }, []);
 
     // Adjust nav visibility based on screen size
     useEffect(() => {
+      // Show nav on large screens
       if (isLargeScreen) {
-        setNavVisible(true); // Show nav on large screens
+        setNavVisible(true); 
       } else {
-        setNavVisible(false); // Hide nav on small screens
+        // Hide nav on small screens
+        setNavVisible(false); 
       }
     }, [isLargeScreen]);
 
@@ -71,7 +73,8 @@ function Root() {
   const toggleCartVisibility = () => setCartVisible(prev => !prev);
 
   const toggleNavVisibility = () => {
-    if (!isLargeScreen) { // Only toggle nav visibility on small screens
+    // Only toggle nav visibility on small screens
+    if (!isLargeScreen) { 
       setNavVisible(prev => !prev);
     }
     // console.log(navVisible);

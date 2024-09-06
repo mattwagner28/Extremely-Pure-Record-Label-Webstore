@@ -79,9 +79,9 @@ function Signup() {
               onClick={() => setPasswordVisible(!passwordVisible)}
             >
               {passwordVisible ? (
-                <i className="fas fa-eye"></i> // Font Awesome eye icon
+                <i className="fas fa-eye"></i> 
               ) : (
-                <i className="fas fa-eye-slash"></i> // Font Awesome eye-slash icon
+                <i className="fas fa-eye-slash"></i> 
               )}
             </span>
           </div>

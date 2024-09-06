@@ -40,7 +40,7 @@ function Login() {
       } else {
         const data = await response.json();
         console.log("Fetch Req Successful:", data);
-        setLoggedIn(true); // Update the loggedIn state in Root
+        setLoggedIn(true); 
       }
     } catch (error) {
       console.error("Error:", error);
@@ -83,9 +83,11 @@ function Login() {
               onClick={() => setPasswordVisible(!passwordVisible)}
             >
               {passwordVisible ? (
-                <i className="fas fa-eye"></i> // Font Awesome eye icon
+                // Font Awesome eye icon
+                <i className="fas fa-eye"></i> 
               ) : (
-                <i className="fas fa-eye-slash"></i> // Font Awesome eye-slash icon
+                // Font Awesome eye-slash icon
+                <i className="fas fa-eye-slash"></i> 
               )}
             </span>
           </div>

@@ -17,7 +17,7 @@ const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: "extremelypurerecords@gmail.com",
-    pass: process.env.GOOGLE_APP_PASSWORD, // Ensure you use the actual app password
+    pass: process.env.GOOGLE_APP_PASSWORD, 
   },
 });
 
@@ -147,7 +147,7 @@ usersRouter.post("/login", async (req, res, next) => {
     // Respond with JWT token
     res.status(200).json({ message: "Logged in successfully", accessToken });
   } catch (error) {
-    next(error); // Pass error to Express error handler
+    next(error); 
   }
 });
 
@@ -165,7 +165,7 @@ usersRouter.post("/forgot-password", async (req, res) => {
       // Email details
       const noAccountFoundEmail = {
         from: "extremelypurerecords@gmail.com",
-        to: email, // Send to the user's email
+        to: email, 
         subject: "Password Reset Request",
         text: `Hello,
 
@@ -196,7 +196,7 @@ usersRouter.post("/forgot-password", async (req, res) => {
     // Email details
     const resetEmail = {
       from: "extremelypurerecords@gmail.com",
-      to: email, // Send to the user's email
+      to: email,
       subject: "Password Reset Request",
       text: `Hello,
 
