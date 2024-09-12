@@ -18,7 +18,6 @@ function Nav({
     if (navVisible && isLargeScreen) {
       setAnimation("");
       setNavHidden("");
-      console.log("navHidden:", navHidden);
     } else if (navVisible) {
       setAnimation("animate-slide-in");
       setNavHidden("");
@@ -28,7 +27,6 @@ function Nav({
   }, [navVisible, navHidden, isLargeScreen]);
 
   useEffect(() => {
-    console.log("is large screen?", isLargeScreen);
     if (isLargeScreen) {
       setNavLinkCSS(
         "px-2 font-sans font-semibold hover:bg-cyan-300 active:text-orange-500"

@@ -53,7 +53,7 @@ stripeRouter.post('/create-checkout-session', async (req, res) => {
       ui_mode: 'embedded',
       line_items: lineItems,
       mode: 'payment',
-      return_url: `${YOUR_DOMAIN}/return?session_id={CHECKOUT_SESSION_ID}`,
+      return_url: `${YOUR_DOMAIN}return?session_id={CHECKOUT_SESSION_ID}`,
       automatic_tax: {enabled: true},
     });
   
@@ -78,11 +78,6 @@ stripeRouter.post('/create-checkout-session', async (req, res) => {
 
       const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
       const lineItems = await stripe.checkout.sessions.listLineItems(req.query.session_id);
-  
-      // console.log('Session:', session);
-      console.log('Line Items:', lineItems.data);
-      // console.log('User Email from jwt:', userEmail);
-      // console.log('Session data:', session);
   
       res.send({
         session_id: session.id,
