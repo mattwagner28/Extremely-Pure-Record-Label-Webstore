@@ -37,10 +37,10 @@ function Store() {
     }
   }, [products]);
 
-  useEffect(() => {
-    console.log("Shopping cart:", cart);
-    console.log("Quantities:", quantities);
-  }, [cart, quantities]);
+  // useEffect(() => {
+  //   // console.log("Shopping cart:", cart);
+  //   // console.log("Quantities:", quantities);
+  // }, [cart, quantities]);
 
   return (
     <>

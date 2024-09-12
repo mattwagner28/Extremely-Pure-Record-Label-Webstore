@@ -23,18 +23,9 @@ const transporter = nodemailer.createTransport({
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-usersRouter.get("/", async (req, res, next) => {
-  try {
-    // const results = await pool.query("SELECT * FROM users ORDER BY id ASC");
-    res.status(200).json({ message: "Get users request ok :)" });
-  } catch (error) {
-    next(error);
-  }
-});
 
 usersRouter.get("/verifytoken", (req, res, next) => {
   const token = req.cookies.token;
-  console.log("Cookies:", req.cookies);
   if (!token) {
     return res.status(401).json({ error: "No token provided" });
   }
@@ -131,8 +122,6 @@ usersRouter.post("/login", async (req, res, next) => {
     }
 
     // Create JWT
-    // console.log("Access Token Secret:", process.env.ACCESS_TOKEN_SECRET);
-
     const jwtUser = { email: user.email, id: user.id };
 
     const accessToken = jwt.sign(jwtUser, process.env.ACCESS_TOKEN_SECRET);
@@ -181,7 +170,6 @@ usersRouter.post("/forgot-password", async (req, res) => {
 
       // Send email
       await transporter.sendMail(noAccountFoundEmail);
-      console.log("No account with that email was found, so an email to create an account was sent.");
       return res.status(200).json({ message: "No account with that email was found, so an email to create an account was sent." });
     }
 
@@ -191,7 +179,7 @@ usersRouter.post("/forgot-password", async (req, res) => {
       expiresIn: "5m",
     });
 
-    const link = `http://extremelypure.onrender.com/reset-password/${oldUserId}/${token}`;
+    const link = `${process.env.YOUR_DOMAIN}/reset-password/${oldUserId}/${token}`;
 
     // Email details
     const resetEmail = {
@@ -213,7 +201,6 @@ usersRouter.post("/forgot-password", async (req, res) => {
     // Send email
     await transporter.sendMail(resetEmail);
 
-    console.log("Email sent successfully");
     res.status(200).json({ message: "Password reset email sent successfully" });
   } catch (error) {
     console.error("Error:", error);
@@ -265,8 +252,7 @@ usersRouter.put("/:id", async (req, res) => {
     if (result.rowCount === 0) {
       return res.status(404).json({ message: "User not found." });
     }
-
-    console.log("Password successfully replaced!", result);
+    
     return res.status(200).json({ message: "Password successfully replaced." });
   } catch (error) {
     console.error("Error:", error);

@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3001;
 const path = require('path');
@@ -12,7 +13,7 @@ const cookieParser = require('cookie-parser');
 
 //Implement cors
 app.use(cors({
-  origin: ['https://extremelypure.onrender.com', 'http://localhost:3000', 'https://www.extremelypurerecords.com'],
+  origin: [process.env.RENDER_SUBDOMAIN, 'http://localhost:3000', process.env.YOUR_DOMAIN ],
   credentials: true
 }));
 
@@ -24,11 +25,6 @@ app.use(cookieParser());
 
 // Parse application/x-www-form-urlencoded with extended option
 app.use(express.urlencoded({ extended: true }));
-
-
-app.get('/', (req, res) => {
-  res.json({ info: 'Node.js, Express, and Postgres API' })
-});
 
 // Use the usersRouter for /users routes
 app.use('/users', usersRouter);

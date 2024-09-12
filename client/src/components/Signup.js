@@ -33,7 +33,7 @@ function Signup() {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log("Fetch Req Successful:", data);
+          // console.log("Fetch Req Successful:", data);
           setLoggedIn(true);
         })
         .catch((error) => {
@@ -42,9 +42,9 @@ function Signup() {
     }
   };
 
-  useEffect(() => {
-    console.log(loggedIn);
-},);
+//   useEffect(() => {
+//     console.log(loggedIn);
+// },);
 
     // Redirect to /profile if logged in
     if (loggedIn) {

@@ -46,7 +46,7 @@ const Return = () => {
           throw new Error('Failed to save order');
         }
 
-        console.log("Response from server:", await orderResponse.json());
+        // console.log("Response from server:", await orderResponse.json());
 
       } catch (error) {
         console.error("Error:", error);

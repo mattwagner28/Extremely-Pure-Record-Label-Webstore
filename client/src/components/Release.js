@@ -81,15 +81,16 @@ function Release() {
 
             return (
               //Card for each product fonud
-              <div className="card my-3 flex flex-row justify-between content-center border-b-2" key={product.id}>
-
+              <div
+                className="card my-3 flex flex-row justify-between content-center border-b-2"
+                key={product.id}
+              >
                 <div className="left-side w-1/3 flex-row content-center">
                   <h2>
                     {" "}
                     {product.color} {product.category} {product.size}{" "}
                   </h2>
                   <h2 className="font-semibold">${product.price}</h2>
-
                 </div>
 
                 <div className="center-merch-photo flex w-1/3 justify-left">
@@ -101,21 +102,21 @@ function Release() {
                 </div>
 
                 <div className="right-side w-1/3 content-center">
-                {cartItem ? (
+                  {cartItem ? (
                     <>
                       <button
                         className="rounded px-2 mr-2 bg-slate-400 text-white"
                         onClick={() => addItemToCart(product)}
-                        >
+                      >
                         +
                       </button>
                       <button
                         className="rounded px-2 ml-4 bg-slate-400 text-white"
                         onClick={() => removeItemFromCart(product)}
-                        >
+                      >
                         -
                       </button>
-                        <p>In cart: {cartItem.quantity}</p>
+                      <p>In cart: {cartItem.quantity}</p>
                     </>
                   ) : (
                     <>
@@ -128,12 +129,7 @@ function Release() {
                       <p>In cart: 0</p>
                     </>
                   )}
-
-
                 </div>
-                
-
-
               </div>
             );
           })}
@@ -155,8 +151,8 @@ function Release() {
         </div>
 
         {/*Youtube Video  */}
-        <div className="flex justify-center mb-4">
-          {releaseData?.youtube && (
+        {releaseData?.youtube && (
+          <div className="flex justify-center mb-4">
             <iframe
               className="self-center"
               width="560"
@@ -167,8 +163,8 @@ function Release() {
               referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
             ></iframe>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </main>
   );
