@@ -62,7 +62,6 @@ function Root() {
     try {
       const response = await fetch("https://extremelypure-server.onrender.com/users/clearcookie", { credentials: 'include' });
       const tokenDeletion = await response.json();
-      console.log(tokenDeletion);
       setLoggedIn(false);
     } catch (error) {
       console.error('Error:', error);
@@ -77,7 +76,6 @@ function Root() {
     if (!isLargeScreen) { 
       setNavVisible(prev => !prev);
     }
-    // console.log(navVisible);
   };
 
   const addItemToCart = (product) => {

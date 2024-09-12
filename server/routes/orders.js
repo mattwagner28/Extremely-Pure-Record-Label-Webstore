@@ -11,17 +11,17 @@ const pool = new Pool({
 ordersRouter.get("/:email", async (req, res, next) => {
   try {
     const userEmail = req.params.email;
-    // res.status(202).json({ email: userEmail })
 
     //Queries individual orders by date
     const getOrdersQuery = await pool.query("SELECT order_date, order_id FROM users INNER JOIN orders ON users.id = orders.user_id WHERE users.email = $1 ORDER BY order_date", [userEmail]);
 
-    //Returns message if user has not placed any orders.
+    //Returns message to be displayed in user profile if user has not placed any orders.
     if (getOrdersQuery.rows.length === 0) {
       console.log("No orders have been purchased while logged in this account.");
       return res.status(200).json({ message: "No orders have been purchased while logged in this account." });
     }
     
+    //TODO: Create response so it sends order info to user profile if orders have been placed.
     res.json({ orders: getOrdersQuery.rows })
 
   } catch (error) {

@@ -1,9 +1,6 @@
 const express = require("express");
 const { Pool } = require("pg");
 const shopRouter = express.Router();
-const stripe = require('stripe')('sk_test_51Pb6CxFrTCMUt7gzYizK3ZvjghcE6gwcboxIFQjkODuNhUeqWuQIGlBoSdFK9eDC2edoTNmc9goGUCo7RrnAsJ9w00YI7rTw4t');
-
-
 
 const pool = new Pool({
   connectionString: process.env.INTERNAL_DB_URL,
@@ -25,7 +22,6 @@ shopRouter.get("/", async (req, res, next) => {
       `;
     const getProducts = await pool.query(query);
     res.status(200).json(getProducts.rows);
-    // res.status(200).json({message: "workes"});
   } catch (err) {
     next(err); 
   }

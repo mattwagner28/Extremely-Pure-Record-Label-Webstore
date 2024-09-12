@@ -14,9 +14,9 @@ const stripePromise = loadStripe("pk_live_51Pb6CxFrTCMUt7gzDhBPqA64Oign7lRBas6D7
 const CheckoutForm = () => {
   const { cart } = useOutletContext();
 
-  useEffect(() => {
-    console.log("Cart prop sent to checkout form:", cart);
-  }, [cart]);
+  // useEffect(() => {
+  //   console.log("Cart prop sent to checkout form:", cart);
+  // }, [cart]);
 
   const fetchClientSecret = useCallback(() => {
     // Create a Checkout Session

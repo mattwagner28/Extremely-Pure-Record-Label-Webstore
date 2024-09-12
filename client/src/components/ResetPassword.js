@@ -18,7 +18,7 @@ function ResetPassword() {
       try {
         const getResponse = await fetch(`https://extremelypure-server.onrender.com/users/reset-password/${token}`)
         const tokenStatus = await getResponse.json();
-        console.log(tokenStatus);
+        // console.log(tokenStatus);
         if (getResponse.ok) {
           setTokenVerified(true);
         } else {

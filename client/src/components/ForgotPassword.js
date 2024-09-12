@@ -29,7 +29,7 @@ function ForgotPassword() {
         body: JSON.stringify({ email })
     })
     const resetResponse = await resetPassword.json();
-    console.log("Password Reset Response:", resetResponse);
+    // console.log("Password Reset Response:", resetResponse);
     toggleForm();
   }
   catch (error) {

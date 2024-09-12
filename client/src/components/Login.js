@@ -39,7 +39,6 @@ function Login() {
         throw new Error("Network response was not ok");
       } else {
         const data = await response.json();
-        console.log("Fetch Req Successful:", data);
         setLoggedIn(true); 
       }
     } catch (error) {
