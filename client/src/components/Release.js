@@ -25,14 +25,14 @@ function Release() {
         );
         const productData = await getProductData.json();
         setProductData(productData);
-        console.log("Product Data:", productData);
+        // console.log("Product Data:", productData);
       } catch (error) {
         console.error("Error in getting product info:", error);
       }
     };
 
     fetchData();
-    console.log("Cart (from release page):", cart);
+    // console.log("Cart (from release page):", cart);
   }, [artistName, releaseTitle, cart]);
 
   return (
