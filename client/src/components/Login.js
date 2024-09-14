@@ -46,9 +46,9 @@ function Login() {
     }
   };
 
-  useEffect(() => {
-      console.log(loggedIn);
-  }, [loggedIn]);
+  // useEffect(() => {
+  //     console.log(loggedIn);
+  // }, [loggedIn]);
 
   if (loggedIn) {
     return <Navigate to="/profile" />;
