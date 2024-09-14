@@ -53,7 +53,7 @@ stripeRouter.post('/create-checkout-session', async (req, res) => {
       ui_mode: 'embedded',
       line_items: lineItems,
       mode: 'payment',
-      return_url: `${YOUR_DOMAIN}return?session_id={CHECKOUT_SESSION_ID}`,
+      return_url: `${YOUR_DOMAIN}/return?session_id={CHECKOUT_SESSION_ID}`,
       automatic_tax: {enabled: true},
     });
   
