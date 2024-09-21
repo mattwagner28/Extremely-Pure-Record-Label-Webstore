@@ -21,7 +21,7 @@ function Release() {
     const fetchData = async () => {
       try {
         const getProductData = await fetch(
-          `https://extremelypure-server.onrender.com/shop/${artistName}/${releaseTitle}`
+          `${process.env.REACT_APP_API_URL}/shop/${artistName}/${releaseTitle}`
         );
         const productData = await getProductData.json();
         setProductData(productData);

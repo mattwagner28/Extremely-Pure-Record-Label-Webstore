@@ -9,7 +9,7 @@ import { useOutletContext } from "react-router-dom";
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
 // This is your test secret API key.
-const stripePromise = loadStripe("pk_live_51Pb6CxFrTCMUt7gzDhBPqA64Oign7lRBas6D7kaiu5ZYd14RebtjK1LW6aDWoGJ4jY9N9XwhGdBZ0bOqa1Etq59N00FPVEHM0n");
+const stripePromise = loadStripe(`pk_live_${process.env.REACT_APP_STRIPE_PUBLIC_KEY}`);
 
 const CheckoutForm = () => {
   const { cart } = useOutletContext();
@@ -20,7 +20,7 @@ const CheckoutForm = () => {
 
   const fetchClientSecret = useCallback(() => {
     // Create a Checkout Session
-    return fetch("https://extremelypure-server.onrender.com/stripe/create-checkout-session", {
+    return fetch(`${process.env.REACT_APP_API_URL}/stripe/create-checkout-session`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

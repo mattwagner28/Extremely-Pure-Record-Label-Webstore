@@ -8,8 +8,8 @@ const nodemailer = require("nodemailer");
 
 
 const pool = new Pool({
-  connectionString: process.env.INTERNAL_DB_URL,
-  ssl: false 
+  connectionString: process.env.LOCAL_DB_URL || process.env.EXTERNAL_DB_URL,
+  ssl: { rejectUnauthorized: false }
 });
 
 // Nodemailer transporter object using Gmail

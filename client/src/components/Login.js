@@ -22,7 +22,7 @@ function Login() {
     }
 
     try {
-      const response = await fetch("https://extremelypure-server.onrender.com/users/login", {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/users/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -38,7 +38,6 @@ function Login() {
         setInvalidMessage("Incorrect email or password");
         throw new Error("Network response was not ok");
       } else {
-        const data = await response.json();
         setLoggedIn(true); 
       }
     } catch (error) {
@@ -46,12 +45,9 @@ function Login() {
     }
   };
 
-  // useEffect(() => {
-  //     console.log(loggedIn);
-  // }, [loggedIn]);
-
+  //If successfully logged in, redirect to user profile and pass the user email for a GET request for user order data
   if (loggedIn) {
-    return <Navigate to="/profile" />;
+    return <Navigate to="/profile"  />;
   }
 
   return (
