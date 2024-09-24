@@ -11,12 +11,15 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
 
+// Apple pay domain verification
+app.use('/.well-known', express.static(path.join(__dirname, '.well-known')));
+
 //Implement cors
-// app.use(cors({
-//   origin: [process.env.RENDER_SUBDOMAIN, 'http://localhost:3000', process.env.YOUR_DOMAIN ],
-//   methods: 'GET,POST,PUT,DELETE',
-//   credentials: true
-// }));
+app.use(cors({
+  origin: [process.env.RENDER_SUBDOMAIN, 'http://localhost:3000', process.env.YOUR_DOMAIN ],
+  methods: 'GET,POST,PUT,DELETE',
+  credentials: true
+}));
 
 // Parse application/json
 app.use(express.json());
