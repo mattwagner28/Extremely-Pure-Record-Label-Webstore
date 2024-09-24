@@ -30,7 +30,7 @@ shopRouter.get("/", async (req, res, next) => {
 
 //Retrieves all items for a release title
 shopRouter.get("/:artist/:title", async (req, res, next) => {
-  console.log(req.params);
+  // console.log(req.params);
   const title = req.params.title;
   try {
     const query = `

@@ -22,7 +22,7 @@ stripeRouter.post('/create-checkout-session', async (req, res) => {
       }
     ));
 
-    console.log("Cart fetched from client:", lineItems);
+    // console.log("Cart fetched from client:", lineItems);
 
     const session = await stripe.checkout.sessions.create({
       shipping_address_collection: {

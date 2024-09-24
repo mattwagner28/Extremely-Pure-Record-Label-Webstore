@@ -17,8 +17,9 @@ function Profile() {
 
       if (orderData) {
         setOrders(orderData.orders);
-        console.log("All order Items", orders);
-        setFirstName(`Hello, ${orderData.orders[0].first_name}!`);
+        // console.log("All order Items", orders);
+        // setFirstName(`Hello, ${orderData.orders[0].first_name}!`);
+                setFirstName(`You are now logged in. Profile page is still under construction. If you place an order while logged in, your order data will be saved and eventually displayed here.`);
       }
     } catch (error) {
       console.error("error", error);
@@ -46,7 +47,7 @@ function Profile() {
       <div>
         {/* Greeting */}
 
-        <h1 className="font-bold text-center text-2xl">{firstName}</h1>
+        <p className="text-center text-sm">{firstName}</p>
 
       </div>
     );
