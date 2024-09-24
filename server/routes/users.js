@@ -8,7 +8,7 @@ const nodemailer = require("nodemailer");
 
 
 const pool = new Pool({
-  connectionString: process.env.LOCAL_DB_URL || process.env.EXTERNAL_DB_URL,
+  connectionString: process.env.INTERNAL_DB_URL || process.env.EXTERNAL_DB_URL,
   ssl: { rejectUnauthorized: false }
 });
 
