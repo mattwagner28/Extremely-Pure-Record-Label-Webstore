@@ -62,7 +62,7 @@ function Root() {
     try {
       const response = await fetch(`${process.env.REACT_APP_API_URL}/users/clearcookie`, { credentials: 'include' });
       const tokenDeletion = await response.json();
-      console.log(tokenDeletion);
+      // console.log(tokenDeletion);
       setLoggedIn(false);
     } catch (error) {
       console.error('Error:', error);

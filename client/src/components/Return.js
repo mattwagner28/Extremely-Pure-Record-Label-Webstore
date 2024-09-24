@@ -14,7 +14,7 @@ const Return = () => {
         const sessionId = urlParams.get('session_id');
 
         if (!sessionId) {
-          console.error('No session ID found in query string');
+          // console.error('No session ID found in query string');
           return;
         }
 
