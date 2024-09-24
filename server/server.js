@@ -11,8 +11,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
 
-// Apple pay domain verification
-app.use('/.well-known', express.static(path.join(__dirname, '.well-known')));
+
 
 //Implement cors
 app.use(cors({
@@ -20,6 +19,9 @@ app.use(cors({
   methods: 'GET,POST,PUT,DELETE',
   credentials: true
 }));
+
+// Apple pay domain verification
+app.use('/.well-known', express.static(path.join(__dirname, '.well-known')));
 
 // Parse application/json
 app.use(express.json());
