@@ -16,7 +16,7 @@ function ResetPassword() {
   useEffect(() => {
     const verifyToken = async () => {
       try {
-        const getResponse = await fetch(`https://extremelypure-server.onrender.com/users/reset-password/${token}`)
+        const getResponse = await fetch(`${process.env.REACT_APP_API_URL}/users/reset-password/${token}`)
         const tokenStatus = await getResponse.json();
         // console.log(tokenStatus);
         if (getResponse.ok) {
@@ -42,7 +42,7 @@ function ResetPassword() {
     }
   
     try {
-      const response = await fetch(`https://extremelypure-server.onrender.com/users/${id}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/users/${id}`, {
         method: 'PUT',
         headers: {
           "Content-Type": "application/json",

@@ -15,7 +15,7 @@ function Store() {
   };
 
   useEffect(() => {
-    fetch("https://extremelypure-server.onrender.com/shop")
+    fetch(`${process.env.REACT_APP_API_URL}/shop`)
       .then((response) => response.json())
       .then((allProducts) => {
         setProducts(allProducts);

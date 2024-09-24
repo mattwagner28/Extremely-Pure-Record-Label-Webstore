@@ -49,7 +49,7 @@ function Root() {
 
   const verifyToken = async () => {
     try {
-      const response = await fetch("https://extremelypure-server.onrender.com/users/verifytoken", { credentials: 'include' });
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/users/verifytoken`, { credentials: 'include' });
       const tokenVerification = await response.json();
       setLoggedIn(!tokenVerification.error);
     } catch (error) {
@@ -60,8 +60,9 @@ function Root() {
 
   const signout = async () => {
     try {
-      const response = await fetch("https://extremelypure-server.onrender.com/users/clearcookie", { credentials: 'include' });
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/users/clearcookie`, { credentials: 'include' });
       const tokenDeletion = await response.json();
+      console.log(tokenDeletion);
       setLoggedIn(false);
     } catch (error) {
       console.error('Error:', error);

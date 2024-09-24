@@ -19,7 +19,7 @@ const Return = () => {
         }
 
         // GET request to retrieve data from the Stripe sessions
-        const sessionResponse = await fetch(`https://extremelypure-server.onrender.com/stripe/session-status?session_id=${sessionId}`, {
+        const sessionResponse = await fetch(`${process.env.REACT_APP_API_URL}/stripe/session-status?session_id=${sessionId}`, {
           method: 'GET',
           credentials: 'include'
         });
@@ -33,7 +33,7 @@ const Return = () => {
         setCustomerEmail(data.customer_email);
 
         // POST request to save order data
-        const orderResponse = await fetch('https://extremelypure-server.onrender.com/orders', {
+        const orderResponse = await fetch(`${process.env.REACT_APP_API_URL}/orders`, {
           method: 'POST',
           headers: {
             "Content-Type": "application/json",

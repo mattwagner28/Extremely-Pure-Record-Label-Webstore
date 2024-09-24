@@ -5,11 +5,12 @@ function NavMobile({ toggleCart, toggleNavVisibility, loggedIn }) {
   return (
     <nav className="fixed top-0 left-0 right-0 flex justify-between items-center h-20 p-4 bg-white shadow-md z-10">
 
+      <NavLink to="/" className="w-1/4 h-auto object-contain">
         <img
           src="/logo.jpg"
           alt="logo"
-          className="w-1/4 h-auto object-contain"
         />
+        </NavLink>
 
 
       <div className="flex w-2/5 justify-between">

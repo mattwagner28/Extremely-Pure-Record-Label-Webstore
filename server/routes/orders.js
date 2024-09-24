@@ -1,19 +1,33 @@
 const express = require("express");
 const { Pool } = require("pg");
 const ordersRouter = express.Router();
+const jwt = require("jsonwebtoken");
 
 const pool = new Pool({
-  connectionString: process.env.INTERNAL_DB_URL,
-  ssl: false 
+  connectionString: process.env.LOCAL_DB_URL || process.env.EXTERNAL_DB_URL,
+  ssl: { rejectUnauthorized: false }
 });
 
 
-ordersRouter.get("/:email", async (req, res, next) => {
+const testConnection = async () => {
   try {
-    const userEmail = req.params.email;
+    const client = await pool.connect();
+    console.log("Database connection successful");
+    client.release();
+  } catch (err) {
+    console.error("Database connection error:", err);
+  }
+};
 
+testConnection();
+
+ordersRouter.get("/userOrders", async (req, res, next) => {
+  try {
+    const token = req.cookies.token;
+    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    console.log(decoded.email);
     //Queries individual orders by date
-    const getOrdersQuery = await pool.query("SELECT order_date, order_id FROM users INNER JOIN orders ON users.id = orders.user_id WHERE users.email = $1 ORDER BY order_date", [userEmail]);
+    const getOrdersQuery = await pool.query("SELECT email, first_name, order_date, order_id FROM users INNER JOIN orders ON users.id = orders.user_id INNER JOIN order_items ON orders.id = order_items.order_id WHERE users.email = $1 ORDER BY order_date", [decoded.email]);
 
     //Returns message to be displayed in user profile if user has not placed any orders.
     if (getOrdersQuery.rows.length === 0) {
@@ -22,10 +36,15 @@ ordersRouter.get("/:email", async (req, res, next) => {
     }
     
     //TODO: Create response so it sends order info to user profile if orders have been placed.
-    res.json({ orders: getOrdersQuery.rows })
+    res.status(200).json({ orders: getOrdersQuery.rows })
 
   } catch (error) {
-    res.status(500).json({ message: "Intermal server error" });
+    res.status(500).json({ 
+      message: "Intermal server error", 
+      error: error,
+
+     });
+    
   }
 });
 
@@ -55,16 +74,16 @@ ordersRouter.post("/", async (req, res, next) => {
 
     // Create new order
     const saveOrder = await pool.query(
-      "INSERT INTO orders(user_id, stripe_payment_intent, amount_total, amount_subtotal, shipping_cost) VALUES($1, $2, $3, $4, $5) RETURNING order_id",
+      "INSERT INTO orders(user_id, stripe_payment_intent, amount_total, amount_subtotal, shipping_cost) VALUES($1, $2, $3, $4, $5) RETURNING id",
       [userID, payment_intent, amount_total, amount_subtotal, shipping_cost]
     );
-    const orderID = saveOrder.rows[0].order_id;
+    const orderID = saveOrder.rows[0].id;
     console.log("Order ID:", orderID);
 
     // Save each line item in the order
     for (const item of line_items) {
       await pool.query(
-        "INSERT INTO order_items(order_id, quantity, price, variant_test_price_id) VALUES($1, $2, $3, $4)",
+        "INSERT INTO order_items(id, quantity, price, variant_test_price_id) VALUES($1, $2, $3, $4)",
         [orderID, item.quantity, item.amount_total, item.price.id]
       );
     }

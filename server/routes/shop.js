@@ -3,9 +3,10 @@ const { Pool } = require("pg");
 const shopRouter = express.Router();
 
 const pool = new Pool({
-  connectionString: process.env.INTERNAL_DB_URL,
-  ssl: false 
+  connectionString: process.env.LOCAL_DB_URL || process.env.EXTERNAL_DB_URL,
+  ssl: { rejectUnauthorized: false }
 });
+
 
 //Retrieves all items for the shop component
 shopRouter.get("/", async (req, res, next) => {
@@ -29,7 +30,7 @@ shopRouter.get("/", async (req, res, next) => {
 
 //Retrieves all items for a release title
 shopRouter.get("/:artist/:title", async (req, res, next) => {
-  console.log(req.params);
+  // console.log(req.params);
   const title = req.params.title;
   try {
     const query = `
