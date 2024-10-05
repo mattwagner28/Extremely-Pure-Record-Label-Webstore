@@ -1,16 +1,11 @@
 require("dotenv").config();
 const express = require("express");
-const { Pool } = require("pg");
+const pool = require('../config/db');
 const usersRouter = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 
-
-const pool = new Pool({
-  connectionString: process.env.INTERNAL_DB_URL || process.env.EXTERNAL_DB_URL,
-  ssl: { rejectUnauthorized: false }
-});
 
 // Nodemailer transporter object using Gmail
 const transporter = nodemailer.createTransport({

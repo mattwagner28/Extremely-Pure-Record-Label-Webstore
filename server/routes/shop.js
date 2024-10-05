@@ -1,11 +1,6 @@
 const express = require("express");
-const { Pool } = require("pg");
 const shopRouter = express.Router();
-
-const pool = new Pool({
-  connectionString: process.env.INTERNAL_DB_URL || process.env.EXTERNAL_DB_URL,
-  ssl: { rejectUnauthorized: false }
-});
+const pool = require('../config/db');
 
 
 //Retrieves all items for the shop component
