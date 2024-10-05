@@ -11,8 +11,6 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
 
-
-
 //Implement cors
 app.use(cors({
   origin: [process.env.RENDER_SUBDOMAIN, 'http://localhost:3000', process.env.YOUR_DOMAIN ],

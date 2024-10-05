@@ -1,25 +1,20 @@
 const express = require("express");
-const { Pool } = require("pg");
 const ordersRouter = express.Router();
 const jwt = require("jsonwebtoken");
-
-const pool = new Pool({
-  connectionString: process.env.INTERNAL_DB_URL || process.env.EXTERNAL_DB_URL,
-  ssl: { rejectUnauthorized: false }
-});
+const pool = require('../config/db');
 
 
-const testConnection = async () => {
-  try {
-    const client = await pool.connect();
-    console.log("Database connection successful");
-    client.release();
-  } catch (err) {
-    console.error("Database connection error:", err);
-  }
-};
+// const testConnection = async () => {
+//   try {
+//     const client = await pool.connect();
+//     console.log("Database connection successful");
+//     client.release();
+//   } catch (err) {
+//     console.error("Database connection error:", err);
+//   }
+// };
 
-testConnection();
+// testConnection();
 
 ordersRouter.get("/userOrders", async (req, res, next) => {
   try {
