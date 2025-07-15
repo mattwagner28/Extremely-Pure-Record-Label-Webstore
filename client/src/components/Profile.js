@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 function Profile() {
   const loggedIn = useContext(UserContext);
   const [orders, setOrders] = useState([]);
-  const [firstName, setFirstName] = useState("");
+  const [greeting, setGreeting] = useState("");
 
   //Fetches data
   const ordersData = async () => {
@@ -17,25 +17,24 @@ function Profile() {
 
       if (orderData) {
         setOrders(orderData.orders);
-        // console.log("All order Items", orders);
-        // setFirstName(`Hello, ${orderData.orders[0].first_name}!`);
-                setFirstName(`You are now logged in. Profile page is still under construction. If you place an order while logged in, your order data will be saved and eventually displayed here.`);
+        console.log("All order Items", orderData.orders);
+        setGreeting(`Hello, ${orderData.orders[0].first_name}!`);
+                // setGreeting(`You are now logged in. Profile page is still under construction. If you place an order while logged in, your order data will be saved and eventually displayed here.`);
       }
     } catch (error) {
       console.error("error", error);
     }
   };
 
-  //Returns array of just the order IDs for each order
-  // const allOrderItems = orders.map((order) => order.order_id);
+  const allOrders = orders.reduce((accumulator, currentValue) => {
+      const uniqueOrder = accumulator.find(order => order.order_id === currentValue.order_id);
+      if (!uniqueOrder) {
+        accumulator.push(currentValue);
+      }
+      return accumulator
+  }, []);
 
-  //Returns an array of just EACH order number
-  // const userOrderIDs = allOrderItems.reduce((accumulator, currentValue) => {
-  //   if (!accumulator.includes(currentValue)) {
-  //     accumulator.push(currentValue);
-  //   }
-  //   return accumulator;
-  // }, []);
+  console.log('Unique Orders:', allOrders);
 
   useEffect(() => {
     ordersData();
@@ -45,9 +44,8 @@ function Profile() {
   if (loggedIn) {
     return (
       <div>
-        {/* Greeting */}
 
-        <p className="text-center text-sm">{firstName}</p>
+        <p className="text-center text-sm">{greeting}</p>
 
       </div>
     );

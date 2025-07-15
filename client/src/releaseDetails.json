@@ -2,6 +2,27 @@
   "releases": [
     {
       "artist": "M Wagner",
+      "title": "Sirendaze -- July 2020",
+      "coverArt": "sirendaze.jpg",
+      "coverArtist": "Cover art by M Wagner",
+      "type": "Single",
+      "format": "Digital",
+      "price": 3.00,
+      "press": [
+        {
+          "quote": "...a two-movement composition which probes his avant-garde sensibilities. Built on chaotic, manipulated field recordings and shoegaze-y distortion, the 11-minute release is searing and ruminative. “Sirendaze”/”July 2020” feels like processing nostalgia through the lens of a searing headache.",
+          "source": "The Best Ambient Music on Bandcamp, January 2025"
+        }
+      ],
+      "youtube": null,
+      "date": "May 17th, 2024",
+      "catalog_number": "EXPR 009",
+      "bandcamp_embed": "https://bandcamp.com/EmbeddedPlayer/album=273310276/size=large/bgcol=ffffff/linkcol=0687f5/artwork=none/transparent=true/",
+      "bandcamp_link": "https://https://mwagner.bandcamp.com/album/sirendaze-july-2020"
+    },
+
+    {
+      "artist": "M Wagner",
       "title": "We Could Stay",
       "coverArt": "weCouldStay.jpg",
       "coverArtist": "Cover art by Casey Fletcher",

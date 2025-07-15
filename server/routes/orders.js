@@ -4,18 +4,6 @@ const jwt = require("jsonwebtoken");
 const pool = require('../config/db');
 
 
-// const testConnection = async () => {
-//   try {
-//     const client = await pool.connect();
-//     console.log("Database connection successful");
-//     client.release();
-//   } catch (err) {
-//     console.error("Database connection error:", err);
-//   }
-// };
-
-// testConnection();
-
 ordersRouter.get("/userOrders", async (req, res, next) => {
   try {
     const token = req.cookies.token;
