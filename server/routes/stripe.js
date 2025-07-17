@@ -5,14 +5,15 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const jwt = require('jsonwebtoken');
 
 
-const YOUR_DOMAIN = process.env.YOUR_DOMAIN || 'http://localhost:3000';
+const YOUR_DOMAIN = process.env.YOUR_DOMAIN;
+const PRICE_ID = process.env.PRICE_ID;
 
 stripeRouter.post('/create-checkout-session', async (req, res) => {
 
     const cart = req.body;
     const lineItems = cart.map((item) => (
       {
-        price: item.price_id,
+        price: item[PRICE_ID],
         quantity: item.quantity,
         adjustable_quantity: {
           enabled: true,
@@ -22,7 +23,7 @@ stripeRouter.post('/create-checkout-session', async (req, res) => {
       }
     ));
 
-    // console.log("Cart fetched from client:", lineItems);
+    console.log("Cart fetched from client:", lineItems);
 
     const session = await stripe.checkout.sessions.create({
       shipping_address_collection: {
