@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import releasesData from "../releaseDetails.json";
-import { useParams } from "react-router-dom";
-import { useOutletContext } from "react-router-dom";
+import { useParams, useOutletContext } from "react-router-dom";
 
 function Release() {
   const priceID = process.env.REACT_APP_PRICE_ID;
@@ -11,15 +10,14 @@ function Release() {
 
   const [productData, setProductData] = useState([]);
   const [releaseData, setReleaseData] = useState(null);
+  const [fullscreenImage, setFullscreenImage] = useState(null);
 
   useEffect(() => {
-    // Fetch release data based on artistName and releaseTitle
     const foundRelease = releasesData.releases.find(
       (release) => release.title === releaseTitle
     );
     setReleaseData(foundRelease);
 
-    // Fetch product data from the database
     const fetchData = async () => {
       try {
         const getProductData = await fetch(
@@ -27,25 +25,30 @@ function Release() {
         );
         const productData = await getProductData.json();
         setProductData(productData);
-        // console.log("Product Data:", productData);
       } catch (error) {
         console.error("Error in getting product info:", error);
       }
     };
 
     fetchData();
-    // console.log("Cart (from release page):", cart);
-  }, [artistName, releaseTitle, cart]);
+  }, [artistName, releaseTitle]);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") setFullscreenImage(null);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   return (
-    //Main container
     <main className="container mx-auto w-full flex flex-col-reverse lg:flex-row lg:justify-center">
-      {/*Left Side Container with album art */}
+      {/* Left Side */}
       <div className="left-side lg:w-1/2 lg:m-2">
         {releaseData?.coverArt && (
           <img
             className="w-full h-auto"
-            alt={`Cover art`}
+            alt="Cover art"
             src={`/albumart/${releaseData.coverArt}`}
           />
         )}
@@ -64,42 +67,41 @@ function Release() {
         </div>
       </div>
 
-      {/*Right Side Container with album art */}
+      {/* Right Side */}
       <div className="right-side-container lg:flex lg:flex-col lg:w-1/2 lg:m-2">
         <h1 className="font-bold uppercase text-center text-4xl">
           {releaseData?.artist}
         </h1>
         <h2 className="italic text-center text-2xl">{releaseData?.title}</h2>
-        <h3 className="text-center"> {releaseData?.format}</h3>
-        <h3 className="text-center"> {releaseData?.catalog_number}</h3>
+        <h3 className="text-center">{releaseData?.format}</h3>
+        <h3 className="text-center">{releaseData?.catalog_number}</h3>
         <h3 className="text-center">{releaseData?.date}</h3>
 
-        {/*Items for sale section*/}
-        <div className="products px-12 my-3 ">
+        {/* Products */}
+        <div className="products px-12 my-3">
           {productData.map((product) => {
             const cartItem = cart.find(
               (item) => item[priceID] === product[priceID]
             );
 
             return (
-              //Card for each product fonud
               <div
                 className="card my-3 flex flex-row justify-between content-center border-b-2"
                 key={product.id}
               >
                 <div className="left-side w-1/3 flex-row content-center">
                   <h2>
-                    {" "}
-                    {product.color} {product.category} {product.size}{" "}
+                    {product.color} {product.category} {product.size}
                   </h2>
                   <h2 className="font-semibold">${product.price}</h2>
                 </div>
 
                 <div className="center-merch-photo flex w-1/3 justify-left">
                   <img
-                    className="w-24  h-auto"
+                    className="w-24 h-auto cursor-pointer transition-transform duration-200 hover:scale-105"
                     alt="merch item"
                     src={`/merchPhotos/${product.photo_path}`}
+                    onClick={() => setFullscreenImage(product.photo_path)}
                   />
                 </div>
 
@@ -141,7 +143,6 @@ function Release() {
         <div className="px-12 info my-3">
           {releaseData?.info ? (
             <div
-              className="px-12 info my-3"
               dangerouslySetInnerHTML={{
                 __html: releaseData?.info.replace(/\n/g, "<br />"),
               }}
@@ -149,11 +150,11 @@ function Release() {
           ) : null}
         </div>
 
-        {/* Press quotes */}
+        {/* Press Quotes */}
         <div className="px-12 press-quotes my-3">
-          {releaseData?.press.map((feature) =>
+          {releaseData?.press.map((feature, i) =>
             feature.quote ? (
-              <div>
+              <div key={i}>
                 <p className="italic">"{feature.quote}"</p>
                 <p className="text-right font-semibold pr-12 mb-6">
                   - {feature.source}
@@ -161,12 +162,9 @@ function Release() {
               </div>
             ) : null
           )}
-
-          {/* <p className="italic">"{releaseData?.press[0].quote}"</p>
-            <p className="text-right font-semibold pr-12">- {releaseData?.press[0].source}</p> */}
         </div>
 
-        {/*Youtube Video  */}
+        {/* YouTube */}
         {releaseData?.youtube && (
           <div className="flex justify-center mb-4">
             <iframe
@@ -182,6 +180,31 @@ function Release() {
           </div>
         )}
       </div>
+
+      {/* Fullscreen Modal */}
+      {fullscreenImage && (
+        <div
+          className="fixed inset-0 z-[9999] bg-black bg-opacity-90 flex items-center justify-center"
+          onClick={() => setFullscreenImage(null)}
+        >
+          {/* Close Button */}
+          <button
+            className="absolute top-4 left-4 text-white text-4xl font-bold z-[10000] hover:text-gray-300"
+            onClick={(e) => {
+              e.stopPropagation();
+              setFullscreenImage(null);
+            }}
+          >
+            &times;
+          </button>
+
+          <img
+            src={`/merchPhotos/${fullscreenImage}`}
+            alt="Fullscreen merch item"
+            className="max-w-full max-h-full"
+          />
+        </div>
+      )}
     </main>
   );
 }
