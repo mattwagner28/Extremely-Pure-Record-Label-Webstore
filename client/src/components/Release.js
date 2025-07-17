@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
 
 function Release() {
-
   const priceID = process.env.REACT_APP_PRICE_ID;
 
   const { artistName, releaseTitle } = useParams();
@@ -12,7 +11,6 @@ function Release() {
 
   const [productData, setProductData] = useState([]);
   const [releaseData, setReleaseData] = useState(null);
-
 
   useEffect(() => {
     // Fetch release data based on artistName and releaseTitle
@@ -139,16 +137,30 @@ function Release() {
           })}
         </div>
 
+        {/* Info */}
+        <div className="px-12 info my-3">
+          {releaseData?.info ? (
+            <div
+              className="px-12 info my-3"
+              dangerouslySetInnerHTML={{
+                __html: releaseData?.info.replace(/\n/g, "<br />"),
+              }}
+            />
+          ) : null}
+        </div>
+
         {/* Press quotes */}
         <div className="px-12 press-quotes my-3">
-          {releaseData?.press.map((feature) => (
-            <div>
-              <p className="italic">"{feature.quote}"</p>
-              <p className="text-right font-semibold pr-12 mb-6">
-                - {feature.source}
-              </p>
-            </div>
-          ))}
+          {releaseData?.press.map((feature) =>
+            feature.quote ? (
+              <div>
+                <p className="italic">"{feature.quote}"</p>
+                <p className="text-right font-semibold pr-12 mb-6">
+                  - {feature.source}
+                </p>
+              </div>
+            ) : null
+          )}
 
           {/* <p className="italic">"{releaseData?.press[0].quote}"</p>
             <p className="text-right font-semibold pr-12">- {releaseData?.press[0].source}</p> */}
