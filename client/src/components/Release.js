@@ -4,11 +4,15 @@ import { useParams } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
 
 function Release() {
+
+  const priceID = process.env.REACT_APP_PRICE_ID;
+
   const { artistName, releaseTitle } = useParams();
   const { cart, addItemToCart, removeItemFromCart } = useOutletContext();
 
   const [productData, setProductData] = useState([]);
   const [releaseData, setReleaseData] = useState(null);
+
 
   useEffect(() => {
     // Fetch release data based on artistName and releaseTitle
@@ -76,7 +80,7 @@ function Release() {
         <div className="products px-12 my-3 ">
           {productData.map((product) => {
             const cartItem = cart.find(
-              (item) => item.price_id === product.price_id
+              (item) => item[priceID] === product[priceID]
             );
 
             return (

@@ -1,6 +1,27 @@
 {
   "releases": [
     {
+      "artist": "DJ Immaterial",
+      "title": "Post-Op",
+      "coverArt": "postOp.jpg",
+      "coverArtist": "Cover art by Devin Shaffer",
+      "type": "LP - PRE-ORDER",
+      "format": "Cassette / Digital",
+      "price": 3.00,
+      "press": [
+        {
+          "quote": null,
+          "source": null
+        }
+      ],
+      "youtube": null,
+      "date": "September 26th, 2025",
+      "catalog_number": "EXPR 010",
+      "bandcamp_embed": "https://bandcamp.com/EmbeddedPlayer/album=1298926805/size=large/bgcol=ffffff/linkcol=0687f5/artwork=none/transparent=true/",
+      "bandcamp_link": "https://djimmaterial.bandcamp.com/album/post-op"
+    },
+
+    {
       "artist": "M Wagner",
       "title": "Sirendaze -- July 2020",
       "coverArt": "sirendaze.jpg",
@@ -15,7 +36,7 @@
         }
       ],
       "youtube": null,
-      "date": "May 17th, 2024",
+      "date": "January 8th, 2025",
       "catalog_number": "EXPR 009",
       "bandcamp_embed": "https://bandcamp.com/EmbeddedPlayer/album=273310276/size=large/bgcol=ffffff/linkcol=0687f5/artwork=none/transparent=true/",
       "bandcamp_link": "https://https://mwagner.bandcamp.com/album/sirendaze-july-2020"
