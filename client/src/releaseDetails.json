@@ -1,11 +1,33 @@
 {
   "releases": [
     {
+      "artist": "Silver Liz",
+      "title": "III",
+      "coverArt": "iii.png",
+      "coverArtist": "Cover art by Silver Liz",
+      "type": "LP - PRE-ORDER",
+      "format": "Vinyl / Digital",
+      "price": 25.00,
+      "press": [
+        {
+          "quote": null,
+          "source": null
+        }
+      ],
+      "info": "Silver Liz is an eclectic force in the Brooklyn scene. Founders Carrie and Matt Wagner met in a college music practice room, bonding over an eavesdropped conversation about The Strokes. The married couple moved to Chicago from central Pennsylvania in 2015, so Carrie could study at Second City Conservatory. The Windy City’s legendary indie backdrop encouraged Matt to aimlessly demo. Named after a painting at the Andy Warhol museum, Silver Liz officially cemented when offered the opportunity to open a packed show for still-ascending Kero Kero Bonito. A set’s worth of material was finished on a tight turnaround as they wrangled a rhythm section. On the LPs I Can Feel The Weight and It Is Lighter Than You Think, jangle pop, shoegaze, and dream pop were smudged in futuristic, baroque ways.\n\nSilver Liz’s latest full-length for the couple’s Extremely Pure label, III, is their most idiosyncratic to date. Though they share an apartment, it was shaped by an individualistic process. Carrie sketched Voice Memos, which were fine-tuned together, before Matt tinkered with the ideas in Ableton. \"The only rule for writing and production is that we just both have to love it,\" they say. They completed vocals and guitar over two strenuous weeks in 2023, at lifelong friend Shawn Pringle’s studio in Matt’s hometown of Johnstown, Pennsylvania. The remainder of III was fleshed out in Matt and Carrie’s living room, aided by the freedom of quitting their day jobs.\n\nMatt majored in Music Composition for undergrad and eventually attained an M.A. in Sound Art from Northwestern University. His 2024 solo debut, We Could Stay, centered on avant-garde sonic design and experimental techniques. Harkening dance classics by The Field and Daniel Avery, it earned a 7.6 from Pitchfork and yielded bookings at cutting edge clubs in Brooklyn. III is similarly futuristic, with its burbly synthesis and restless arrangements. Where prior Silver Liz efforts were jangly and familiar, these nine fuzzy tracks are steeped in fluidity and climactic motion — equally indebted to ‘90s alternative and contemporary electronics.\n\nIII is a sincere, vulnerable relic of Matt and Carrie’s 20s. Lyrics that grapple with interpersonal disenchantment, grief, and loneliness mingle with therapeutic storytelling. \"We started writing this record shortly after we relocated from Chicago to Brooklyn in May 2021,\" they remember. \"We had a lot of college friends from the East Coast who had been living here for a while. We spent our first year sharing a house in Bed-Stuy with two really good friends and then they moved to another city and we moved to our own place. After that, it felt like more and more of our friends were moving away from New York City while we were just getting started.\" Matt and Carrie drew solace in songwriting as they navigated the transactional isolation of a competitive market.\n\nAs III finally emerges, Carrie and Matt are embarking on a fresh chapter. They recently had their first child, Amelia, and are gearing up for a return to Pittsburgh. The ongoing adaptation lends the album a sense of retrospective catharsis. \"As the old idiom goes, ‘third time’s the charm’ — and on this record we really feel like we kind of achieved our eureka moment in terms of what we have always wanted one of our records to be,\" the pair muse. Across III, distorted fretwork and bittersweet singing flutter like memories caught in a butterfly net.",
+      "youtube": null,
+      "date": "January 30th, 2026",
+      "catalog_number": "EXPR011",
+      "bandcamp_embed": "https://bandcamp.com/EmbeddedPlayer/album=158371778/size=large/bgcol=ffffff/linkcol=0687f5/artwork=none/transparent=true/",
+      "bandcamp_link": "https://silverliz.bandcamp.com/album/iii"
+    },
+
+    {
       "artist": "DJ Immaterial",
       "title": "Post-Op",
       "coverArt": "postOp.jpg",
       "coverArtist": "Cover art by Devin Shaffer",
-      "type": "LP - PRE-ORDER",
+      "type": "LP",
       "format": "Cassette / Digital",
       "price": 3.00,
       "press": [
